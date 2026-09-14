@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premier Nuts — Hạt sạch, sống khỏe mỗi ngày</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFFBF4;
+    --paper:#FFFFFF;
+    --ink:#2B2116;
+    --ink-soft:#6B5D4F;
+    --orange:#F0821E;
+    --orange-dark:#D96A0F;
+    --orange-light:#FDEBD3;
+    --green:#8FC53E;
+    --green-dark:#4F7A26;
+    --green-mist:#EEF6E2;
+    --line:#EEE3D3;
+    --shadow: 0 10px 30px -12px rgba(120,80,20,0.22);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Be Vietnam Pro', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:78px;
+  }
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  :focus-visible{outline:3px solid var(--orange-dark); outline-offset:2px;}
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,251,244,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-row{
+    display:flex; align-items:center; gap:20px;
+    padding:14px 24px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; flex-shrink:0;}
+  .brand img{height:38px; width:auto;}
+  .brand-name{font-weight:800; font-size:19px; letter-spacing:-0.02em; color:var(--ink); display:none;}
+  nav.main-nav{display:none; gap:28px; font-weight:600; font-size:15px; color:var(--ink-soft);}
+  nav.main-nav a:hover{color:var(--orange-dark);}
+  .search-box{
+    flex:1; max-width:420px; display:none;
+    align-items:center; gap:10px;
+    background:var(--paper); border:1px solid var(--line);
+    border-radius:999px; padding:10px 16px;
+    margin-left:auto;
+  }
+  .search-box input{
+    border:none; outline:none; background:transparent;
+    font-family:inherit; font-size:14px; width:100%; color:var(--ink);
+  }
+  .search-box svg{flex-shrink:0; opacity:0.55;}
+  .header-actions{display:flex; align-items:center; gap:10px; margin-left:auto;}
+  .icon-btn{
+    width:42px; height:42px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--paper); border:1px solid var(--line);
+    position:relative; flex-shrink:0;
+  }
+  .icon-btn .dot{
+    position:absolute; top:8px; right:8px;
+    width:8px; height:8px; border-radius:50%; background:var(--orange);
+    border:1.5px solid var(--paper);
+  }
+  .cta-btn{
+    background:var(--orange); color:#fff; font-weight:700; font-size:14.5px;
+    padding:11px 22px; border-radius:999px; white-space:nowrap;
+    box-shadow:0 8px 18px -6px rgba(240,130,30,0.55);
+  }
+  .cta-btn.ghost{
+    background:transparent; color:var(--green-dark); border:1.5px solid var(--green);
+    box-shadow:none;
+  }
+  @media(min-width:840px){
+    .brand-name{display:block;}
+    nav.main-nav{display:flex;}
+    .search-box{display:flex;}
+  }
+
+  /* ---------- category strip ---------- */
+  .cat-strip{
+    display:flex; gap:10px; overflow-x:auto; padding:16px 24px 4px;
+    max-width:1180px; margin:0 auto; scrollbar-width:none;
+  }
+  .cat-strip::-webkit-scrollbar{display:none;}
+  .cat-chip{
+    flex-shrink:0; display:flex; align-items:center; gap:8px;
+    background:var(--paper); border:1px solid var(--line);
+    padding:9px 16px 9px 10px; border-radius:999px;
+    font-weight:600; font-size:13.5px; color:var(--ink-soft);
+  }
+  .cat-chip.active{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .cat-chip .swatch{width:24px; height:24px; border-radius:50%; flex-shrink:0;}
+
+  /* ---------- hero ---------- */
+  .hero{padding:28px 24px 8px; max-width:1180px; margin:0 auto;}
+  .hero-card{
+    position:relative; overflow:hidden;
+    background:var(--green-dark);
+    border-radius:32px;
+    display:grid; grid-template-columns:1fr; align-items:center;
+    padding:40px 26px 0;
+  }
+  .hero-card::before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(560px 360px at 88% 18%, rgba(143,197,62,0.55), transparent 60%),
+      radial-gradient(420px 300px at 10% 90%, rgba(240,130,30,0.35), transparent 65%);
+  }
+  .hero-text{position:relative; z-index:2; color:#fff; max-width:520px;}
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.3);
+    padding:7px 14px 7px 8px; border-radius:999px; font-size:13px; font-weight:600;
+    margin-bottom:18px;
+  }
+  .hero-badge span.leaf{
+    width:20px; height:20px; border-radius:50%; background:var(--green);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-text h1{
+    font-size:clamp(30px, 5vw, 46px); line-height:1.12; font-weight:800;
+    letter-spacing:-0.02em; margin-bottom:16px;
+  }
+  .hero-text p{
+    font-size:16px; line-height:1.6; color:rgba(255,255,255,0.82);
+    max-width:440px; margin-bottom:26px;
+  }
+  .hero-ctas{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:34px;}
+  .hero-ctas .cta-btn.light{background:#fff; color:var(--green-dark);}
+  .hero-ctas .cta-btn.outline{
+    background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.55);
+    box-shadow:none;
+  }
+  .hero-stats{
+    display:flex; gap:28px; position:relative; z-index:2;
+    padding-bottom:0;
+  }
+  .hero-stats div b{display:block; font-size:22px; font-weight:800; color:#fff;}
+  .hero-stats div span{font-size:12.5px; color:rgba(255,255,255,0.75);}
+  .hero-art{
+    position:relative; z-index:2; height:220px; margin-top:18px;
+    display:flex; align-items:flex-end; justify-content:center;
+  }
+  @media(min-width:900px){
+    .hero-card{grid-template-columns:1.05fr 0.95fr; padding:56px 20px 0 52px; min-height:420px;}
+    .hero-art{height:100%; margin-top:0;}
+  }
+
+  /* ---------- section heading ---------- */
+  .sec{padding:46px 24px; max-width:1180px; margin:0 auto;}
+  .sec-head{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:16px; margin-bottom:24px;
+  }
+  .sec-head h2{font-size:clamp(22px,3vw,28px); font-weight:800; letter-spacing:-0.01em;}
+  .sec-head p{color:var(--ink-soft); font-size:14.5px; margin-top:4px;}
+  .see-all{font-weight:700; font-size:14px; color:var(--orange-dark); white-space:nowrap; display:flex; align-items:center; gap:4px;}
+
+  /* ---------- product grid ---------- */
+  .product-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
+  }
+  @media(min-width:640px){.product-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(min-width:980px){.product-grid{grid-template-columns:repeat(4,1fr);}}
+  .p-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:22px;
+    overflow:hidden; position:relative; transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .p-card:hover{transform:translateY(-4px); box-shadow:var(--shadow);}
+  .p-media{
+    aspect-ratio:1/0.9; display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .p-tag{
+    position:absolute; top:12px; left:12px; z-index:2;
+    background:var(--orange); color:#fff; font-size:11px; font-weight:700;
+    padding:5px 10px; border-radius:999px;
+  }
+  .p-tag.new{background:var(--green-dark);}
+  .p-fav{
+    position:absolute; top:10px; right:10px; z-index:2;
+    width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.85);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .p-body{padding:14px 16px 16px;}
+  .p-cat{font-size:12px; color:var(--ink-soft); font-weight:600; margin-bottom:4px;}
+  .p-name{font-size:15px; font-weight:700; margin-bottom:8px; line-height:1.3;}
+  .p-bottom{display:flex; align-items:center; justify-content:space-between;}
+  .p-price{font-weight:800; font-size:15.5px; color:var(--orange-dark);}
+  .p-price small{font-weight:600; color:var(--ink-soft); text-decoration:line-through; font-size:12px; margin-left:6px;}
+  .add-btn{
+    width:34px; height:34px; border-radius:50%; background:var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .rating{display:flex; align-items:center; gap:4px; font-size:12px; color:var(--ink-soft); margin-top:6px;}
+
+  /* ---------- promo banner ---------- */
+  .promo{
+    border-radius:28px; background:var(--orange-light); padding:32px 26px;
+    display:grid; gap:22px; align-items:center; position:relative; overflow:hidden;
+  }
+  .promo::after{
+    content:""; position:absolute; right:-40px; bottom:-60px; width:220px; height:220px;
+    border-radius:50%; background:rgba(240,130,30,0.16);
+  }
+  .promo-content{position:relative; z-index:2;}
+  .promo-content h3{font-size:clamp(20px,3vw,26px); font-weight:800; margin-bottom:8px; letter-spacing:-0.01em;}
+  .promo-content p{color:var(--ink-soft); font-size:14.5px; margin-bottom:18px; max-width:440px;}
+  @media(min-width:840px){.promo{grid-template-columns:1.2fr 0.8fr; padding:40px 48px;}}
+
+  /* ---------- features ---------- */
+  .feat-row{display:grid; gap:18px; grid-template-columns:1fr;}
+  @media(min-width:760px){.feat-row{grid-template-columns:repeat(3,1fr);}}
+  .feat{
+    background:var(--paper); border:1px solid var(--line); border-radius:22px;
+    padding:26px 22px;
+  }
+  .feat .ic{
+    width:52px; height:52px; border-radius:16px; background:var(--green-mist);
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .feat h4{font-size:16.5px; font-weight:700; margin-bottom:8px;}
+  .feat p{font-size:13.5px; color:var(--ink-soft); line-height:1.6;}
+
+  /* ---------- reviews ---------- */
+  .review-scroll{display:flex; gap:16px; overflow-x:auto; padding-bottom:6px; scrollbar-width:none;}
+  .review-scroll::-webkit-scrollbar{display:none;}
+  .r-card{
+    flex:0 0 280px; background:var(--paper); border:1px solid var(--line);
+    border-radius:20px; padding:20px;
+  }
+  .r-stars{color:var(--orange); font-size:13px; margin-bottom:10px; letter-spacing:2px;}
+  .r-text{font-size:14px; line-height:1.6; color:var(--ink); margin-bottom:16px;}
+  .r-person{display:flex; align-items:center; gap:10px;}
+  .r-avatar{
+    width:36px; height:36px; border-radius:50%; background:var(--green);
+    display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:13px;
+  }
+  .r-name{font-size:13.5px; font-weight:700;}
+  .r-loc{font-size:12px; color:var(--ink-soft);}
+
+  /* ---------- app promo ---------- */
+  .app-sec{
+    background:var(--ink); border-radius:28px; padding:40px 28px;
+    display:grid; gap:26px; align-items:center; color:#fff; overflow:hidden; position:relative;
+  }
+  .app-sec::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(420px 300px at 90% -10%, rgba(240,130,30,0.35), transparent 60%);
+  }
+  .app-content{position:relative; z-index:2;}
+  .app-content h3{font-size:clamp(20px,3vw,28px); font-weight:800; margin-bottom:12px; letter-spacing:-0.01em;}
+  .app-content p{color:rgba(255,255,255,0.72); font-size:14.5px; max-width:420px; margin-bottom:22px;}
+  .qr-box{
+    display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15); border-radius:18px; padding:14px 18px; width:fit-content;
+  }
+  .qr-box .qr{width:64px; height:64px; background:#fff; border-radius:10px; padding:6px; flex-shrink:0;}
+  .qr-box .txt b{display:block; font-size:14px;}
+  .qr-box .txt span{font-size:12px; color:rgba(255,255,255,0.6);}
+  @media(min-width:840px){.app-sec{grid-template-columns:1.1fr 0.9fr; padding:52px;}}
+
+  /* ---------- footer ---------- */
+  footer{margin-top:20px; border-top:1px solid var(--line); padding:44px 24px 28px;}
+  .foot-grid{
+    max-width:1180px; margin:0 auto;
+    display:grid; gap:32px; grid-template-columns:1fr;
+  }
+  @media(min-width:760px){.foot-grid{grid-template-columns:1.3fr 1fr 1fr 1fr;}}
+  .foot-brand{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .foot-brand img{height:32px;}
+  .foot-brand span{font-weight:800; font-size:17px;}
+  footer p.desc{font-size:13.5px; color:var(--ink-soft); line-height:1.6; max-width:280px;}
+  .foot-col h5{font-size:13.5px; font-weight:700; margin-bottom:14px;}
+  .foot-col a{display:block; font-size:13.5px; color:var(--ink-soft); margin-bottom:10px;}
+  .foot-bottom{
+    max-width:1180px; margin:32px auto 0; padding-top:22px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;
+    font-size:12.5px; color:var(--ink-soft);
+  }
+  .social{display:flex; gap:10px;}
+  .social a{
+    width:34px; height:34px; border-radius:50%; background:var(--green-mist);
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ---------- mobile bottom nav ---------- */
+  .bottom-nav{
+    position:fixed; bottom:0; left:0; right:0; z-index:60;
+    background:var(--paper); border-top:1px solid var(--line);
+    display:flex; justify-content:space-around; padding:9px 6px 12px;
+  }
+  .bn-item{
+    display:flex; flex-direction:column; align-items:center; gap:3px;
+    font-size:11px; font-weight:600; color:var(--ink-soft); flex:1;
+  }
+  .bn-item.active{color:var(--orange-dark);}
+  .bn-item .fab{
+    width:46px; height:46px; margin-top:-22px; border-radius:50%;
+    background:var(--orange); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 16px -4px rgba(240,130,30,0.6);
+  }
+  @media(min-width:840px){.bottom-nav{display:none;} body{padding-bottom:0;}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="header-row">
+    <a href="#" class="brand">
+      <img src="premier-nuts-logo.png" alt="Premier Nuts">
+      <span class="brand-name">Premier Nuts</span>
+    </a>
+    <nav class="main-nav">
+      <a href="#">Trang chủ</a>
+      <a href="#san-pham">Sản phẩm</a>
+      <a href="#uu-dai">Ưu đãi</a>
+      <a href="#">Về chúng tôi</a>
+      <a href="#">Liên hệ</a>
+    </nav>
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="text" placeholder="Tìm hạt óc chó, chia, granola...">
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Yêu thích">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-10-9.3C.3 6.7 2.3 3 6.2 3c2.1 0 3.7 1.2 5.8 3.4C14.1 4.2 15.7 3 17.8 3c3.9 0 5.9 3.7 4.2 7.7C19.5 15.4 12 20 12 20Z" stroke="var(--ink)" stroke-width="1.7"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Giỏ hàng">
+        <span class="dot"></span>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 8H6" stroke="var(--ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.4" fill="var(--ink)"/><circle cx="18" cy="21" r="1.4" fill="var(--ink)"/></svg>
+      </button>
+      <a href="#" class="cta-btn">Đăng nhập</a>
+    </div>
+  </div>
+
+  <div class="cat-strip">
+    <div class="cat-chip active"><span class="swatch" style="background:var(--orange)"></span>Tất cả</div>
+    <div class="cat-chip"><span class="swatch" style="background:#C98A4B"></span>Hạt dinh dưỡng</div>
+    <div class="cat-chip"><span class="swatch" style="background:var(--green)"></span>Hạt chia &amp; hạt lanh</div>
+    <div class="cat-chip"><span class="swatch" style="background:#D7A65C"></span>Ngũ cốc &amp; yến mạch</div>
+    <div class="cat-chip"><span class="swatch" style="background:#B5651D"></span>Trái cây sấy</div>
+    <div class="cat-chip"><span class="swatch" style="background:#7CA83B"></span>Combo quà tặng</div>
+  </div>
+</header>
+
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-text">
+        <div class="hero-badge"><span class="leaf">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M5 19c7-1 12-6 14-14-8 1-13 6-14 14Z" fill="#fff"/></svg>
+          </span>100% hạt tự nhiên, không đường tinh luyện</div>
+        <h1>Hạt sạch, sống khỏe mỗi ngày</h1>
+        <p>Tuyển chọn hạt dinh dưỡng, ngũ cốc và hạt chia nguyên chất từ nông trại — rang mộc, đóng gói tươi mới mỗi tuần.</p>
+        <div class="hero-ctas">
+          <a href="#san-pham" class="cta-btn light">Mua sắm ngay</a>
+          <a href="#uu-dai" class="cta-btn outline">Xem ưu đãi hôm nay</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>120+</b><span>loại hạt &amp; ngũ cốc</span></div>
+          <div><b>50k+</b><span>khách hàng tin dùng</span></div>
+          <div><b>4.9★</b><span>đánh giá trung bình</span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg width="320" height="260" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="180" cy="235" rx="130" ry="16" fill="rgba(0,0,0,0.18)"/>
+          <path d="M60 150c0-45 45-70 100-70s100 25 100 70v45c0 8-7 15-15 15H75c-8 0-15-7-15-15v-45Z" fill="#FFFDF8"/>
+          <path d="M60 150c0-45 45-70 100-70s100 25 100 70" stroke="#F0821E" stroke-width="6" fill="none"/>
+          <circle cx="110" cy="120" r="16" fill="#D9A24B"/>
+          <circle cx="150" cy="100" r="20" fill="#F0821E"/>
+          <circle cx="195" cy="110" r="17" fill="#8FC53E"/>
+          <circle cx="230" cy="130" r="14" fill="#C98A4B"/>
+          <circle cx="130" cy="140" r="12" fill="#8FC53E"/>
+          <circle cx="175" cy="135" r="15" fill="#D96A0F"/>
+          <circle cx="215" cy="155" r="13" fill="#D9A24B"/>
+          <circle cx="95" cy="165" r="11" fill="#8FC53E"/>
+          <circle cx="255" cy="160" r="12" fill="#F0821E"/>
+          <path d="M240 70c14-18 34-10 34 8 0 14-16 26-34 30-4-18-10-28 0-38Z" fill="#8FC53E"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURED ================= -->
+  <section class="sec" id="san-pham">
+    <div class="sec-head">
+      <div>
+        <h2>Được yêu thích nhất</h2>
+        <p>Những sản phẩm khách hàng quay lại mua nhiều nhất</p>
+      </div>
+      <a href="#" class="see-all">Xem tất cả →</a>
+    </div>
+    <div class="product-grid">
+
+      <div class="p-card">
+        <div class="p-media" style="background:#FBEFD9">
+          <span class="p-tag">-15%</span>
+          <span class="p-fav">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-10-9.3C.3 6.7 2.3 3 6.2 3c2.1 0 3.7 1.2 5.8 3.4C14.1 4.2 15.7 3 17.8 3c3.9 0 5.9 3.7 4.2 7.7C19.5 15.4 12 20 12 20Z" stroke="var(--ink)" stroke-width="1.6"/></svg>
+          </span>
+          <svg width="86" height="86" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#E4A45A"/><circle cx="24" cy="26" r="7" fill="#C98A4B"/><circle cx="40" cy="30" r="8" fill="#D9A24B"/><circle cx="30" cy="42" r="6" fill="#C98A4B"/></svg>
+        </div>
+        <div class="p-body">
+          <div class="p-cat">Hạt dinh dưỡng</div>
+          <div class="p-name">Hạnh nhân rang mộc</div>
+          <div class="rating">★★★★★ (214)</div>
+          <div class="p-bottom">
+            <div class="p-price">129.000đ <small>149.000đ</small></div>
+            <button class="add-btn" aria-label="Thêm vào giỏ">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-media" style="background:var(--green-mist)">
+          <span class="p-tag new">Mới</span>
+          <span class="p-fav">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-10-9.3C.3 6.7 2.3 3 6.2 3c2.1 0 3.7 1.2 5.8 3.4C14.1 4.2 15.7 3 17.8 3c3.9 0 5.9 3.7 4.2 7.7C19.5 15.4 12 20 12 20Z" stroke="var(--ink)" stroke-width="1.6"/></svg>
+          </span>
+          <svg width="86" height="86" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#8FC53E"/><circle cx="20" cy="24" r="3" fill="#4F7A26"/><circle cx="30" cy="18" r="3" fill="#4F7A26"/><circle cx="40" cy="26" r="3" fill="#4F7A26"/><circle cx="24" cy="36" r="3" fill="#4F7A26"/><circle cx="36" cy="40" r="3" fill="#4F7A26"/><circle cx="44" cy="34" r="3" fill="#4F7A26"/></svg>
+        </div>
+        <div class="p-body">
+          <div class="p-cat">Hạt chia</div>
+          <div class="p-name">Hạt chia Úc nguyên chất</div>
+          <div class="rating">★★★★★ (98)</div>
+          <div class="p-bottom">
+            <div class="p-price">89.000đ</div>
+            <button class="add-btn" aria-label="Thêm vào giỏ">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-media" style="background:#FBEFD9">
+          <span class="p-fav">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-10-9.3C.3 6.7 2.3 3 6.2 3c2.1 0 3.7 1.2 5.8 3.4C14.1 4.2 15.7 3 17.8 3c3.9 0 5.9 3.7 4.2 7.7C19.5 15.4 12 20 12 20Z" stroke="var(--ink)" stroke-width="1.6"/></svg>
+          </span>
+          <svg width="86" height="86" viewBox="0 0 64 64"><rect x="12" y="20" width="40" height="28" rx="8" fill="#D9A24B"/><circle cx="24" cy="34" r="5" fill="#8B5A2B"/><circle cx="38" cy="30" r="6" fill="#F0821E"/><circle cx="32" cy="42" r="4" fill="#8FC53E"/></svg>
+        </div>
+        <div class="p-body">
+          <div class="p-cat">Ngũ cốc</div>
+          <div class="p-name">Granola mật ong hạt điều</div>
+          <div class="rating">★★★★☆ (167)</div>
+          <div class="p-bottom">
+            <div class="p-price">109.000đ</div>
+            <button class="add-btn" aria-label="Thêm vào giỏ">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-media" style="background:var(--green-mist)">
+          <span class="p-tag">-10%</span>
+          <span class="p-fav">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-10-9.3C.3 6.7 2.3 3 6.2 3c2.1 0 3.7 1.2 5.8 3.4C14.1 4.2 15.7 3 17.8 3c3.9 0 5.9 3.7 4.2 7.7C19.5 15.4 12 20 12 20Z" stroke="var(--ink)" stroke-width="1.6"/></svg>
+          </span>
+          <svg width="86" height="86" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#C98A4B"/><path d="M20 30c4-10 20-10 24 0" stroke="#8B5A2B" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="26" cy="38" r="3" fill="#8B5A2B"/><circle cx="38" cy="38" r="3" fill="#8B5A2B"/></svg>
+        </div>
+        <div class="p-body">
+          <div class="p-cat">Hạt dinh dưỡng</div>
+          <div class="p-name">Óc chó Mỹ nguyên vỏ</div>
+          <div class="rating">★★★★★ (301)</div>
+          <div class="p-bottom">
+            <div class="p-price">159.000đ <small>179.000đ</small></div>
+            <button class="add-btn" aria-label="Thêm vào giỏ">+</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= PROMO ================= -->
+  <section class="sec" id="uu-dai" style="padding-top:0;">
+    <div class="promo">
+      <div class="promo-content">
+        <h3>Mua 2 tặng 1 — Combo hạt mix tuần này</h3>
+        <p>Kết hợp hạnh nhân, óc chó, hạt điều và nho khô trong một túi tiện lợi. Áp dụng đến hết Chủ nhật.</p>
+        <a href="#" class="cta-btn">Săn ưu đãi</a>
+      </div>
+      <svg width="100%" height="140" viewBox="0 0 300 140" style="position:relative; z-index:2;">
+        <circle cx="150" cy="70" r="60" fill="#fff" opacity="0.5"/>
+        <circle cx="110" cy="60" r="16" fill="#F0821E"/>
+        <circle cx="150" cy="50" r="20" fill="#D9A24B"/>
+        <circle cx="190" cy="65" r="17" fill="#8FC53E"/>
+        <circle cx="130" cy="90" r="14" fill="#C98A4B"/>
+        <circle cx="175" cy="95" r="15" fill="#D96A0F"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section class="sec">
+    <div class="sec-head">
+      <div>
+        <h2>Vì sao chọn Premier Nuts</h2>
+        <p>Chất lượng là cam kết, không phải lời quảng cáo</p>
+      </div>
+    </div>
+    <div class="feat-row">
+      <div class="feat">
+        <div class="ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4Z" stroke="var(--green-dark)" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12.5l2 2 4-4.5" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>Nguồn gốc rõ ràng</h4>
+        <p>Mỗi lô hạt đều có tem truy xuất nguồn gốc, từ nông trại đến tay bạn.</p>
+      </div>
+      <div class="feat">
+        <div class="ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 8h16M4 8l1.5 11a2 2 0 0 0 2 1.8h9a2 2 0 0 0 2-1.8L20 8M9 8V5a3 3 0 0 1 6 0v3" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>Đóng gói tươi mới</h4>
+        <p>Rang và đóng gói hút chân không mỗi tuần, giữ trọn hương vị tự nhiên.</p>
+      </div>
+      <div class="feat">
+        <div class="ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 12h12M9 6l6 6-6 6" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 12h4l2 3v3h-6" stroke="var(--green-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="19" r="1.6" stroke="var(--green-dark)" stroke-width="1.6"/><circle cx="18" cy="19" r="1.6" stroke="var(--green-dark)" stroke-width="1.6"/></svg>
+        </div>
+        <h4>Giao nhanh trong 2 giờ</h4>
+        <p>Nội thành giao siêu tốc, ngoại thành và tỉnh nhận hàng trong 1-2 ngày.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REVIEWS ================= -->
+  <section class="sec">
+    <div class="sec-head">
+      <div>
+        <h2>Khách hàng nói gì</h2>
+        <p>Hơn 50.000 đơn hàng đã được giao mỗi tháng</p>
+      </div>
+    </div>
+    <div class="review-scroll">
+      <div class="r-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">Hạt điều thơm và giòn hơn hẳn mấy chỗ mình từng mua, đóng gói kỹ, giao đúng hẹn.</p>
+        <div class="r-person">
+          <div class="r-avatar">TH</div>
+          <div><div class="r-name">Thu Hà</div><div class="r-loc">TP. Hồ Chí Minh</div></div>
+        </div>
+      </div>
+      <div class="r-card">
+        <div class="r-stars">★★★★★</div>
+        <p class="r-text">Mình mua granola cho bé ăn sáng, không quá ngọt, thành phần nhìn yên tâm.</p>
+        <div class="r-person">
+          <div class="r-avatar">MK</div>
+          <div><div class="r-name">Minh Khôi</div><div class="r-loc">Hà Nội</div></div>
+        </div>
+      </div>
+      <div class="r-card">
+        <div class="r-stars">★★★★☆</div>
+        <p class="r-text">Giao hàng nhanh thật sự, đặt buổi sáng chiều đã có. Sẽ ủng hộ tiếp shop.</p>
+        <div class="r-person">
+          <div class="r-avatar">PL</div>
+          <div><div class="r-name">Phương Linh</div><div class="r-loc">Đà Nẵng</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= APP PROMO ================= -->
+  <section class="sec">
+    <div class="app-sec">
+      <div class="app-content">
+        <h3>Đặt hàng nhanh hơn với ứng dụng Premier Nuts</h3>
+        <p>Theo dõi đơn hàng, tích điểm đổi quà và nhận ưu đãi riêng dành cho thành viên app.</p>
+        <div class="qr-box">
+          <div class="qr">
+            <svg width="100%" height="100%" viewBox="0 0 40 40"><rect width="40" height="40" fill="#fff"/><rect x="2" y="2" width="12" height="12" fill="#2B2116"/><rect x="26" y="2" width="12" height="12" fill="#2B2116"/><rect x="2" y="26" width="12" height="12" fill="#2B2116"/><rect x="18" y="6" width="4" height="4" fill="#2B2116"/><rect x="18" y="18" width="4" height="4" fill="#2B2116"/><rect x="26" y="26" width="4" height="4" fill="#2B2116"/><rect x="34" y="34" width="3" height="3" fill="#2B2116"/><rect x="18" y="30" width="4" height="4" fill="#2B2116"/></svg>
+          </div>
+          <div class="txt"><b>Quét mã để tải app</b><span>Có trên App Store &amp; Google Play</span></div>
+        </div>
+      </div>
+      <svg width="100%" height="180" viewBox="0 0 280 180" style="position:relative; z-index:2;">
+        <rect x="90" y="10" width="100" height="160" rx="20" fill="#3A3025" stroke="#5A4E3E" stroke-width="2"/>
+        <rect x="98" y="24" width="84" height="118" rx="6" fill="#FFFBF4"/>
+        <circle cx="140" cy="152" r="7" fill="#5A4E3E"/>
+        <circle cx="125" cy="55" r="10" fill="#F0821E"/>
+        <circle cx="150" cy="48" r="12" fill="#8FC53E"/>
+        <rect x="108" y="80" width="64" height="8" rx="4" fill="#EEE3D3"/>
+        <rect x="108" y="96" width="44" height="8" rx="4" fill="#EEE3D3"/>
+      </svg>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand">
+        <img src="premier-nuts-logo.png" alt="Premier Nuts">
+        <span>Premier Nuts</span>
+      </div>
+      <p class="desc">Hạt dinh dưỡng và ngũ cốc sạch, tuyển chọn kỹ càng để mỗi bữa ăn của bạn đều trọn vẹn năng lượng.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Mua sắm</h5>
+      <a href="#">Hạt dinh dưỡng</a>
+      <a href="#">Hạt chia &amp; hạt lanh</a>
+      <a href="#">Ngũ cốc &amp; yến mạch</a>
+      <a href="#">Combo quà tặng</a>
+    </div>
+    <div class="foot-col">
+      <h5>Hỗ trợ</h5>
+      <a href="#">Hướng dẫn đặt hàng</a>
+      <a href="#">Chính sách đổi trả</a>
+      <a href="#">Vận chuyển</a>
+      <a href="#">Câu hỏi thường gặp</a>
+    </div>
+    <div class="foot-col">
+      <h5>Liên hệ</h5>
+      <a href="#">1900 6868</a>
+      <a href="#">hello@premiernuts.vn</a>
+      <a href="#">123 Nguyễn Huệ, Q.1, TP.HCM</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Premier Nuts. Bảo lưu mọi quyền.</span>
+    <div class="social">
+      <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M15 8h2V4h-2a5 5 0 0 0-5 5v2H8v4h2v7h4v-7h3l1-4h-4V9a1 1 0 0 1 1-1Z" fill="var(--green-dark)"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="var(--green-dark)" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="var(--green-dark)" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="var(--green-dark)"/></svg></a>
+      <a href="#" aria-label="Zalo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="var(--green-dark)" stroke-width="1.8"/><path d="M8 9h6l-6 6h6" stroke="var(--green-dark)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<nav class="bottom-nav">
+  <a href="#" class="bn-item active">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 11 12 4l8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Trang chủ
+  </a>
+  <a href="#" class="bn-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg>
+    Danh mục
+  </a>
+  <a href="#" class="bn-item">
+    <span class="fab">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </span>
+  </a>
+  <a href="#" class="bn-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.4" fill="currentColor"/><circle cx="18" cy="21" r="1.4" fill="currentColor"/></svg>
+    Giỏ hàng
+  </a>
+  <a href="#" class="bn-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 20c1.5-4 4.2-6 7.5-6s6 2 7.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    Tài khoản
+  </a>
+</nav>
+
+</body>
+</html>
