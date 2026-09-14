@@ -13,7 +13,7 @@
     --shadow: 0 10px 30px -12px rgba(120,80,20,0.22);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-x:hidden;}
   body{
     font-family:'Be Vietnam Pro', sans-serif;
     background:var(--cream);
@@ -180,6 +180,7 @@
     display:flex; align-items:flex-end; justify-content:center;
     animation:heroFloat 5s ease-in-out 1s infinite;
   }
+  .hero-art svg{max-width:100%; height:auto;}
   @media(min-width:900px){
     .hero-card{grid-template-columns:1.05fr 0.95fr; padding:28px 20px 28px 52px; min-height:420px;}
     .hero-art{height:100%; margin-top:0;}
@@ -241,6 +242,19 @@
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
   .rating{display:flex; align-items:center; gap:4px; font-size:12px; color:var(--ink-soft); margin-top:6px;}
+  @media(max-width:639px){
+    .product-grid{grid-template-columns:1fr; gap:12px;}
+    .p-card{display:grid; grid-template-columns:96px 1fr; min-height:112px; border-radius:16px;}
+    .p-media{min-height:112px; aspect-ratio:auto;}
+    .p-media svg{width:62px; height:62px;}
+    .p-tag{top:8px; left:8px; font-size:10px; padding:4px 7px;}
+    .p-body{display:flex; flex-direction:column; justify-content:center; padding:12px 14px;}
+    .p-cat{font-size:11px; margin-bottom:3px;}
+    .p-name{font-size:14px; margin-bottom:5px;}
+    .rating{font-size:11px; margin-top:2px;}
+    .p-price{font-size:14px;}
+    .p-price small{font-size:10px;}
+  }
 
   /* ---------- promo banner ---------- */
   .promo{
@@ -478,6 +492,22 @@
     .detail-benefits,.detail-story{grid-template-columns:1fr;}
     .detail-benefits{padding-left:0;padding-right:0;}
     .detail-story{padding:28px 24px;gap:18px;}
+  }
+  @media(max-width:639px){
+    .hero{padding:18px 14px 8px;}
+    .hero-card{padding:26px 18px 0; border-radius:22px;}
+    .hero-badge{font-size:11px; padding:6px 10px 6px 7px; margin-bottom:14px;}
+    .hero-text h1{font-size:clamp(27px,8vw,38px); margin-bottom:12px;}
+    .hero-text p{font-size:14px; line-height:1.5; margin-bottom:18px;}
+    .hero-ctas{gap:8px; margin-bottom:24px;}
+    .hero-ctas .cta-btn{font-size:12px; padding:9px 14px;}
+    .hero-stats{gap:14px;}
+    .hero-stats div b{font-size:18px;}
+    .hero-stats div span{font-size:10px; line-height:1.25;}
+    .hero-art{height:150px; margin-top:8px;}
+    .hero-art svg{width:100%; height:100%; object-fit:contain;}
+    .review-scroll{min-width:0; max-width:100%;}
+    .r-card{flex-basis:calc(100vw - 48px);}
   }
 
   @keyframes revealUp{
