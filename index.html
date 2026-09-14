@@ -7,401 +7,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --cream:#FFFBF4;
-    --paper:#FFFFFF;
-    --ink:#2B2116;
-    --ink-soft:#6B5D4F;
-    --orange:#F0821E;
-    --orange-dark:#D96A0F;
-    --orange-light:#FDEBD3;
-    --green:#8FC53E;
-    --green-dark:#4F7A26;
-    --green-mist:#EEF6E2;
-    --line:#EEE3D3;
-    --shadow: 0 10px 30px -12px rgba(120,80,20,0.22);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Be Vietnam Pro', sans-serif;
-    background:var(--cream);
-    color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-    padding-bottom:78px;
-  }
-  a{color:inherit; text-decoration:none;}
-  button{font-family:inherit; cursor:pointer; border:none;}
-  img{max-width:100%; display:block;}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
-  :focus-visible{outline:3px solid var(--orange-dark); outline-offset:2px;}
-
-  /* ---------- header ---------- */
-  header.site{
-    position:sticky; top:0; z-index:50;
-    background:rgba(255,251,244,0.92);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .header-row{
-    display:flex; align-items:center; gap:20px;
-    padding:14px 24px;
-    max-width:1180px; margin:0 auto;
-  }
-  .brand{display:flex; align-items:center; gap:10px; flex-shrink:0;}
-  .brand img{height:38px; width:auto;}
-  .brand-name{font-weight:800; font-size:19px; letter-spacing:-0.02em; color:var(--ink); display:none;}
-  nav.main-nav{display:none; gap:28px; font-weight:600; font-size:15px; color:var(--ink-soft);}
-  nav.main-nav a:hover{color:var(--orange-dark);}
-  .search-box{
-    flex:1; max-width:420px; display:none;
-    align-items:center; gap:10px;
-    background:var(--paper); border:1px solid var(--line);
-    border-radius:999px; padding:10px 16px;
-    margin-left:auto;
-  }
-  .search-box input{
-    border:none; outline:none; background:transparent;
-    font-family:inherit; font-size:14px; width:100%; color:var(--ink);
-  }
-  .search-box svg{flex-shrink:0; opacity:0.55;}
-  .header-actions{display:flex; align-items:center; gap:10px; margin-left:auto;}
-  .icon-btn{
-    width:42px; height:42px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    background:var(--paper); border:1px solid var(--line);
-    position:relative; flex-shrink:0;
-  }
-  .icon-btn .dot{
-    position:absolute; top:8px; right:8px;
-    width:8px; height:8px; border-radius:50%; background:var(--orange);
-    border:1.5px solid var(--paper);
-  }
-  .cta-btn{
-    background:var(--orange); color:#fff; font-weight:700; font-size:14.5px;
-    padding:11px 22px; border-radius:999px; white-space:nowrap;
-    box-shadow:0 8px 18px -6px rgba(240,130,30,0.55);
-  }
-  .cta-btn.ghost{
-    background:transparent; color:var(--green-dark); border:1.5px solid var(--green);
-    box-shadow:none;
-  }
-  @media(min-width:840px){
-    .brand-name{display:block;}
-    nav.main-nav{display:flex;}
-    .search-box{display:flex;}
-  }
-
-  /* ---------- category strip ---------- */
-  .cat-strip{
-    display:flex; gap:10px; overflow-x:auto; padding:16px 24px 4px;
-    max-width:1180px; margin:0 auto; scrollbar-width:none;
-  }
-  .cat-strip::-webkit-scrollbar{display:none;}
-  .cat-chip{
-    flex-shrink:0; display:flex; align-items:center; gap:8px;
-    background:var(--paper); border:1px solid var(--line);
-    padding:9px 16px 9px 10px; border-radius:999px;
-    font-weight:600; font-size:13.5px; color:var(--ink-soft);
-  }
-  .cat-chip.active{background:var(--ink); color:#fff; border-color:var(--ink);}
-  .cat-chip .swatch{width:24px; height:24px; border-radius:50%; flex-shrink:0;}
-
-  /* ---------- hero ---------- */
-  .hero{padding:28px 24px 8px; max-width:1180px; margin:0 auto;}
-  .hero-card{
-    position:relative; overflow:hidden;
-    background:var(--green-dark);
-    border-radius:32px;
-    display:grid; grid-template-columns:1fr; align-items:center;
-    padding:40px 26px 0;
-  }
-  .hero-card::before{
-    content:""; position:absolute; inset:0;
-    background:
-      radial-gradient(560px 360px at 88% 18%, rgba(143,197,62,0.55), transparent 60%),
-      radial-gradient(420px 300px at 10% 90%, rgba(240,130,30,0.35), transparent 65%);
-  }
-  .hero-text{position:relative; z-index:2; color:#fff; max-width:520px;}
-  .hero-badge{
-    display:inline-flex; align-items:center; gap:8px;
-    background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.3);
-    padding:7px 14px 7px 8px; border-radius:999px; font-size:13px; font-weight:600;
-    margin-bottom:18px;
-  }
-  .hero-badge span.leaf{
-    width:20px; height:20px; border-radius:50%; background:var(--green);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .hero-text h1{
-    font-size:clamp(30px, 5vw, 46px); line-height:1.12; font-weight:800;
-    letter-spacing:-0.02em; margin-bottom:16px;
-  }
-  .hero-text p{
-    font-size:16px; line-height:1.6; color:rgba(255,255,255,0.82);
-    max-width:440px; margin-bottom:26px;
-  }
-  .hero-ctas{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:34px;}
-  .hero-ctas .cta-btn.light{background:#fff; color:var(--green-dark);}
-  .hero-ctas .cta-btn.outline{
-    background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.55);
-    box-shadow:none;
-  }
-  .hero-stats{
-    display:flex; gap:28px; position:relative; z-index:2;
-    padding-bottom:0;
-  }
-  .hero-stats div b{display:block; font-size:22px; font-weight:800; color:#fff;}
-  .hero-stats div span{font-size:12.5px; color:rgba(255,255,255,0.75);}
-  .hero-art{
-    position:relative; z-index:2; height:220px; margin-top:18px;
-    display:flex; align-items:flex-end; justify-content:center;
-  }
-  @media(min-width:900px){
-    .hero-card{grid-template-columns:1.05fr 0.95fr; padding:56px 20px 0 52px; min-height:420px;}
-    .hero-art{height:100%; margin-top:0;}
-  }
-
-  /* ---------- section heading ---------- */
-  .sec{padding:46px 24px; max-width:1180px; margin:0 auto;}
-  .sec-head{
-    display:flex; align-items:flex-end; justify-content:space-between;
-    gap:16px; margin-bottom:24px;
-  }
-  .sec-head h2{font-size:clamp(22px,3vw,28px); font-weight:800; letter-spacing:-0.01em;}
-  .sec-head p{color:var(--ink-soft); font-size:14.5px; margin-top:4px;}
-  .see-all{font-weight:700; font-size:14px; color:var(--orange-dark); white-space:nowrap; display:flex; align-items:center; gap:4px;}
-
-  /* ---------- product grid ---------- */
-  .product-grid{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
-  }
-  @media(min-width:640px){.product-grid{grid-template-columns:repeat(3,1fr);}}
-  @media(min-width:980px){.product-grid{grid-template-columns:repeat(4,1fr);}}
-  .p-card{
-    background:var(--paper); border:1px solid var(--line); border-radius:22px;
-    overflow:hidden; position:relative; transition:transform .18s ease, box-shadow .18s ease;
-  }
-  .p-card:hover{transform:translateY(-4px); box-shadow:var(--shadow);}
-  .p-media{
-    aspect-ratio:1/0.9; display:flex; align-items:center; justify-content:center;
-    position:relative;
-  }
-  .p-tag{
-    position:absolute; top:12px; left:12px; z-index:2;
-    background:var(--orange); color:#fff; font-size:11px; font-weight:700;
-    padding:5px 10px; border-radius:999px;
-  }
-  .p-tag.new{background:var(--green-dark);}
-  .p-fav{
-    position:absolute; top:10px; right:10px; z-index:2;
-    width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.85);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .p-body{padding:14px 16px 16px;}
-  .p-cat{font-size:12px; color:var(--ink-soft); font-weight:600; margin-bottom:4px;}
-  .p-name{font-size:15px; font-weight:700; margin-bottom:8px; line-height:1.3;}
-  .p-bottom{display:flex; align-items:center; justify-content:space-between;}
-  .p-price{font-weight:800; font-size:15.5px; color:var(--orange-dark);}
-  .p-price small{font-weight:600; color:var(--ink-soft); text-decoration:line-through; font-size:12px; margin-left:6px;}
-  .add-btn{
-    width:34px; height:34px; border-radius:50%; background:var(--ink); color:#fff;
-    display:flex; align-items:center; justify-content:center; flex-shrink:0;
-  }
-  .rating{display:flex; align-items:center; gap:4px; font-size:12px; color:var(--ink-soft); margin-top:6px;}
-
-  /* ---------- promo banner ---------- */
-  .promo{
-    border-radius:28px; background:var(--orange-light); padding:32px 26px;
-    display:grid; gap:22px; align-items:center; position:relative; overflow:hidden;
-  }
-  .promo::after{
-    content:""; position:absolute; right:-40px; bottom:-60px; width:220px; height:220px;
-    border-radius:50%; background:rgba(240,130,30,0.16);
-  }
-  .promo-content{position:relative; z-index:2;}
-  .promo-content h3{font-size:clamp(20px,3vw,26px); font-weight:800; margin-bottom:8px; letter-spacing:-0.01em;}
-  .promo-content p{color:var(--ink-soft); font-size:14.5px; margin-bottom:18px; max-width:440px;}
-  @media(min-width:840px){.promo{grid-template-columns:1.2fr 0.8fr; padding:40px 48px;}}
-
-  /* ---------- features ---------- */
-  .feat-row{display:grid; gap:18px; grid-template-columns:1fr;}
-  @media(min-width:760px){.feat-row{grid-template-columns:repeat(3,1fr);}}
-  .feat{
-    background:var(--paper); border:1px solid var(--line); border-radius:22px;
-    padding:26px 22px;
-  }
-  .feat .ic{
-    width:52px; height:52px; border-radius:16px; background:var(--green-mist);
-    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
-  }
-  .feat h4{font-size:16.5px; font-weight:700; margin-bottom:8px;}
-  .feat p{font-size:13.5px; color:var(--ink-soft); line-height:1.6;}
-
-  /* ---------- reviews ---------- */
-  .review-scroll{display:flex; gap:16px; overflow-x:auto; padding-bottom:6px; scrollbar-width:none;}
-  .review-scroll::-webkit-scrollbar{display:none;}
-  .r-card{
-    flex:0 0 280px; background:var(--paper); border:1px solid var(--line);
-    border-radius:20px; padding:20px;
-  }
-  .r-stars{color:var(--orange); font-size:13px; margin-bottom:10px; letter-spacing:2px;}
-  .r-text{font-size:14px; line-height:1.6; color:var(--ink); margin-bottom:16px;}
-  .r-person{display:flex; align-items:center; gap:10px;}
-  .r-avatar{
-    width:36px; height:36px; border-radius:50%; background:var(--green);
-    display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:13px;
-  }
-  .r-name{font-size:13.5px; font-weight:700;}
-  .r-loc{font-size:12px; color:var(--ink-soft);}
-
-  /* ---------- about us ---------- */
-  .about-sec{
-    border-radius:28px; background:var(--paper); border:1px solid var(--line);
-    padding:36px 26px; display:grid; gap:28px; align-items:center;
-  }
-  @media(min-width:840px){.about-sec{grid-template-columns:0.95fr 1.05fr; padding:44px;}}
-  .about-art{
-    border-radius:22px; background:var(--green-mist); padding:24px;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .about-content h3{font-size:clamp(20px,3vw,26px); font-weight:800; margin-bottom:12px; letter-spacing:-0.01em;}
-  .about-content p{color:var(--ink-soft); font-size:14.5px; line-height:1.7; margin-bottom:18px; max-width:520px;}
-  .about-stats{display:flex; gap:26px; flex-wrap:wrap; margin-bottom:20px;}
-  .about-stats div b{display:block; font-size:20px; font-weight:800; color:var(--orange-dark);}
-  .about-stats div span{font-size:12.5px; color:var(--ink-soft);}
-
-  /* ---------- FAQ ---------- */
-  .faq-list{display:flex; flex-direction:column; gap:12px; max-width:820px;}
-  .faq-item{
-    background:var(--paper); border:1px solid var(--line); border-radius:18px;
-    padding:4px 20px; overflow:hidden;
-  }
-  .faq-item summary{
-    list-style:none; cursor:pointer;
-    display:flex; align-items:center; justify-content:space-between; gap:14px;
-    padding:18px 0; font-weight:700; font-size:15px;
-  }
-  .faq-item summary::-webkit-details-marker{display:none;}
-  .faq-item summary .plus{
-    width:26px; height:26px; border-radius:50%; background:var(--green-mist);
-    display:flex; align-items:center; justify-content:center; flex-shrink:0;
-    position:relative;
-  }
-  .faq-item summary .plus::before, .faq-item summary .plus::after{
-    content:""; position:absolute; background:var(--green-dark); border-radius:2px;
-  }
-  .faq-item summary .plus::before{width:11px; height:2px;}
-  .faq-item summary .plus::after{width:2px; height:11px; transition:transform .18s ease;}
-  .faq-item[open] summary .plus::after{transform:rotate(90deg); opacity:0;}
-  .faq-item p{font-size:13.5px; color:var(--ink-soft); line-height:1.7; padding-bottom:18px;}
-
-  /* ---------- contact ---------- */
-  .contact-wrap{
-    border-radius:28px; background:var(--green-dark); padding:36px 26px;
-    display:grid; gap:28px; color:#fff; position:relative; overflow:hidden;
-  }
-  .contact-wrap::before{
-    content:""; position:absolute; inset:0;
-    background:radial-gradient(460px 320px at 92% 0%, rgba(240,130,30,0.32), transparent 60%);
-  }
-  @media(min-width:900px){.contact-wrap{grid-template-columns:0.9fr 1.1fr; padding:44px;}}
-  .contact-info{position:relative; z-index:2;}
-  .contact-info h3{font-size:clamp(20px,3vw,26px); font-weight:800; margin-bottom:10px; letter-spacing:-0.01em;}
-  .contact-info p{color:rgba(255,255,255,0.78); font-size:14.5px; line-height:1.6; margin-bottom:24px; max-width:400px;}
-  .contact-item{display:flex; align-items:flex-start; gap:12px; margin-bottom:18px;}
-  .contact-item .ic{
-    width:40px; height:40px; border-radius:12px; background:rgba(255,255,255,0.12);
-    display:flex; align-items:center; justify-content:center; flex-shrink:0;
-  }
-  .contact-item b{display:block; font-size:14px; margin-bottom:2px;}
-  .contact-item span{font-size:13px; color:rgba(255,255,255,0.72);}
-  .contact-form{
-    position:relative; z-index:2; background:var(--paper); border-radius:22px; padding:26px;
-    display:grid; gap:14px; color:var(--ink);
-  }
-  .contact-form h4{font-size:15px; font-weight:700; margin-bottom:2px;}
-  .form-row{display:grid; gap:14px; grid-template-columns:1fr;}
-  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
-  .contact-form label{font-size:12.5px; font-weight:600; color:var(--ink-soft); margin-bottom:6px; display:block;}
-  .contact-form input, .contact-form textarea{
-    width:100%; border:1px solid var(--line); border-radius:12px; padding:11px 14px;
-    font-family:inherit; font-size:14px; background:var(--cream); color:var(--ink); outline:none;
-  }
-  .contact-form input:focus, .contact-form textarea:focus{border-color:var(--orange);}
-  .contact-form textarea{resize:vertical; min-height:90px;}
-  .contact-form button{
-    background:var(--orange); color:#fff; font-weight:700; font-size:14.5px;
-    padding:13px 22px; border-radius:12px; margin-top:4px;
-  }
-
-  /* ---------- app promo ---------- */
-  .app-sec{
-    background:var(--ink); border-radius:28px; padding:40px 28px;
-    display:grid; gap:26px; align-items:center; color:#fff; overflow:hidden; position:relative;
-  }
-  .app-sec::before{
-    content:""; position:absolute; inset:0;
-    background:radial-gradient(420px 300px at 90% -10%, rgba(240,130,30,0.35), transparent 60%);
-  }
-  .app-content{position:relative; z-index:2;}
-  .app-content h3{font-size:clamp(20px,3vw,28px); font-weight:800; margin-bottom:12px; letter-spacing:-0.01em;}
-  .app-content p{color:rgba(255,255,255,0.72); font-size:14.5px; max-width:420px; margin-bottom:22px;}
-  .qr-box{
-    display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.15); border-radius:18px; padding:14px 18px; width:fit-content;
-  }
-  .qr-box .qr{width:64px; height:64px; background:#fff; border-radius:10px; padding:6px; flex-shrink:0;}
-  .qr-box .txt b{display:block; font-size:14px;}
-  .qr-box .txt span{font-size:12px; color:rgba(255,255,255,0.6);}
-  @media(min-width:840px){.app-sec{grid-template-columns:1.1fr 0.9fr; padding:52px;}}
-
-  /* ---------- footer ---------- */
-  footer{margin-top:20px; border-top:1px solid var(--line); padding:44px 24px 28px;}
-  .foot-grid{
-    max-width:1180px; margin:0 auto;
-    display:grid; gap:32px; grid-template-columns:1fr;
-  }
-  @media(min-width:760px){.foot-grid{grid-template-columns:1.3fr 1fr 1fr 1fr;}}
-  .foot-brand{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
-  .foot-brand img{height:32px;}
-  .foot-brand span{font-weight:800; font-size:17px;}
-  footer p.desc{font-size:13.5px; color:var(--ink-soft); line-height:1.6; max-width:280px;}
-  .foot-col h5{font-size:13.5px; font-weight:700; margin-bottom:14px;}
-  .foot-col a{display:block; font-size:13.5px; color:var(--ink-soft); margin-bottom:10px;}
-  .foot-bottom{
-    max-width:1180px; margin:32px auto 0; padding-top:22px; border-top:1px solid var(--line);
-    display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;
-    font-size:12.5px; color:var(--ink-soft);
-  }
-  .social{display:flex; gap:10px;}
-  .social a{
-    width:34px; height:34px; border-radius:50%; background:var(--green-mist);
-    display:flex; align-items:center; justify-content:center;
-  }
-
-  /* ---------- mobile bottom nav ---------- */
-  .bottom-nav{
-    position:fixed; bottom:0; left:0; right:0; z-index:60;
-    background:var(--paper); border-top:1px solid var(--line);
-    display:flex; justify-content:space-around; padding:9px 6px 12px;
-  }
-  .bn-item{
-    display:flex; flex-direction:column; align-items:center; gap:3px;
-    font-size:11px; font-weight:600; color:var(--ink-soft); flex:1;
-  }
-  .bn-item.active{color:var(--orange-dark);}
-  @media(min-width:840px){.bottom-nav{display:none;} body{padding-bottom:0;}}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header class="site">
   <div class="header-row">
     <a href="#" class="brand">
-      <img src="premier-nuts-logo.png" alt="Premier Nuts">
-      <span class="brand-name">Premier Nuts</span>
+      <img src="premier-nuts-logo-2.png" alt="Premier Nuts">
+      <!-- <span class="brand-name">Premier Nuts</span> -->
     </a>
     <nav class="main-nav">
       <a href="#">Trang chủ</a>
@@ -415,25 +29,9 @@
       <input type="text" placeholder="Tìm hạt óc chó, chia, granola...">
     </div>
     <div class="header-actions">
-      <button class="icon-btn" aria-label="Yêu thích">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-10-9.3C.3 6.7 2.3 3 6.2 3c2.1 0 3.7 1.2 5.8 3.4C14.1 4.2 15.7 3 17.8 3c3.9 0 5.9 3.7 4.2 7.7C19.5 15.4 12 20 12 20Z" stroke="var(--ink)" stroke-width="1.7"/></svg>
-      </button>
-      <button class="icon-btn" aria-label="Giỏ hàng">
-        <span class="dot"></span>
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 8H6" stroke="var(--ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.4" fill="var(--ink)"/><circle cx="18" cy="21" r="1.4" fill="var(--ink)"/></svg>
-      </button>
-      <a href="#" class="cta-btn">Đăng nhập</a>
     </div>
   </div>
 
-  <div class="cat-strip">
-    <div class="cat-chip active"><span class="swatch" style="background:var(--orange)"></span>Tất cả</div>
-    <div class="cat-chip"><span class="swatch" style="background:#C98A4B"></span>Hạt dinh dưỡng</div>
-    <div class="cat-chip"><span class="swatch" style="background:var(--green)"></span>Hạt chia &amp; hạt lanh</div>
-    <div class="cat-chip"><span class="swatch" style="background:#D7A65C"></span>Ngũ cốc &amp; yến mạch</div>
-    <div class="cat-chip"><span class="swatch" style="background:#B5651D"></span>Trái cây sấy</div>
-    <div class="cat-chip"><span class="swatch" style="background:#7CA83B"></span>Combo quà tặng</div>
-  </div>
 </header>
 
 <main>
@@ -476,6 +74,15 @@
     </div>
   </section>
 
+  <!-- <div class="cat-strip">
+    <div class="cat-chip active"><span class="swatch" style="background:var(--orange)"></span>Tất cả</div>
+    <div class="cat-chip"><span class="swatch" style="background:#C98A4B"></span>Hạt dinh dưỡng</div>
+    <div class="cat-chip"><span class="swatch" style="background:var(--green)"></span>Hạt chia &amp; hạt lanh</div>
+    <div class="cat-chip"><span class="swatch" style="background:#D7A65C"></span>Ngũ cốc &amp; yến mạch</div>
+    <div class="cat-chip"><span class="swatch" style="background:#B5651D"></span>Trái cây sấy</div>
+    <div class="cat-chip"><span class="swatch" style="background:#7CA83B"></span>Combo quà tặng</div>
+  </div> -->
+
   <!-- ================= FEATURED ================= -->
   <section class="sec" id="san-pham">
     <div class="sec-head">
@@ -490,9 +97,6 @@
       <div class="p-card">
         <div class="p-media" style="background:#FBEFD9">
           <span class="p-tag">-15%</span>
-          <span class="p-fav">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-10-9.3C.3 6.7 2.3 3 6.2 3c2.1 0 3.7 1.2 5.8 3.4C14.1 4.2 15.7 3 17.8 3c3.9 0 5.9 3.7 4.2 7.7C19.5 15.4 12 20 12 20Z" stroke="var(--ink)" stroke-width="1.6"/></svg>
-          </span>
           <svg width="86" height="86" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#E4A45A"/><circle cx="24" cy="26" r="7" fill="#C98A4B"/><circle cx="40" cy="30" r="8" fill="#D9A24B"/><circle cx="30" cy="42" r="6" fill="#C98A4B"/></svg>
         </div>
         <div class="p-body">
@@ -509,9 +113,6 @@
       <div class="p-card">
         <div class="p-media" style="background:var(--green-mist)">
           <span class="p-tag new">Mới</span>
-          <span class="p-fav">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-10-9.3C.3 6.7 2.3 3 6.2 3c2.1 0 3.7 1.2 5.8 3.4C14.1 4.2 15.7 3 17.8 3c3.9 0 5.9 3.7 4.2 7.7C19.5 15.4 12 20 12 20Z" stroke="var(--ink)" stroke-width="1.6"/></svg>
-          </span>
           <svg width="86" height="86" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#8FC53E"/><circle cx="20" cy="24" r="3" fill="#4F7A26"/><circle cx="30" cy="18" r="3" fill="#4F7A26"/><circle cx="40" cy="26" r="3" fill="#4F7A26"/><circle cx="24" cy="36" r="3" fill="#4F7A26"/><circle cx="36" cy="40" r="3" fill="#4F7A26"/><circle cx="44" cy="34" r="3" fill="#4F7A26"/></svg>
         </div>
         <div class="p-body">
@@ -527,9 +128,6 @@
 
       <div class="p-card">
         <div class="p-media" style="background:#FBEFD9">
-          <span class="p-fav">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-10-9.3C.3 6.7 2.3 3 6.2 3c2.1 0 3.7 1.2 5.8 3.4C14.1 4.2 15.7 3 17.8 3c3.9 0 5.9 3.7 4.2 7.7C19.5 15.4 12 20 12 20Z" stroke="var(--ink)" stroke-width="1.6"/></svg>
-          </span>
           <svg width="86" height="86" viewBox="0 0 64 64"><rect x="12" y="20" width="40" height="28" rx="8" fill="#D9A24B"/><circle cx="24" cy="34" r="5" fill="#8B5A2B"/><circle cx="38" cy="30" r="6" fill="#F0821E"/><circle cx="32" cy="42" r="4" fill="#8FC53E"/></svg>
         </div>
         <div class="p-body">
@@ -546,9 +144,6 @@
       <div class="p-card">
         <div class="p-media" style="background:var(--green-mist)">
           <span class="p-tag">-10%</span>
-          <span class="p-fav">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.6-10-9.3C.3 6.7 2.3 3 6.2 3c2.1 0 3.7 1.2 5.8 3.4C14.1 4.2 15.7 3 17.8 3c3.9 0 5.9 3.7 4.2 7.7C19.5 15.4 12 20 12 20Z" stroke="var(--ink)" stroke-width="1.6"/></svg>
-          </span>
           <svg width="86" height="86" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#C98A4B"/><path d="M20 30c4-10 20-10 24 0" stroke="#8B5A2B" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="26" cy="38" r="3" fill="#8B5A2B"/><circle cx="38" cy="38" r="3" fill="#8B5A2B"/></svg>
         </div>
         <div class="p-body">
@@ -742,26 +337,10 @@
         </div>
       </div>
       <div class="contact-form">
-        <h4>Gửi tin nhắn cho chúng tôi</h4>
-        <div class="form-row two">
-          <div>
-            <label for="cf-name">Họ và tên</label>
-            <input id="cf-name" type="text" placeholder="Nguyễn Văn A">
-          </div>
-          <div>
-            <label for="cf-phone">Số điện thoại</label>
-            <input id="cf-phone" type="tel" placeholder="09xx xxx xxx">
-          </div>
-        </div>
-        <div>
-          <label for="cf-email">Email</label>
-          <input id="cf-email" type="email" placeholder="ban@email.com">
-        </div>
-        <div>
-          <label for="cf-msg">Nội dung</label>
-          <textarea id="cf-msg" placeholder="Bạn cần hỗ trợ điều gì?"></textarea>
-        </div>
-        <button type="button">Gửi liên hệ</button>
+        <h4>Liên hệ trực tiếp với chúng tôi</h4>
+        <p class="contact-direct-note">Chọn một kênh bên dưới để được tư vấn và đặt hàng nhanh chóng.</p>
+        <a href="tel:19006868" class="cta-btn contact-action">Gọi hotline 1900 6868</a>
+        <a href="https://zalo.me/0900000000" class="cta-btn ghost contact-action" target="_blank" rel="noopener">Nhắn tin qua Zalo</a>
       </div>
     </div>
   </section>
