@@ -1,4 +1,5 @@
 const productList = document.querySelector('#product-list');
+const categoryFilters = document.querySelectorAll('[data-category]');
 
 const visuals = {
   almond: '<circle cx="32" cy="32" r="26" fill="#E4A45A"/><circle cx="24" cy="26" r="7" fill="#C98A4B"/><circle cx="40" cy="30" r="8" fill="#D9A24B"/><circle cx="30" cy="42" r="6" fill="#C98A4B"/>',
@@ -44,6 +45,12 @@ function productCard(product) {
   </a>`;
 }
 
+function renderProducts(products) {
+  productList.innerHTML = products.length
+    ? products.map(productCard).join('')
+    : '<p role="status">Chưa có sản phẩm trong danh mục này.</p>';
+}
+
 async function loadProducts() {
   if (!productList) return;
 
@@ -51,7 +58,19 @@ async function loadProducts() {
     const response = await fetch('products.json');
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const products = await response.json();
-    productList.innerHTML = products.map(productCard).join('');
+    renderProducts(products);
+
+    categoryFilters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        const category = filter.dataset.category;
+        const filteredProducts = category === 'all'
+          ? products
+          : products.filter(product => product.category === category);
+
+        categoryFilters.forEach(item => item.classList.toggle('active', item === filter));
+        renderProducts(filteredProducts);
+      });
+    });
   } catch (error) {
     productList.innerHTML = '<p role="alert">Không thể tải danh sách sản phẩm.</p>';
     console.error('Product loading failed:', error);
