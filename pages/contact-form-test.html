@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Test form liên hệ | Premier Nuts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="form-test-page">
+  <section class="form-test-hero">
+    <span class="detail-kicker">CONTACT FORM / UI TEST</span>
+    <h1>Liên hệ với Premier Nuts</h1>
+    <p>Gửi lại thông tin để đội ngũ tư vấn sản phẩm, khẩu phần và đơn hàng phù hợp với bạn.</p>
+  </section>
+
+  <section class="form-test-layout">
+    <div class="form-test-aside">
+      <div class="form-test-mark">PN</div>
+      <h2>Tư vấn nhanh, chọn đúng loại hạt.</h2>
+      <p>Form đang dùng giao diện riêng của Premier Nuts và gửi dữ liệu trực tiếp vào Google Forms của bạn.</p>
+      <div class="form-test-points">
+        <span>✓ Tư vấn sản phẩm</span>
+        <span>✓ Báo giá theo nhu cầu</span>
+        <span>✓ Hỗ trợ đơn hàng</span>
+      </div>
+    </div>
+
+    <form class="contact-form form-test-card" id="contact-test-form" action="https://docs.google.com/forms/d/e/1FAIpQLSd05NUZbZYOuK_61OckjbI09UC1w62K1JeIvrqtLnpAMiOadA/formResponse" method="post" target="google-form-submit-frame" accept-charset="UTF-8">
+      <div>
+        <h2>Để lại thông tin</h2>
+        <p class="contact-direct-note">Các trường có dấu * là bắt buộc.</p>
+      </div>
+      <div class="form-row two">
+        <div>
+          <label for="contact-name">Họ và tên *</label>
+          <input id="contact-name" name="entry.889146620" type="text" placeholder="Nguyễn Văn A" required>
+        </div>
+        <div>
+          <label for="contact-phone">Số điện thoại *</label>
+          <input id="contact-phone" name="entry.269090822" type="tel" placeholder="090 000 0000" required>
+        </div>
+      </div>
+      <div>
+        <label for="contact-email">Email</label>
+        <input id="contact-email" name="entry.1547133991" type="email" placeholder="ban@example.com">
+      </div>
+      <div>
+        <label for="contact-topic">Bạn quan tâm đến</label>
+        <select id="contact-topic" name="entry.1076797503">
+          <option value="">Chọn một nội dung</option>
+          <option>Hạt dinh dưỡng</option>
+          <option>Hạt chia và hạt lanh</option>
+          <option>Ngũ cốc và granola</option>
+          <option>Đặt số lượng lớn</option>
+          <option>Hỗ trợ đơn hàng</option>
+        </select>
+      </div>
+      <div>
+        <label for="contact-message">Nội dung cần tư vấn *</label>
+        <textarea id="contact-message" name="entry.441289307" placeholder="Bạn muốn Premier Nuts tư vấn điều gì?" required></textarea>
+      </div>
+      <button type="submit">Gửi yêu cầu tư vấn</button>
+      <p id="contact-test-status" class="form-test-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+
+<iframe class="form-test-frame" name="google-form-submit-frame" title="Google Form submission" aria-hidden="true"></iframe>
+
+<div id="site-footer"></div>
+<div id="site-bottom-nav"></div>
+
+<script src="../shared/site-shell.js" defer></script>
+<script src="../features/contact/contact-form-test.js" defer></script>
+</body>
+</html>

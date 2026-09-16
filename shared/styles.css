@@ -386,6 +386,32 @@
     background:var(--orange); color:#fff; font-weight:700; font-size:14.5px;
     padding:13px 22px; border-radius:12px; margin-top:4px;
   }
+  .form-test-page{max-width:1180px; margin:0 auto; padding:58px 24px 100px;}
+  .form-test-hero{max-width:660px; margin-bottom:34px;}
+  .form-test-hero h1{font-size:clamp(32px,5vw,54px); line-height:1.08; margin:12px 0 14px; font-weight:800;}
+  .form-test-hero p{max-width:560px; color:var(--ink-soft); font-size:16px; line-height:1.7;}
+  .form-test-layout{display:grid; grid-template-columns:.8fr 1.2fr; gap:28px; align-items:stretch;}
+  .form-test-aside{border-radius:28px; background:var(--green-dark); color:#fff; padding:34px; position:relative; overflow:hidden;}
+  .form-test-aside::after{content:""; position:absolute; width:220px; height:220px; right:-90px; bottom:-90px; border-radius:50%; background:rgba(240,130,30,.3);}
+  .form-test-mark{width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:15px; background:var(--orange); font-weight:800; margin-bottom:28px;}
+  .form-test-aside h2{position:relative; z-index:1; font-size:clamp(24px,3vw,34px); line-height:1.15; margin-bottom:14px;}
+  .form-test-aside p{position:relative; z-index:1; color:rgba(255,255,255,.76); line-height:1.7; font-size:14px; max-width:350px;}
+  .form-test-points{position:relative; z-index:1; display:grid; gap:12px; margin-top:30px; font-size:13.5px; font-weight:600;}
+  .form-test-card{padding:32px; border:1px solid var(--line); box-shadow:var(--shadow);}
+  .form-test-card h2{font-size:22px; margin-bottom:4px;}
+  .contact-form select{width:100%; border:1px solid var(--line); border-radius:12px; padding:11px 14px; font-family:inherit; font-size:14px; background:var(--cream); color:var(--ink); outline:none;}
+  .contact-form select:focus{border-color:var(--orange);}
+  .form-test-status{display:none; margin-top:2px; color:var(--green-dark); font-size:13px; font-weight:700; line-height:1.5;}
+  .form-test-status.is-visible{display:block;}
+  .form-test-frame{display:none; width:0; height:0; border:0;}
+  @media(max-width:839px){
+    .form-test-page{padding:34px 18px 100px;}
+    .form-test-layout{grid-template-columns:1fr;}
+  }
+  @media(max-width:520px){
+    .form-test-aside,.form-test-card{padding:24px; border-radius:22px;}
+    .form-test-card .form-row.two{grid-template-columns:1fr;}
+  }
 
   /* ---------- app promo ---------- */
   .app-sec{
