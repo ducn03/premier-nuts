@@ -44,7 +44,6 @@ function productCard(product) {
     <div class="p-body">
       <div class="p-cat">${escapeHtml(product.category)}</div>
       <div class="p-name">${escapeHtml(product.name)}</div>
-      <div class="rating">${escapeHtml(product.rating)}</div>
       <div class="p-bottom">
         <div class="p-price">${escapeHtml(product.price)} ${oldPrice}</div>
       </div>
@@ -72,7 +71,7 @@ async function loadProducts() {
         const category = filter.dataset.category;
         const filteredProducts = category === 'all'
           ? products
-          : products.filter(product => product.category === category);
+          : products.filter(product => product.catalogGroup === category);
 
         categoryFilters.forEach(item => item.classList.toggle('active', item === filter));
         renderProducts(filteredProducts);

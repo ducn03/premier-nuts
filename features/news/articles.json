@@ -1,0 +1,113 @@
+[
+  {
+    "id": "hat-chia-la-gi",
+    "category": "Kiến thức dinh dưỡng",
+    "categoryKey": "nutrition",
+    "date": "12.09.2026",
+    "readTime": "4 phút đọc",
+    "title": "Hạt chia là gì mà ai cũng gọi là siêu thực phẩm?",
+    "excerpt": "Tìm hiểu những điều cơ bản về hạt chia, cách dùng và lý do nó dễ trở thành một phần nhỏ trong bữa ăn hằng ngày.",
+    "tone": "green",
+    "body": ["Hạt chia là những hạt nhỏ màu đen hoặc xám, thường được dùng sau khi ngâm để tạo một lớp gel mềm. Hạt có vị khá nhẹ nên dễ kết hợp với những món quen thuộc.", "Điều khiến hạt chia được quan tâm là cách dùng tiện lợi và lượng chất xơ trong khẩu phần. Tuy vậy, siêu thực phẩm không có nghĩa là một món ăn có thể thay thế cho chế độ ăn đa dạng.", "Bạn có thể bắt đầu bằng cách thêm một lượng vừa phải vào sữa chua, smoothie hoặc cốc nước. Ngâm hạt trước khi dùng và uống đủ nước trong ngày sẽ giúp việc sử dụng dễ chịu hơn."],
+    "featured": true
+  },
+  {
+    "id": "an-hat-chia-moi-ngay",
+    "category": "Kiến thức dinh dưỡng",
+    "categoryKey": "nutrition",
+    "date": "09.09.2026",
+    "readTime": "5 phút đọc",
+    "title": "Ăn hạt chia mỗi ngày, có thật sự tốt như lời đồn?",
+    "excerpt": "Một cách nhìn cân bằng hơn về việc thêm hạt chia vào khẩu phần, không biến ăn uống lành mạnh thành áp lực.",
+    "tone": "cream",
+    "body": ["Ăn hạt chia mỗi ngày có thể là một thói quen đơn giản nếu bạn hợp khẩu vị và dùng với lượng phù hợp. Điều quan trọng là chọn cách dùng có thể duy trì cùng những bữa ăn đa dạng.", "Một khẩu phần nên được điều chỉnh theo nhu cầu cá nhân và hướng dẫn của chuyên gia khi cần. Đừng xem một loại hạt như giải pháp duy nhất cho sức khỏe.", "Hãy thử thêm hạt chia vào món bạn vốn đã quen dùng. Khi thói quen mới không làm ngày của bạn thêm áp lực, khả năng duy trì sẽ tự nhiên hơn."]
+  },
+  {
+    "id": "chia-e-lanh",
+    "category": "Kiến thức dinh dưỡng",
+    "categoryKey": "nutrition",
+    "date": "05.09.2026",
+    "readTime": "4 phút đọc",
+    "title": "Hạt chia, hạt é, hạt lanh: đừng nhầm lẫn nữa",
+    "excerpt": "Ba loại hạt quen thuộc có gì khác nhau và nên chọn loại nào cho thói quen ăn uống của bạn?",
+    "tone": "orange",
+    "body": ["Hạt chia, hạt é và hạt lanh đều có thể xuất hiện trong các món ăn lành mạnh, nhưng chúng không hoàn toàn giống nhau. Hạt chia và hạt é thường tạo lớp gel khi ngâm, còn hạt lanh có vị bùi và thường được xay trước khi ăn.", "Sự khác nhau về kết cấu khiến mỗi loại hợp với một cách dùng riêng: hạt chia hợp với sữa chua, hạt é thường đi cùng đồ uống, còn hạt lanh xay có thể thêm vào smoothie hoặc món nướng.", "Thay vì chọn theo trào lưu, hãy chọn loại phù hợp với khẩu vị và cách chuẩn bị bạn có thể thực hiện thường xuyên."]
+  },
+  {
+    "id": "nam-cach-an-hat-chia",
+    "category": "Công thức & cách dùng",
+    "categoryKey": "recipe",
+    "date": "01.09.2026",
+    "readTime": "3 phút đọc",
+    "title": "5 cách ăn hạt chia tiện lợi cho ngày bận rộn",
+    "excerpt": "Từ cốc nước quen thuộc đến sữa chua và smoothie, vài cách đơn giản để hạt chia đi cùng lịch trình của bạn.",
+    "tone": "orange",
+    "body": ["Cách dễ nhất để dùng hạt chia là thêm vào những món đã có trong lịch trình: cốc nước, sữa chua, smoothie, overnight oats hoặc salad.", "Nếu thích kết cấu mềm, hãy ngâm hạt trước. Bạn cũng có thể chuẩn bị một phần nhỏ từ tối hôm trước và bảo quản theo hướng dẫn trên bao bì.", "Bí quyết không nằm ở việc làm thật nhiều công thức, mà là tìm một cách hợp với buổi sáng hoặc giờ nghỉ của riêng bạn."]
+  },
+  {
+    "id": "sua-chua-hat-chia",
+    "category": "Công thức & cách dùng",
+    "categoryKey": "recipe",
+    "date": "28.08.2026",
+    "readTime": "3 phút đọc",
+    "title": "Sữa chua hạt chia cho một buổi sáng thật nhanh",
+    "excerpt": "Một công thức không cần nấu nướng cầu kỳ, phù hợp với những buổi sáng chuông báo thức đã reo quá nhiều lần.",
+    "tone": "green",
+    "body": ["Sữa chua hạt chia là một lựa chọn phù hợp cho buổi sáng bận rộn vì gần như không cần nấu nướng. Bạn chỉ cần chuẩn bị sữa chua, hạt chia và thêm trái cây hoặc yến mạch.", "Có thể ngâm hạt chia riêng với một ít nước hoặc sữa trước khi trộn để hạt mềm hơn và món ăn có kết cấu đồng đều.", "Hãy chuẩn bị vừa đủ cho một lần dùng và bảo quản lạnh. Thêm topping ngay trước khi ăn để giữ được độ tươi."]
+  },
+  {
+    "id": "ngam-hat-chia",
+    "category": "Công thức & cách dùng",
+    "categoryKey": "recipe",
+    "date": "24.08.2026",
+    "readTime": "4 phút đọc",
+    "title": "Ngâm hạt chia bao lâu là vừa?",
+    "excerpt": "Gợi ý thời gian ngâm và cách chuẩn bị để hạt dễ dùng hơn trong các món ăn hằng ngày.",
+    "tone": "cream",
+    "body": ["Thời gian ngâm hạt chia phụ thuộc vào kết cấu bạn muốn. Hạt sẽ hút nước và mềm dần; để lâu hơn, lớp gel bao quanh hạt sẽ rõ hơn.", "Bạn có thể dùng nước, sữa hoặc đồ uống quen thuộc để ngâm. Khuấy nhẹ sau khi cho hạt vào giúp hạt phân tán đều.", "Nếu mới dùng, hãy bắt đầu với một phần nhỏ và đọc hướng dẫn bảo quản của sản phẩm."]
+  },
+  {
+    "id": "healthy-khong-cuc-doan",
+    "category": "Lối sống",
+    "categoryKey": "lifestyle",
+    "date": "19.08.2026",
+    "readTime": "5 phút đọc",
+    "title": "Sống healthy không cần cực đoan bắt đầu từ đâu?",
+    "excerpt": "Bắt đầu bằng một thay đổi đủ nhỏ để duy trì, thay vì một danh sách dài khiến bạn nhanh chóng bỏ cuộc.",
+    "tone": "green",
+    "body": ["Sống healthy không nhất thiết bắt đầu bằng việc loại bỏ hàng loạt món ăn yêu thích. Bạn có thể bắt đầu bằng một bữa sáng đủ thời gian hơn hoặc một phần hạt nhỏ cho giờ nghỉ.", "Khi mục tiêu quá lớn, mỗi ngày dễ trở thành một lần tự chấm điểm. Hãy chọn một hành động cụ thể, dễ lặp lại và cho phép bản thân linh hoạt.", "Một lối sống cân bằng là lối sống có chỗ cho cả chăm sóc bản thân và những niềm vui bình thường."]
+  },
+  {
+    "id": "cham-minh-ngay-ban",
+    "category": "Lối sống",
+    "categoryKey": "lifestyle",
+    "date": "14.08.2026",
+    "readTime": "4 phút đọc",
+    "title": "Bận đến mấy cũng có cách chăm bản thân",
+    "excerpt": "Một vài khoảng dừng ngắn để ăn uống tử tế hơn mà không cần đảo lộn cả ngày làm việc.",
+    "tone": "orange",
+    "body": ["Những ngày bận rộn thường khiến việc chăm bản thân bị đẩy xuống cuối danh sách. Một giải pháp thực tế là chuẩn bị sẵn vài lựa chọn nhỏ ở nơi bạn thường làm việc.", "Hạt có thể dùng trực tiếp hoặc thêm vào món có sẵn, phù hợp với những khoảng nghỉ ngắn. Bạn không cần biến giờ ăn thành một dự án.", "Hãy quan sát thời điểm bạn thường đói hoặc mệt, rồi chuẩn bị từ trước một cách vừa đủ."]
+  },
+  {
+    "id": "premier-nuts-ra-mat",
+    "category": "Tin thương hiệu",
+    "categoryKey": "brand",
+    "date": "08.08.2026",
+    "readTime": "2 phút đọc",
+    "title": "Premier Nuts và hành trình bắt đầu từ một thìa hạt",
+    "excerpt": "Câu chuyện phía sau một thương hiệu muốn làm cho lối sống khỏe trở nên nhẹ nhàng hơn với người trẻ.",
+    "tone": "cream",
+    "body": ["Premier Nuts bắt đầu từ một quan sát đơn giản: nhiều người trẻ muốn sống khỏe nhưng không có đủ thời gian và sự kiên trì cho những chế độ quá nghiêm ngặt.", "Tụi mình chọn bắt đầu từ hạt, một nguyên liệu quen thuộc và dễ đưa vào những món ăn thường ngày. Mục tiêu là gợi ý một thay đổi nhỏ, đủ thật để bạn muốn lặp lại.", "Premier Nuts sẽ tiếp tục hoàn thiện sản phẩm, thông tin và trải nghiệm để trở thành người bạn đồng hành nhẹ nhàng hơn với người trẻ Việt."]
+  },
+  {
+    "id": "uu-dai-thang-nay",
+    "category": "Khuyến mãi",
+    "categoryKey": "promotion",
+    "date": "01.08.2026",
+    "readTime": "2 phút đọc",
+    "title": "Ưu đãi tháng này: chọn hạt cho những ngày bận rộn",
+    "excerpt": "Các chương trình ưu đãi đang được cập nhật. Liên hệ Premier Nuts để biết sản phẩm và thời gian áp dụng.",
+    "tone": "orange",
+    "body": ["Các chương trình ưu đãi của Premier Nuts được xây dựng để bạn có thể thử sản phẩm hoặc chọn một phần phù hợp cho những ngày bận rộn.", "Thông tin về sản phẩm áp dụng, thời gian và điều kiện có thể thay đổi theo từng chương trình. Hãy kiểm tra thông tin mới nhất trước khi đặt hàng.", "Bạn có thể xem danh sách sản phẩm hoặc để lại thông tin để đội ngũ Premier Nuts tư vấn cụ thể."]
+  }
+]

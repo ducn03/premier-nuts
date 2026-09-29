@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bản tin | Premier Nuts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<link rel="stylesheet" href="../shared/news.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="news-page">
+  <section class="news-hero">
+    <div>
+      <span class="detail-kicker">GÓC KIẾN THỨC PREMIER NUTS</span>
+      <h1>Ăn lành hơn, bắt đầu từ những điều thật nhỏ.</h1>
+      <p>Những bài viết ngắn về dinh dưỡng, cách dùng hạt và một lối sống cân bằng hơn cho những ngày bận rộn.</p>
+    </div>
+    <aside class="news-hero-note">
+      <strong>Đọc một chút, chọn dễ hơn.</strong>
+      Không có công thức sống khỏe duy nhất. Tụi mình chia sẻ những gợi ý vừa đủ để bạn tự chọn điều hợp với mình.
+    </aside>
+  </section>
+
+  <section class="news-featured" aria-labelledby="featured-title">
+    <div class="section-eyebrow" id="featured-title">BÀI VIẾT NỔI BẬT</div>
+    <div id="news-featured"></div>
+  </section>
+
+  <section aria-labelledby="news-list-title">
+    <div class="news-section-head">
+      <div>
+        <span class="detail-kicker">BẢN TIN</span>
+        <h2 id="news-list-title">Chọn một chủ đề bạn đang quan tâm</h2>
+      </div>
+    </div>
+    <div class="news-filters" aria-label="Lọc bài viết">
+      <button class="news-filter active" type="button" data-news-category="all">Tất cả bài viết</button>
+      <button class="news-filter" type="button" data-news-category="nutrition">Kiến thức dinh dưỡng</button>
+      <button class="news-filter" type="button" data-news-category="recipe">Công thức &amp; cách dùng</button>
+      <button class="news-filter" type="button" data-news-category="lifestyle">Lối sống</button>
+      <button class="news-filter" type="button" data-news-category="brand">Tin thương hiệu</button>
+      <button class="news-filter" type="button" data-news-category="promotion">Khuyến mãi</button>
+    </div>
+    <div class="news-grid" id="news-list" aria-live="polite"></div>
+  </section>
+
+  <section class="news-next-step">
+    <h2>Muốn bắt đầu nhẹ nhàng hơn?</h2>
+    <p>Chọn một sản phẩm phù hợp hoặc để lại thông tin để Premier Nuts tư vấn.</p>
+    <a class="cta-btn" href="products.html">Xem sản phẩm</a>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<div id="site-bottom-nav"></div>
+
+<script src="../shared/site-shell.js" defer></script>
+<script src="../features/news/news.js" defer></script>
+</body>
+</html>

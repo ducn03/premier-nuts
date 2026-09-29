@@ -17,6 +17,7 @@
   {
     "id": "hat-chia-uc-nguyen-chat",
     "category": "Hạt chia",
+    "catalogGroup": "Hạt chia",
     "name": "Hạt chia Úc nguyên chất",
     "rating": "★★★★★ (98)",
     "price": "89.000đ",
@@ -122,6 +123,7 @@
   {
     "id": "mix-hat-nang-luong",
     "category": "Ngũ cốc",
+    "catalogGroup": "Combo / Bộ set",
     "name": "Mix hạt năng lượng 5 loại",
     "rating": "★★★★★ (203)",
     "price": "149.000đ",
@@ -197,6 +199,7 @@
   {
     "id": "hat-lanh-vang",
     "category": "Hạt chia",
+    "catalogGroup": "Hạt chia",
     "name": "Hạt lanh vàng nguyên chất",
     "rating": "★★★★☆ (83)",
     "price": "69.000đ",
@@ -257,6 +260,7 @@
   {
     "id": "mix-hat-hat-bi-nho-kho",
     "category": "Ngũ cốc",
+    "catalogGroup": "Combo / Bộ set",
     "name": "Mix hạt bí và nho khô",
     "rating": "★★★★☆ (64)",
     "price": "105.000đ",

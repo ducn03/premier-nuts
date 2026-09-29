@@ -24,7 +24,7 @@ function renderDetail(product) {
   const background = product.mediaClass === 'chia' || product.mediaClass === 'walnut' ? 'var(--green-mist)' : '#FBEFD9';
 
   detailRoot.innerHTML = `<div class="detail-shell">
-    <a class="detail-back" href="../index.html#san-pham">← Quay lại sản phẩm</a>
+    <a class="detail-back" href="products.html">← Quay lại danh sách sản phẩm</a>
     <section class="detail-hero">
       <div class="detail-visual" style="background:${background}">
         <span class="detail-orbit detail-orbit-one"></span><span class="detail-orbit detail-orbit-two"></span>${tag}
@@ -33,15 +33,14 @@ function renderDetail(product) {
       <div class="detail-copy">
         <span class="detail-kicker">${escapeHtml(product.category)} / PREMIER NUTS</span>
         <h1>${escapeHtml(product.name)}</h1>
-        <div class="detail-rating">${escapeHtml(product.rating)} <span>Được khách hàng yêu thích</span></div>
         <p class="detail-lead">${escapeHtml(product.description)}</p>
         <div class="detail-price"><strong>${escapeHtml(product.price)}</strong>${oldPrice}<span> / túi</span></div>
-        <div class="detail-actions"><a href="tel:19006868" class="cta-btn">Gọi đặt hàng</a><a href="https://zalo.me/0900000000" class="cta-btn ghost" target="_blank" rel="noopener">Nhắn Zalo</a></div>
-        <div class="detail-note"><span>✓</span> Không đường tinh luyện <span>✓</span> Rang mộc tươi mới <span>✓</span> Đóng gói kỹ</div>
+        <div class="detail-actions"><a href="../pages/contact-form-test.html" class="cta-btn">Để lại thông tin đặt hàng</a><a href="../pages/contact-form-test.html" class="cta-btn ghost">Cần tư vấn?</a></div>
+        <div class="detail-order-note">Không cần tài khoản hay giỏ hàng. Chọn sản phẩm, gửi thông tin, Premier Nuts sẽ nhắn lại để xác nhận đơn.</div>
         <dl class="detail-specs"><div><dt>Xuất xứ</dt><dd>${escapeHtml(product.origin)}</dd></div><div><dt>Cách dùng</dt><dd>${escapeHtml(product.serving)}</dd></div><div><dt>Bảo quản</dt><dd>${escapeHtml(product.storage)}</dd></div></dl>
       </div>
     </section>
-    <section class="detail-benefits"><div><b>01</b><h2>Chọn lọc có chủ đích</h2><p>Mỗi sản phẩm được chọn theo hương vị, độ tươi và cách dùng thực tế trong nhịp sống hằng ngày.</p></div><div><b>02</b><h2>Ăn ngon, dễ kết hợp</h2><p>Từ bữa sáng nhanh đến món ăn nhẹ tại văn phòng, sản phẩm dễ dùng và không cần chuẩn bị cầu kỳ.</p></div><div><b>03</b><h2>Giao tận tay chỉn chu</h2><p>Đóng gói cẩn thận để hạt giữ được độ ngon trong suốt hành trình đến căn bếp của bạn.</p></div></section>
+    <section class="detail-benefits"><div><b>01</b><h2>Thông tin dễ hiểu</h2><p>Biết rõ xuất xứ, cách dùng và cách bảo quản trước khi chọn sản phẩm.</p></div><div><b>02</b><h2>Ăn ngon, dễ kết hợp</h2><p>Từ bữa sáng nhanh đến món ăn nhẹ tại văn phòng, sản phẩm không cần chuẩn bị cầu kỳ.</p></div><div><b>03</b><h2>Đặt hàng đơn giản</h2><p>Để lại thông tin quan tâm, đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.</p></div></section>
     <section class="detail-story"><div><span class="detail-kicker">Gợi ý thưởng thức</span><h2>Một lựa chọn nhỏ cho nhịp sống lành mạnh hơn.</h2></div><p>Dùng trực tiếp, thêm vào sữa chua, granola hoặc salad. Liên hệ với Premier Nuts để được tư vấn khẩu phần và đặt hàng theo nhu cầu.</p></section>
   </div>`;
 }
