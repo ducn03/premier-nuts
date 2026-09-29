@@ -19,20 +19,9 @@ const siteHeaderMarkup = `
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <input type="text" placeholder="Tìm hạt óc chó, chia, granola...">
     </div>
-    <div class="header-actions">
-      <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Mở menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
   </div>
 </header>
-<nav class="mobile-menu" id="mobile-menu" aria-label="Điều hướng mobile">
-  <a href="${rootPath}index.html">Trang chủ</a>
-  <a href="${rootPath}pages/about-us.html">Về chúng tôi</a>
-  <a href="${rootPath}pages/news.html">Bản tin</a>
-  <a href="${rootPath}pages/products.html">Sản phẩm</a>
-  <a href="${rootPath}pages/support.html">Hỗ trợ &amp; chính sách</a>
-</nav>`;
+`;
 
 const siteFooterMarkup = `
 <footer>
@@ -82,6 +71,10 @@ const bottomNavMarkup = `
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 11 12 4l8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     Trang chủ
   </a>
+  <a href="${rootPath}pages/about-us.html" class="bn-item" data-page="about-us.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    Về chúng tôi
+  </a>
   <a href="${productsPath}" class="bn-item" data-page="products.html">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg>
     Sản phẩm
@@ -105,20 +98,7 @@ function renderShell() {
   if (footerRoot) footerRoot.innerHTML = siteFooterMarkup;
   if (bottomNavRoot) bottomNavRoot.innerHTML = bottomNavMarkup;
 
-  const menuButton = document.querySelector('.mobile-menu-button');
-  const mobileMenu = document.querySelector('#mobile-menu');
-  menuButton?.addEventListener('click', () => {
-    const isOpen = mobileMenu?.classList.toggle('is-open');
-    menuButton.setAttribute('aria-expanded', String(Boolean(isOpen)));
-    menuButton.setAttribute('aria-label', isOpen ? 'Đóng menu' : 'Mở menu');
-  });
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('is-open');
-      menuButton?.setAttribute('aria-expanded', 'false');
-      menuButton?.setAttribute('aria-label', 'Mở menu');
-    });
-  });
+
 
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const activeNavItems = document.querySelectorAll('.bn-item');
