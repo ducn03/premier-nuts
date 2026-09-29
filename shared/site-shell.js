@@ -63,16 +63,16 @@ const siteFooterMarkup = `
     </div>
     <div class="foot-col">
       <h5>Liên hệ</h5>
-      <a href="${rootPath}pages/contact-form-test.html">1900 6868</a>
-      <a href="${rootPath}pages/contact-form-test.html">hello@premiernuts.vn</a>
-      <a href="${rootPath}pages/contact-form-test.html">123 Nguyễn Huệ, Q.1, TP.HCM</a>
+      <a href="tel:0949382374">0949 382 374</a>
+      <a href="mailto:premirenutshcm@gmail.com">premirenutshcm@gmail.com</a>
+      <a href="${rootPath}pages/contact-form-test.html">131/53/3 đường số 6, khu phố 1, p. Linh Xuân, Thủ Đức, TP HCM</a>
     </div>
   </div>
   <div class="foot-bottom">
     <span>© 2026 Premier Nuts. Bảo lưu mọi quyền.</span>
     <div class="social">
-      <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M15 8h2V4h-2a5 5 0 0 0-5 5v2H8v4h2v7h4v-7h3l1-4h-4V9a1 1 0 0 1 1-1Z" fill="var(--green-dark)"/></svg></a>
-      <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="var(--green-dark)" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="var(--green-dark)" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="var(--green-dark)"/></svg></a>
+      <a href="https://www.facebook.com/share/19Z9yyJetr/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M15 8h2V4h-2a5 5 0 0 0-5 5v2H8v4h2v7h4v-7h3l1-4h-4V9a1 1 0 0 1 1-1Z" fill="var(--green-dark)"/></svg></a>
+      <a href="https://www.tiktok.com/@premirenutsvn" target="_blank" aria-label="TikTok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5v3a3 3 0 0 1-3-3v8a8 8 0 1 1-8-8v3a5 5 0 0 0 1 5z" fill="var(--green-dark)"/></svg></a>
       <a href="#" aria-label="Zalo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="var(--green-dark)" stroke-width="1.8"/><path d="M8 9h6l-6 6h6" stroke="var(--green-dark)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>

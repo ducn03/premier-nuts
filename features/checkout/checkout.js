@@ -48,7 +48,7 @@ async function renderCart() {
     `- ${i.product.name}: ${i.qty} x ${fmt(i.unitPrice)} = ${fmt(i.lineTotal)}`
   );
   summaryLines.push(`=> TỔNG CỘNG: ${fmt(total)}`);
-  
+
   const hiddenInput = document.getElementById('hidden-cart-summary');
   if (hiddenInput) hiddenInput.value = summaryLines.join('\n');
 }
@@ -88,7 +88,7 @@ function bindFormSubmit() {
 
     if (!name || !phone || !email || !address) {
       e.preventDefault();
-      status.textContent = '⚠️ Vui lòng điền đầy đủ các trường bắt buộc.';
+      status.textContent = '⚠️ Vui lòng điền đầy đủ các thông tin bắt buộc.';
       status.className = 'checkout-status is-error';
       return;
     }
@@ -141,8 +141,108 @@ function bindFormSubmit() {
   }
 }
 
+function removeAccents(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+}
+
+let adminUnits = [];
+async function loadAdminUnits() {
+  try {
+    const res = await fetch('https://provinces.open-api.vn/api/?depth=3');
+    const data = await res.json();
+    for (const p of data) {
+      for (const d of p.districts) {
+        for (const w of d.wards) {
+          adminUnits.push(`${w.name}, ${d.name}, ${p.name}`);
+        }
+      }
+    }
+  } catch (e) {
+    console.error('Failed to load VN provinces', e);
+  }
+}
+
+function bindAddressAutocomplete() {
+  const inputs = document.querySelectorAll('.address-autocomplete-input');
+  if (!inputs.length) return;
+
+  // Start loading data in background
+  loadAdminUnits();
+
+  inputs.forEach(input => {
+    const list = input.nextElementSibling;
+    // Check if nextElementSibling is the label-hint, if so the list is the one after it
+    const ulList = list.classList.contains('autocomplete-list') ? list : input.parentElement.querySelector('.autocomplete-list');
+    if (!ulList) return;
+
+    let timeout;
+
+    input.addEventListener('input', () => {
+      clearTimeout(timeout);
+      const query = input.value;
+      const parts = query.split(',');
+      
+      // Only suggest if they typed a comma (meaning they finished the street name)
+      if (parts.length < 2) {
+        ulList.hidden = true;
+        return;
+      }
+
+      const searchStr = parts[parts.length - 1].trim();
+      if (searchStr.length < 1) {
+        ulList.hidden = true;
+        return;
+      }
+
+      timeout = setTimeout(() => {
+        const normalizedSearch = removeAccents(searchStr.toLowerCase());
+        
+        const matches = adminUnits.filter(u => 
+          removeAccents(u.toLowerCase()).includes(normalizedSearch)
+        ).slice(0, 10); // Show top 10 matches
+
+        if (!matches.length) {
+          ulList.hidden = true;
+          return;
+        }
+
+        ulList.innerHTML = matches.map(m => {
+          const mParts = m.split(', ');
+          const main = mParts[0];
+          const sub = mParts.slice(1).join(', ');
+          return `<li class="autocomplete-item" data-full="${m.replace(/"/g, '&quot;')}">
+            <strong>${main}</strong><br><span class="dim">${sub}</span>
+          </li>`;
+        }).join('');
+        
+        ulList.hidden = false;
+      }, 150);
+    });
+
+    ulList.addEventListener('click', e => {
+      const li = e.target.closest('.autocomplete-item');
+      if (!li) return;
+      
+      // Replace the part after the last comma with the selected full address
+      const parts = input.value.split(',');
+      parts.pop(); 
+      
+      input.value = parts.join(',').trim() + (parts.length ? ', ' : '') + li.dataset.full;
+      ulList.hidden = true;
+      input.focus();
+    });
+
+    document.addEventListener('click', e => {
+      if (!input.contains(e.target) && !ulList.contains(e.target)) {
+        ulList.hidden = true;
+      }
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   await renderCart();
   bindCartEvents();
   bindFormSubmit();
+  bindAddressAutocomplete();
 });

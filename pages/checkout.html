@@ -65,15 +65,21 @@
               autocomplete="email">
           </div>
 
-          <div>
+          <div style="position: relative;">
             <label for="co-address">Địa chỉ của bạn *</label>
-            <input id="co-address" name="entry.955250698" type="text" placeholder="123 Nguyễn Huệ, Q.1, TP.HCM" required
-              autocomplete="street-address">
+            <input id="co-address" class="address-autocomplete-input" name="entry.955250698" type="text" placeholder="163 Trần Nguyên Hãn, Phường..." required
+              autocomplete="off">
+            <span class="label-hint" style="display:block; margin-top:6px; font-size:12px; color:var(--ink-soft);">
+              * Mẹo: Gõ tên đường, thêm dấu phẩy (,) rồi gõ <strong>Quận/Huyện</strong> để nhận gợi ý chính xác nhất (VD: 163 TNH, Quận 8)
+            </span>
+            <ul class="autocomplete-list" hidden></ul>
           </div>
 
-          <div>
+          <div style="position: relative;">
             <label for="co-delivery">Địa chỉ nhận hàng <span class="label-hint">(để trống nếu giống trên)</span></label>
-            <input id="co-delivery" name="entry.1719047985" type="text" placeholder="Để trống nếu giống địa chỉ trên">
+            <input id="co-delivery" class="address-autocomplete-input" name="entry.1719047985" type="text" placeholder="Để trống nếu giống địa chỉ trên"
+              autocomplete="off">
+            <ul class="autocomplete-list" hidden></ul>
           </div>
 
           <div class="form-group">
