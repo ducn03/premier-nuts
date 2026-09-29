@@ -2,6 +2,8 @@ const isNestedPage = window.location.pathname.split('/').includes('pages');
 const rootPath = isNestedPage ? '../' : '';
 const productsPath = isNestedPage ? 'products.html' : 'pages/products.html';
 
+const checkoutPath = isNestedPage ? 'checkout.html' : 'pages/checkout.html';
+
 const siteHeaderMarkup = `
 <header class="site">
   <div class="header-row">
@@ -19,8 +21,19 @@ const siteHeaderMarkup = `
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <input type="text" placeholder="Tìm hạt óc chó, chia, granola...">
     </div>
+    <div class="header-actions">
+      <a href="${checkoutPath}" class="cart-icon-btn" aria-label="Giỏ hàng">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke="currentColor" stroke-width="1.8"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1.8"/><path d="M16 10a4 4 0 0 1-8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="cart-badge" hidden>0</span>
+      </a>
+    </div>
   </div>
 </header>
+<!-- Mobile cart FAB -->
+<a href="${checkoutPath}" class="cart-fab" aria-label="Giỏ hàng">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke="currentColor" stroke-width="1.8"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1.8"/><path d="M16 10a4 4 0 0 1-8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  <span class="cart-badge" hidden>0</span>
+</a>
 `;
 
 const siteFooterMarkup = `
@@ -98,6 +111,23 @@ function renderShell() {
   if (footerRoot) footerRoot.innerHTML = siteFooterMarkup;
   if (bottomNavRoot) bottomNavRoot.innerHTML = bottomNavMarkup;
 
+  // Move cart FAB out of #site-header into body
+  const fab = headerRoot?.querySelector('.cart-fab');
+  if (fab) document.body.appendChild(fab);
+
+  // Sync cart badge count from localStorage
+  function syncCartBadge() {
+    try {
+      const cart = JSON.parse(localStorage.getItem('pn_cart') || '{}');
+      const count = Object.values(cart).reduce((a, b) => a + b, 0);
+      document.querySelectorAll('.cart-badge').forEach(b => {
+        b.textContent = count;
+        b.hidden = count === 0;
+      });
+    } catch {}
+  }
+  syncCartBadge();
+  window.addEventListener('cart-updated', syncCartBadge);
 
 
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';

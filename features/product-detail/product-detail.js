@@ -1,3 +1,5 @@
+import { addToCart, getCartCount } from '../cart/cart.js';
+
 const detailRoot = document.querySelector('#product-detail');
 
 const detailVisuals = {
@@ -35,8 +37,18 @@ function renderDetail(product) {
         <h1>${escapeHtml(product.name)}</h1>
         <p class="detail-lead">${escapeHtml(product.description)}</p>
         <div class="detail-price"><strong>${escapeHtml(product.price)}</strong>${oldPrice}<span> / túi</span></div>
-        <div class="detail-actions"><a href="../pages/contact-form-test.html" class="cta-btn">Để lại thông tin đặt hàng</a><a href="../pages/contact-form-test.html" class="cta-btn ghost">Cần tư vấn?</a></div>
-        <div class="detail-order-note">Không cần tài khoản hay giỏ hàng. Chọn sản phẩm, gửi thông tin, Premier Nuts sẽ nhắn lại để xác nhận đơn.</div>
+        <div class="detail-atc">
+          <div class="detail-qty-wrap">
+            <button class="qty-btn detail-dec" aria-label="Giảm">−</button>
+            <span class="qty-val" id="detail-qty">1</span>
+            <button class="qty-btn detail-inc" aria-label="Tăng">+</button>
+          </div>
+          <button class="cta-btn detail-add-cart-btn" id="detail-add-cart" data-id="${escapeHtml(product.id)}" data-name="${escapeHtml(product.name)}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke="currentColor" stroke-width="1.8"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1.8"/><path d="M16 10a4 4 0 0 1-8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Thêm vào giỏ
+          </button>
+        </div>
+        <div class="detail-order-note">Thêm vào giỏ rồi đặt hàng. Đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.</div>
         <dl class="detail-specs"><div><dt>Xuất xứ</dt><dd>${escapeHtml(product.origin)}</dd></div><div><dt>Cách dùng</dt><dd>${escapeHtml(product.serving)}</dd></div><div><dt>Bảo quản</dt><dd>${escapeHtml(product.storage)}</dd></div></dl>
       </div>
     </section>
@@ -59,4 +71,40 @@ async function loadProductDetail() {
   }
 }
 
-loadProductDetail();
+function updateCartBadge() {
+  const badge = document.querySelector('.cart-badge');
+  const count = getCartCount();
+  if (badge) { badge.textContent = count; badge.hidden = count === 0; }
+}
+
+function bindDetailCart() {
+  const addBtn = document.getElementById('detail-add-cart');
+  const qtyEl = document.getElementById('detail-qty');
+  const decBtn = document.querySelector('.detail-dec');
+  const incBtn = document.querySelector('.detail-inc');
+  if (!addBtn || !qtyEl) return;
+
+  let qty = 1;
+
+  decBtn?.addEventListener('click', () => { if (qty > 1) { qty--; qtyEl.textContent = qty; } });
+  incBtn?.addEventListener('click', () => { qty++; qtyEl.textContent = qty; });
+
+  addBtn.addEventListener('click', () => {
+    const id = addBtn.dataset.id;
+    addToCart(id, qty);
+    qty = 1;
+    qtyEl.textContent = qty;
+    addBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Đã thêm vào giỏ`;
+    addBtn.style.background = 'var(--green-dark)';
+    updateCartBadge();
+    setTimeout(() => {
+      addBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke="currentColor" stroke-width="1.8"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1.8"/><path d="M16 10a4 4 0 0 1-8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Thêm vào giỏ`;
+      addBtn.style.background = '';
+    }, 1600);
+  });
+
+  window.addEventListener('cart-updated', updateCartBadge);
+  updateCartBadge();
+}
+
+loadProductDetail().then(() => bindDetailCart());

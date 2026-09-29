@@ -1,3 +1,5 @@
+import { addToCart, getCartCount } from '../cart/cart.js';
+
 const productList = document.querySelector('#product-list');
 const categoryFilters = document.querySelectorAll('[data-category]');
 const isCatalogPage = Boolean(document.querySelector('.catalog-page'));
@@ -16,14 +18,11 @@ const visuals = {
 };
 
 function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, character => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  }[character]));
+  return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 }
+
+const cartIconSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke="currentColor" stroke-width="1.8"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1.8"/><path d="M16 10a4 4 0 0 1-8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+const checkSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 function productCard(product) {
   const tag = product.tag
@@ -36,19 +35,24 @@ function productCard(product) {
     ? 'var(--green-mist)'
     : '#FBEFD9';
 
-  return `<a class="p-card" href="${pageRoot}pages/product-detail.html?id=${encodeURIComponent(product.id)}">
-    <div class="p-media" style="background:${mediaBackground}">
-      ${tag}
-      <svg width="86" height="86" viewBox="0 0 64 64">${visuals[product.mediaClass]}</svg>
-    </div>
-    <div class="p-body">
-      <div class="p-cat">${escapeHtml(product.category)}</div>
-      <div class="p-name">${escapeHtml(product.name)}</div>
-      <div class="p-bottom">
-        <div class="p-price">${escapeHtml(product.price)} ${oldPrice}</div>
+  return `<div class="p-card" data-product-id="${escapeHtml(product.id)}">
+    <a class="p-card-link" href="${pageRoot}pages/product-detail.html?id=${encodeURIComponent(product.id)}">
+      <div class="p-media" style="background:${mediaBackground}">
+        ${tag}
+        <svg width="86" height="86" viewBox="0 0 64 64">${visuals[product.mediaClass]}</svg>
       </div>
-    </div>
-  </a>`;
+      <div class="p-body">
+        <div class="p-cat">${escapeHtml(product.category)}</div>
+        <div class="p-name">${escapeHtml(product.name)}</div>
+        <div class="p-bottom">
+          <div class="p-price">${escapeHtml(product.price)} ${oldPrice}</div>
+        </div>
+      </div>
+    </a>
+    <button class="p-add-cart" data-id="${escapeHtml(product.id)}" aria-label="Thêm ${escapeHtml(product.name)} vào giỏ">
+      ${cartIconSvg}
+    </button>
+  </div>`;
 }
 
 function renderProducts(products) {
@@ -59,7 +63,6 @@ function renderProducts(products) {
 
 async function loadProducts() {
   if (!productList) return;
-
   try {
     const response = await fetch(`${pageRoot}features/catalog/products.json`);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -69,12 +72,11 @@ async function loadProducts() {
     categoryFilters.forEach(filter => {
       filter.addEventListener('click', () => {
         const category = filter.dataset.category;
-        const filteredProducts = category === 'all'
+        const filtered = category === 'all'
           ? products
-          : products.filter(product => product.catalogGroup === category);
-
+          : products.filter(p => p.catalogGroup === category);
         categoryFilters.forEach(item => item.classList.toggle('active', item === filter));
-        renderProducts(filteredProducts);
+        renderProducts(filtered);
       });
     });
   } catch (error) {
@@ -83,4 +85,32 @@ async function loadProducts() {
   }
 }
 
-loadProducts();
+function updateCartBadge() {
+  const badge = document.querySelector('.cart-badge');
+  const count = getCartCount();
+  if (badge) {
+    badge.textContent = count;
+    badge.hidden = count === 0;
+  }
+}
+
+function bindAddToCart() {
+  if (!productList) return;
+  productList.addEventListener('click', e => {
+    const btn = e.target.closest('.p-add-cart');
+    if (!btn) return;
+    e.preventDefault();
+    const id = btn.dataset.id;
+    addToCart(id);
+    btn.classList.add('p-add-cart--added');
+    btn.innerHTML = checkSvg;
+    setTimeout(() => {
+      btn.classList.remove('p-add-cart--added');
+      btn.innerHTML = cartIconSvg;
+    }, 1200);
+    updateCartBadge();
+  });
+}
+
+window.addEventListener('cart-updated', updateCartBadge);
+loadProducts().then(() => { bindAddToCart(); updateCartBadge(); });

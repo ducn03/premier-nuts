@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Đặt hàng | Premier Nuts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
+  <link rel="stylesheet" href="../shared/checkout.css">
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <main class="checkout-page">
+    <div class="checkout-shell">
+
+      <!-- Left: Cart summary -->
+      <section class="checkout-cart" aria-labelledby="cart-heading">
+        <div class="checkout-section-label">GIỎ HÀNG CỦA BẠN</div>
+        <h1 id="cart-heading">Xác nhận đơn hàng</h1>
+        <div id="cart-items-list" aria-live="polite">
+          <div class="cart-loading">Đang tải...</div>
+        </div>
+        <div class="cart-total-row" id="cart-total-row" hidden>
+          <span>Tổng cộng</span>
+          <strong id="cart-total-display">—</strong>
+        </div>
+        <p class="checkout-note">
+          Sau khi gửi đơn, đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.
+        </p>
+      </section>
+
+      <!-- Right: Order form -->
+      <section class="checkout-form-wrap" aria-labelledby="form-heading">
+        <div class="checkout-section-label">THÔNG TIN ĐẶT HÀNG</div>
+        <h2 id="form-heading">Để lại thông tin</h2>
+
+        <form id="checkout-form"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSc-7k2mwFuU_6zR8lNvUp1sXOZ66coruZZwq8Te6uR17Hhl4Q/formResponse"
+          method="POST" target="checkout-submit-frame" accept-charset="UTF-8" novalidate>
+          <!-- Hidden: cart summary gửi vào "Ghi chú đơn hàng" -->
+          <input type="hidden" name="entry.21404046" id="hidden-cart-summary">
+
+          <div class="form-row two">
+            <div>
+              <label for="co-name">Họ và tên *</label>
+              <input id="co-name" name="entry.409526929" type="text" placeholder="Nguyễn Văn A" required
+                autocomplete="name">
+            </div>
+            <div>
+              <label for="co-phone">Số điện thoại *</label>
+              <input id="co-phone" name="entry.636839927" type="tel" placeholder="090 000 0000" required
+                autocomplete="tel">
+            </div>
+          </div>
+
+          <div>
+            <label for="co-email">Email *</label>
+            <input id="co-email" name="entry.1537184951" type="email" placeholder="ban@example.com" required
+              autocomplete="email">
+          </div>
+
+          <div>
+            <label for="co-address">Địa chỉ của bạn *</label>
+            <input id="co-address" name="entry.955250698" type="text" placeholder="123 Nguyễn Huệ, Q.1, TP.HCM" required
+              autocomplete="street-address">
+          </div>
+
+          <div>
+            <label for="co-delivery">Địa chỉ nhận hàng <span class="label-hint">(để trống nếu giống trên)</span></label>
+            <input id="co-delivery" name="entry.1719047985" type="text" placeholder="Để trống nếu giống địa chỉ trên">
+          </div>
+
+          <div class="form-group">
+            <label>Phương thức thanh toán</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="entry.1187868559" value="QR" checked>
+                <span>Chuyển khoản QR</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="entry.1187868559" value="Thanh toán khi nhận hàng">
+                <span>Thanh toán khi nhận hàng (COD)</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Bạn biết Premier Nuts qua đâu?</label>
+            <div class="radio-group radio-group--wrap">
+              <label class="radio-option">
+                <input type="radio" name="entry.1744726985" value="Tại Booth">
+                <span>Tại Booth</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="entry.1744726985" value="TikTok">
+                <span>TikTok</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="entry.1744726985" value="Facebook">
+                <span>Facebook</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="entry.1744726985" value="Bạn bè giới thiệu">
+                <span>Bạn bè giới thiệu</span>
+              </label>
+            </div>
+          </div>
+
+          <button class="cta-btn" type="submit" id="checkout-submit-btn">
+            Đặt hàng ngay
+          </button>
+          <p id="checkout-status" class="checkout-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <iframe name="checkout-submit-frame" class="form-test-frame" title="Order submission" aria-hidden="true"></iframe>
+
+  <div id="site-footer"></div>
+  <div id="site-bottom-nav"></div>
+
+  <script src="../shared/site-shell.js" defer></script>
+  <script src="../features/checkout/checkout.js" type="module" defer></script>
+</body>
+
+</html>

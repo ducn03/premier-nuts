@@ -68,6 +68,74 @@
   }
   .search-box svg{flex-shrink:0; opacity:0.55;}
   .header-actions{display:flex; align-items:center; gap:10px; margin-left:auto;}
+  /* ---------- cart icon in header ---------- */
+  .cart-icon-btn{
+    position:relative; display:flex; align-items:center; justify-content:center;
+    width:42px; height:42px; border-radius:12px; background:var(--paper);
+    border:1px solid var(--line); flex-shrink:0; color:var(--ink);
+    transition:background .2s, border-color .2s;
+  }
+  .cart-icon-btn:hover{background:var(--orange-light); border-color:var(--orange);}
+  .cart-badge{
+    position:absolute; top:-6px; right:-6px;
+    min-width:18px; height:18px; border-radius:999px;
+    background:var(--orange); color:#fff;
+    font-size:10px; font-weight:800; line-height:18px;
+    text-align:center; padding:0 4px;
+    border:2px solid var(--cream);
+  }
+  /* ---------- cart FAB on mobile ---------- */
+  @media(max-width:839px){
+    .cart-icon-btn{display:none;}
+    .cart-fab{
+      position:fixed; bottom:82px; right:16px; z-index:900;
+      width:52px; height:52px; border-radius:50%;
+      background:var(--orange); color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 18px rgba(240,130,30,.45);
+      transition:transform .2s;
+    }
+    .cart-fab:active{transform:scale(.93);}
+    .cart-fab .cart-badge{
+      top:-5px; right:-5px;
+      border-color:#fff;
+    }
+  }
+  @media(min-width:840px){
+    .cart-fab{display:none;}
+  }
+  /* ---------- detail add-to-cart area ---------- */
+  .detail-atc{
+    display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:18px 0 10px;
+  }
+  .detail-qty-wrap{
+    display:flex; align-items:center; gap:8px;
+    background:var(--cream); border:1px solid var(--line); border-radius:999px;
+    padding:5px 10px;
+  }
+  .detail-qty-wrap .qty-btn{
+    width:30px; height:30px; font-size:18px; border-radius:50%;
+    color:var(--ink); transition:background .15s;
+  }
+  .detail-qty-wrap .qty-btn:hover{background:var(--orange-light); color:var(--orange-dark);}
+  .detail-qty-wrap .qty-val{font-size:15px; font-weight:800; min-width:24px; text-align:center;}
+  .detail-add-cart-btn{
+    display:flex; align-items:center; gap:8px; padding:12px 22px; font-size:14px;
+  }
+  .detail-add-cart-btn svg{flex-shrink:0;}
+  .p-card{position:relative;}
+  .p-add-cart{
+    position:absolute; bottom:14px; right:14px;
+    width:34px; height:34px; border-radius:50%; background:var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    transition:background .2s, transform .2s;
+    z-index:2;
+  }
+  .p-add-cart:hover{background:var(--orange); transform:scale(1.1);}
+  .p-add-cart--added{background:var(--green-dark);}
+  @media(max-width:639px){
+    .p-add-cart{bottom:10px; right:10px; width:30px; height:30px;}
+  }
   .mobile-menu-button{display:none;}
   .mobile-menu{display:none!important;}
   .mobile-menu{
@@ -214,9 +282,10 @@
   @media(min-width:980px){.product-grid{grid-template-columns:repeat(4,1fr);}}
   .p-card{
     background:var(--paper); border:1px solid var(--line); border-radius:22px;
-    overflow:hidden; position:relative; transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    position:relative; transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
     animation:revealUp .55s cubic-bezier(.2,.75,.25,1) both;
   }
+  .p-card-link{display:block; text-decoration:none; color:inherit; overflow:hidden; border-radius:inherit;}
   .p-card:nth-child(2){animation-delay:.08s;}
   .p-card:nth-child(3){animation-delay:.16s;}
   .p-card:nth-child(4){animation-delay:.24s;}
@@ -249,7 +318,8 @@
   .rating{display:flex; align-items:center; gap:4px; font-size:12px; color:var(--ink-soft); margin-top:6px;}
   @media(max-width:639px){
     .product-grid{grid-template-columns:1fr; gap:12px;}
-    .p-card{display:grid; grid-template-columns:96px 1fr; min-height:112px; border-radius:16px;}
+    .p-card{border-radius:16px; min-height:112px;}
+    .p-card-link{display:grid; grid-template-columns:96px 1fr; min-height:112px;}
     .p-media{min-height:112px; aspect-ratio:auto;}
     .p-media svg{width:62px; height:62px;}
     .p-tag{top:8px; left:8px; font-size:10px; padding:4px 7px;}
@@ -259,6 +329,8 @@
     .rating{font-size:11px; margin-top:2px;}
     .p-price{font-size:14px;}
     .p-price small{font-size:10px;}
+    /* add-to-cart button on mobile card: position inside the image area */
+    .p-add-cart{bottom:8px; right:8px; width:28px; height:28px;}
   }
 
   /* ---------- promo banner ---------- */
