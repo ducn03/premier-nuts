@@ -1,7 +1,7 @@
 .about-page{max-width:1180px;margin:0 auto;padding:36px 24px 88px;}
 .about-hero{display:grid;gap:34px;align-items:center;padding:48px 0 52px;}
 @media(min-width:840px){.about-hero{grid-template-columns:1.05fr .95fr;padding:64px 0 58px;}}
-.about-hero h1{max-width:700px;font-size:62px;line-height:1.04;letter-spacing:-.03em;margin:12px 0 18px;}
+.about-hero h1{max-width:700px;font-size:clamp(36px,7vw,62px);line-height:1.04;letter-spacing:-.03em;margin:12px 0 18px;}
 .about-hero p{max-width:620px;color:var(--ink-soft);font-size:17px;line-height:1.7;}
 .about-hero-art{min-height:330px;border-radius:30px;background:var(--green-mist);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .about-hero-art::before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(240,130,30,.2);right:-70px;top:-80px;}
@@ -44,6 +44,5 @@
 .about-next-step h2{font-size:42px;margin-bottom:12px;}
 .about-next-step p{color:var(--ink-soft);font-size:15px;line-height:1.7;margin:0 auto 22px;}
 @media(max-width:639px){
-	.about-hero h1{font-size:38px;}
 	.about-story h2,.about-name-section h2,.about-commitment h2,.about-next-step h2{font-size:30px;}
 }
