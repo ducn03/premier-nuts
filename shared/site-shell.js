@@ -10,7 +10,7 @@ const siteHeaderMarkup = `
     </a>
     <nav class="main-nav">
       <a href="${rootPath}index.html">Trang chủ</a>
-      <a href="${rootPath}pages/about-us-test.html">Về chúng tôi</a>
+      <a href="${rootPath}pages/about-us.html">Về chúng tôi</a>
       <a href="${rootPath}pages/contact-form-test.html">Liên hệ</a>
       <a href="${productsPath}" class="products-link">Sản phẩm</a>
     </nav>
@@ -41,7 +41,7 @@ const siteFooterMarkup = `
     </div>
     <div class="foot-col">
       <h5>Về Premier Nuts</h5>
-      <a href="${rootPath}pages/about-us-test.html">Về chúng tôi</a>
+      <a href="${rootPath}pages/about-us.html">Về chúng tôi</a>
       <a href="#">Chính sách đổi trả</a>
       <a href="#">Vận chuyển</a>
     </div>

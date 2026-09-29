@@ -1,0 +1,49 @@
+.about-page{max-width:1180px;margin:0 auto;padding:36px 24px 88px;}
+.about-hero{display:grid;gap:34px;align-items:center;padding:48px 0 52px;}
+@media(min-width:840px){.about-hero{grid-template-columns:1.05fr .95fr;padding:64px 0 58px;}}
+.about-hero h1{max-width:700px;font-size:62px;line-height:1.04;letter-spacing:-.03em;margin:12px 0 18px;}
+.about-hero p{max-width:620px;color:var(--ink-soft);font-size:17px;line-height:1.7;}
+.about-hero-art{min-height:330px;border-radius:30px;background:var(--green-mist);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.about-hero-art::before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(240,130,30,.2);right:-70px;top:-80px;}
+.about-hero-art::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;border:1px solid rgba(79,122,38,.25);left:-70px;bottom:-80px;}
+.about-seed{position:absolute;width:74px;height:48px;border-radius:50%;z-index:1;box-shadow:0 10px 20px rgba(79,122,38,.14);}
+.about-seed-one{background:var(--orange);transform:rotate(-22deg);left:26%;top:31%;}
+.about-seed-two{background:var(--green);transform:rotate(18deg);left:48%;top:23%;}
+.about-seed-three{background:#d9a24b;transform:rotate(38deg);left:58%;top:50%;}
+.about-seed-four{background:#c98a4b;transform:rotate(-14deg);left:34%;top:56%;}
+.about-hero-note{position:absolute;right:24px;bottom:22px;color:var(--green-dark);font-size:12px;line-height:1.5;text-align:right;letter-spacing:.08em;text-transform:uppercase;}
+.about-pulse{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+@media(min-width:640px){.about-pulse{grid-template-columns:repeat(3,1fr);}}
+.about-pulse div{background:var(--ink);color:#fff;padding:22px 24px;}
+.about-pulse strong{display:block;color:var(--orange);font-size:20px;margin-bottom:5px;}
+.about-pulse span{display:block;color:rgba(255,255,255,.68);font-size:12px;}
+.about-story{border-top:1px solid var(--line);padding:56px 0 64px;}
+.about-story .about-section-label{display:block;margin-bottom:24px;}
+.about-name-section,.about-commitment{display:grid;gap:30px;border-top:1px solid var(--line);padding:64px 24px;}
+@media(min-width:760px){.about-name-section,.about-commitment{grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center;}}
+.about-section-label{font-size:12px;font-weight:800;color:var(--orange-dark);letter-spacing:.12em;line-height:1.4;}
+.about-story h2,.about-name-section h2,.about-commitment h2{font-size:42px;line-height:1.14;letter-spacing:-.02em;margin-bottom:18px;}
+.about-story h2{max-width:none;}
+.about-story p{max-width:none;color:var(--ink-soft);font-size:15px;line-height:1.8;margin-bottom:14px;}
+.about-name-section{background:var(--orange-light);margin-left:-24px;margin-right:-24px;border-top:0;}
+.about-name-section .detail-kicker{display:block;margin-bottom:24px;}
+@media(min-width:760px){.about-name-section{margin-left:0;margin-right:0;border-radius:24px;padding:72px 56px;}}
+.about-name-section p,.about-commitment p{color:var(--ink-soft);font-size:16px;line-height:1.8;}
+.about-values{border-top:1px solid var(--line);padding:48px 0;display:block;}
+.about-values .about-section-label{display:block;margin-bottom:22px;}
+.about-value-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+.about-value-grid article{background:var(--cream);padding:22px;min-height:170px;}
+.about-value-grid b{font-size:12px;color:var(--orange-dark);}
+.about-value-grid h3{font-size:18px;margin:24px 0 8px;}
+.about-value-grid p{color:var(--ink-soft);font-size:13.5px;line-height:1.65;}
+@media(max-width:639px){.about-value-grid{grid-template-columns:1fr;}.about-value-grid article{min-height:0;}}
+.about-commitment{background:var(--green-mist);margin-left:-24px;margin-right:-24px;border-top:0;}
+.about-commitment .detail-kicker{display:block;margin-bottom:24px;}
+@media(min-width:760px){.about-commitment{margin-left:0;margin-right:0;border-radius:24px;padding:72px 56px;}}
+.about-next-step{text-align:center;padding:76px 0 20px;}
+.about-next-step h2{font-size:42px;margin-bottom:12px;}
+.about-next-step p{color:var(--ink-soft);font-size:15px;line-height:1.7;margin:0 auto 22px;}
+@media(max-width:639px){
+	.about-hero h1{font-size:38px;}
+	.about-story h2,.about-name-section h2,.about-commitment h2,.about-next-step h2{font-size:30px;}
+}
