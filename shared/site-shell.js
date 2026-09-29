@@ -12,7 +12,7 @@ const siteHeaderMarkup = `
       <a href="${rootPath}index.html">Trang chủ</a>
       <a href="${rootPath}pages/about-us.html">Về chúng tôi</a>
       <a href="${rootPath}pages/news.html">Bản tin</a>
-      <a href="${rootPath}pages/contact-form-test.html">Liên hệ</a>
+      <a href="${rootPath}pages/support.html">Hỗ trợ</a>
       <a href="${productsPath}" class="products-link">Sản phẩm</a>
     </nav>
     <div class="search-box">
@@ -44,6 +44,7 @@ const siteFooterMarkup = `
       <h5>Về Premier Nuts</h5>
       <a href="${rootPath}pages/about-us.html">Về chúng tôi</a>
       <a href="${rootPath}pages/news.html">Bản tin</a>
+      <a href="${rootPath}pages/support.html">Hỗ trợ &amp; chính sách</a>
       <a href="#">Chính sách đổi trả</a>
       <a href="#">Vận chuyển</a>
     </div>
