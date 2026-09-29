@@ -10,9 +10,8 @@ const siteHeaderMarkup = `
     </a>
     <nav class="main-nav">
       <a href="${rootPath}index.html">Trang chủ</a>
-      <a href="${rootPath}index.html#ve-chung-toi">Về chúng tôi</a>
-      <a href="${rootPath}index.html#faq">Hỏi &amp; đáp</a>
-      <a href="${rootPath}index.html#lien-he">Liên hệ</a>
+      <a href="${rootPath}pages/about-us-test.html">Về chúng tôi</a>
+      <a href="${rootPath}pages/contact-form-test.html">Liên hệ</a>
       <a href="${productsPath}" class="products-link">Sản phẩm</a>
     </nav>
     <div class="search-box">
@@ -42,16 +41,15 @@ const siteFooterMarkup = `
     </div>
     <div class="foot-col">
       <h5>Về Premier Nuts</h5>
-      <a href="${rootPath}index.html#ve-chung-toi">Về chúng tôi</a>
-      <a href="${rootPath}index.html#faq">Hỏi &amp; đáp</a>
+      <a href="${rootPath}pages/about-us-test.html">Về chúng tôi</a>
       <a href="#">Chính sách đổi trả</a>
       <a href="#">Vận chuyển</a>
     </div>
     <div class="foot-col">
       <h5>Liên hệ</h5>
-      <a href="${rootPath}index.html#lien-he">1900 6868</a>
-      <a href="${rootPath}index.html#lien-he">hello@premiernuts.vn</a>
-      <a href="${rootPath}index.html#lien-he">123 Nguyễn Huệ, Q.1, TP.HCM</a>
+      <a href="${rootPath}pages/contact-form-test.html">1900 6868</a>
+      <a href="${rootPath}pages/contact-form-test.html">hello@premiernuts.vn</a>
+      <a href="${rootPath}pages/contact-form-test.html">123 Nguyễn Huệ, Q.1, TP.HCM</a>
     </div>
   </div>
   <div class="foot-bottom">

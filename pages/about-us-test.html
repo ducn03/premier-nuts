@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Test About Us | Premier Nuts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  /* Super wild animations */
+  .epic-form-container {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #1a1c29 0%, #2a1b3d 100%);
+    color: white;
+    text-align: center;
+    border-top: 5px solid #F0821E;
+    position: relative;
+    overflow: hidden;
+  }
+  .epic-form-container::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(240,130,30,0.15) 0%, transparent 60%);
+    animation: rotateGlow 15s linear infinite;
+    z-index: 0;
+  }
+  @keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .epic-form-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .epic-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    background: linear-gradient(to right, #F0821E, #D9A24B, #8FC53E, #F0821E);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 24px;
+    animation: pulseText 2s ease-in-out infinite alternate, shineText 5s linear infinite;
+  }
+  @keyframes shineText {
+    to { background-position: 200% center; }
+  }
+  @keyframes pulseText {
+    0% { transform: scale(1); text-shadow: 0 0 10px rgba(240,130,30,0.3); }
+    100% { transform: scale(1.05); text-shadow: 0 0 30px rgba(143,197,62,0.6); }
+  }
+  .epic-desc {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 50px;
+    color: #e0e0e0;
+    font-weight: 500;
+  }
+  .epic-form {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-bottom: 40px;
+  }
+  .epic-form:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(240,130,30,0.2), inset 0 0 20px rgba(240,130,30,0.1);
+    border-color: rgba(240,130,30,0.4);
+  }
+  .epic-input-group {
+    margin-bottom: 24px;
+    text-align: left;
+  }
+  .epic-input-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #F0821E;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 13px;
+  }
+  .epic-input {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.1);
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s;
+  }
+  .epic-input:focus {
+    outline: none;
+    border-color: #8FC53E;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 25px rgba(143,197,62,0.3);
+    transform: translateX(5px);
+  }
+  .epic-input::placeholder {
+    color: rgba(255,255,255,0.3);
+  }
+  .epic-btn {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #F0821E, #D9A24B);
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: 0 10px 20px rgba(240,130,30,0.3);
+    font-family: inherit;
+  }
+  .epic-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(transparent, rgba(255,255,255,0.4), transparent);
+    transform: rotate(45deg) translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .epic-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 35px rgba(240,130,30,0.5);
+    letter-spacing: 2px;
+  }
+  .epic-btn:hover::after {
+    transform: rotate(45deg) translateY(100%);
+  }
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="form-test-page">
+  <section class="form-test-hero">
+    <span class="detail-kicker">ABOUT US / UI TEST</span>
+    <h1>Về Premier Nuts</h1>
+    <p>Câu chuyện của Premier Nuts, từ nông trại đến bàn ăn của bạn.</p>
+  </section>
+
+  <section class="sec" style="padding-top: 0;">
+    <div class="about-sec">
+      <div class="about-art">
+        <svg width="100%" height="220" viewBox="0 0 260 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="40" width="220" height="150" rx="18" fill="#fff"/>
+          <circle cx="70" cy="95" r="26" fill="#F0821E"/>
+          <circle cx="130" cy="80" r="20" fill="#8FC53E"/>
+          <circle cx="175" cy="110" r="24" fill="#D9A24B"/>
+          <circle cx="100" cy="140" r="18" fill="#C98A4B"/>
+          <path d="M40 190c30-16 150-16 180 0" stroke="#4F7A26" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="about-content">
+        <h3>Hành trình 8 năm gắn bó với nông dân Việt</h3>
+        <p>Premier Nuts được sáng lập năm 2018 với mong muốn mang đến nguồn hạt dinh dưỡng sạch, minh bạch nguồn gốc cho mọi gia đình Việt. Chúng tôi hợp tác trực tiếp với các nông trại tại Tây Nguyên và nhập khẩu chọn lọc từ Mỹ, Úc, đảm bảo mỗi hạt đều được kiểm định chất lượng nghiêm ngặt trước khi đến tay khách hàng.</p>
+        <p>Không chỉ là một cửa hàng, Premier Nuts hướng đến việc xây dựng thói quen ăn uống lành mạnh bền vững — từ khâu chọn giống, canh tác, rang xay đến đóng gói, tất cả đều được thực hiện tỉ mỉ và có trách nhiệm.</p>
+        <div class="about-stats">
+          <div><b>8 năm</b><span>kinh nghiệm</span></div>
+          <div><b>30+</b><span>đối tác nông trại</span></div>
+          <div><b>50.000+</b><span>khách hàng tin dùng</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Epic Forms Section -->
+  <section class="epic-form-container">
+    <div class="epic-form-content">
+      <h2 class="epic-title">🔥 TRỞ THÀNH CHÚA TỂ CÁC LOẠI HẠT 🔥</h2>
+      <p class="epic-desc">Bạn đã chán ngấy với cuộc sống tầm thường? Hãy bước vào vũ trụ của Premier Nuts! Chỉ với 1 click, tinh hoa của đất trời, linh khí của núi rừng Tây Nguyên sẽ chảy rần rần trong huyết quản của bạn! Đăng ký ngay để mở khóa sức mạnh siêu nhiên tiềm ẩn!</p>
+      
+      <form class="epic-form">
+        <h3 style="margin-bottom: 25px; font-size: 26px; color: white; font-weight: 800;">🚀 Gia nhập Liên Minh Hạt Vũ Trụ</h3>
+        <div class="epic-input-group">
+          <label>Danh xưng oai hùng của bạn</label>
+          <input type="text" class="epic-input" placeholder="Ví dụ: Độc cô cầu bại hệ Ăn Hạt">
+        </div>
+        <div class="epic-input-group">
+          <label>Dấu ấn liên lạc (Số điện thoại)</label>
+          <input type="tel" class="epic-input" placeholder="Nhập để chúng tôi truyền âm nhập mật">
+        </div>
+        <button type="button" class="epic-btn" onclick="alert('BÙM! 💥 Lượng protein của ngàn vạn hạt Macca đã dung hợp thành công vào ADN của bạn!')">Giải Phóng Sức Mạnh Ngay</button>
+      </form>
+
+      <form class="epic-form" style="border-color: rgba(143,197,62,0.2); background: rgba(143,197,62,0.02);">
+        <h3 style="margin-bottom: 20px; font-size: 26px; color: #8FC53E; font-weight: 800;">✨ Thỉnh Bí Kíp Trường Sinh Tịch Tà Hạt Phổ</h3>
+        <p style="margin-bottom: 30px; font-size: 15px; color: #bbb; line-height: 1.6;">Truyền thuyết kể rằng, ai sở hữu bí kíp phối trộn hạt của tổ sư gia Premier Nuts sẽ có nhan sắc trẻ mãi không già, sức khỏe dời non lấp biển. Hãy cống nạp email để nhận bản chép tay ngàn năm có một!</p>
+        <div class="epic-input-group">
+          <label style="color: #8FC53E;">Hộp thư pháp thuật (Email)</label>
+          <input type="email" class="epic-input" placeholder="email.cua.ban@thien-dinh.com" style="border-color: rgba(143,197,62,0.3);">
+        </div>
+        <button type="button" class="epic-btn" style="background: linear-gradient(45deg, #8FC53E, #4F7A26); box-shadow: 0 10px 20px rgba(143,197,62,0.3);" onclick="alert('KENG! 🕊️ Một chú bọ hung... à nhầm chim bồ câu ngậm bí kíp đang bay xuyên không gian tới nhà bạn!')">Thỉnh Cầu Bí Kíp</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<div id="site-bottom-nav"></div>
+
+<script src="../shared/site-shell.js" defer></script>
+</body>
+</html>
