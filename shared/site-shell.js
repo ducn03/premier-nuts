@@ -19,9 +19,20 @@ const siteHeaderMarkup = `
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <input type="text" placeholder="Tìm hạt óc chó, chia, granola...">
     </div>
-    <div class="header-actions"></div>
+    <div class="header-actions">
+      <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Mở menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
-</header>`;
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Điều hướng mobile">
+  <a href="${rootPath}index.html">Trang chủ</a>
+  <a href="${rootPath}pages/about-us.html">Về chúng tôi</a>
+  <a href="${rootPath}pages/news.html">Bản tin</a>
+  <a href="${rootPath}pages/products.html">Sản phẩm</a>
+  <a href="${rootPath}pages/support.html">Hỗ trợ &amp; chính sách</a>
+</nav>`;
 
 const siteFooterMarkup = `
 <footer>
@@ -75,6 +86,14 @@ const bottomNavMarkup = `
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg>
     Sản phẩm
   </a>
+  <a href="${rootPath}pages/news.html" class="bn-item" data-page="news.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16H5z" stroke="currentColor" stroke-width="1.8"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    Bản tin
+  </a>
+  <a href="${rootPath}pages/support.html" class="bn-item" data-page="support.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M9.5 9.5a2.5 2.5 0 1 1 4.2 1.8c-1.1.8-1.7 1.2-1.7 2.7M12 17h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    Hỗ trợ
+  </a>
 </nav>`;
 
 function renderShell() {
@@ -85,6 +104,21 @@ function renderShell() {
   if (headerRoot) headerRoot.innerHTML = siteHeaderMarkup;
   if (footerRoot) footerRoot.innerHTML = siteFooterMarkup;
   if (bottomNavRoot) bottomNavRoot.innerHTML = bottomNavMarkup;
+
+  const menuButton = document.querySelector('.mobile-menu-button');
+  const mobileMenu = document.querySelector('#mobile-menu');
+  menuButton?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('is-open');
+    menuButton.setAttribute('aria-expanded', String(Boolean(isOpen)));
+    menuButton.setAttribute('aria-label', isOpen ? 'Đóng menu' : 'Mở menu');
+  });
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('is-open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+      menuButton?.setAttribute('aria-label', 'Mở menu');
+    });
+  });
 
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const activeNavItems = document.querySelectorAll('.bn-item');

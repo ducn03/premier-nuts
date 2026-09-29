@@ -76,6 +76,14 @@
   .mobile-menu-button span{
     display:block; width:18px; height:2px; border-radius:999px; background:var(--ink);
   }
+  .mobile-menu{
+    display:none; position:absolute; top:calc(100% + 8px); left:18px; right:18px; z-index:49;
+    background:rgba(255,255,255,.98); border:1px solid var(--line); border-radius:18px;
+    padding:8px; box-shadow:0 18px 35px -20px rgba(43,33,22,.45);
+  }
+  .mobile-menu.is-open{display:grid;}
+  .mobile-menu a{padding:13px 14px;border-radius:11px;font-size:14px;font-weight:700;color:var(--ink-soft);}
+  .mobile-menu a:hover{background:var(--green-mist);color:var(--green-dark);}
   .icon-btn{
     width:42px; height:42px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
@@ -103,6 +111,7 @@
     nav.main-nav{display:flex;}
     .search-box{display:flex;}
     .mobile-menu-button{display:none;}
+    .mobile-menu{display:none!important;}
   }
 
   @media(max-width:839px){
@@ -111,6 +120,7 @@
     .search-box{display:none;}
     .mobile-menu-button{display:flex;}
     .header-row{justify-content:space-between;}
+    #site-header{position:sticky;}
   }
 
   /* ---------- category strip ---------- */
@@ -494,7 +504,7 @@
   .bottom-nav{
     position:fixed; bottom:12px; left:50%; transform:translateX(-50%);
     z-index:60; display:flex; justify-content:space-between; align-items:center;
-    width:90%; background:rgba(255,255,255,0.94); border:1px solid var(--line);
+    width:94%; background:rgba(255,255,255,0.94); border:1px solid var(--line);
     border-radius:18px; padding:7px 10px; box-shadow:0 12px 28px -22px rgba(43,33,22,.35);
     backdrop-filter:blur(10px);
   }
