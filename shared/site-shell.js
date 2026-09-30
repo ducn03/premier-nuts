@@ -64,7 +64,7 @@ const siteFooterMarkup = `
     <div class="foot-col">
       <h5>Liên hệ</h5>
       <a href="tel:0949382374">0949 382 374</a>
-      <a href="mailto:premirenutshcm@gmail.com">premirenutshcm@gmail.com</a>
+      <a href="mailto:premiernutshcm@gmail.com">premiernutshcm@gmail.com</a>
       <a href="${rootPath}pages/contact-form-test.html">131/53/3 đường số 6, khu phố 1, p. Linh Xuân, Thủ Đức, TP HCM</a>
     </div>
   </div>
@@ -124,7 +124,7 @@ function renderShell() {
         b.textContent = count;
         b.hidden = count === 0;
       });
-    } catch {}
+    } catch { }
   }
   syncCartBadge();
   window.addEventListener('cart-updated', syncCartBadge);
