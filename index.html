@@ -125,10 +125,8 @@
       </div>
       <a href="pages/news.html" class="see-all">Xem tất cả →</a>
     </div>
-    <div class="news-grid">
-      <article class="news-card"><span>KIẾN THỨC DINH DƯỠNG</span><h3>Hạt chia là gì mà ai cũng gọi là siêu thực phẩm?</h3><p>Bắt đầu từ những điều cơ bản để chọn và dùng hạt chia đúng cách.</p></article>
-      <article class="news-card"><span>CÔNG THỨC &amp; CÁCH DÙNG</span><h3>5 cách ăn hạt chia tiện lợi cho buổi sáng</h3><p>Những gợi ý nhanh gọn cho sữa chua, smoothie và cốc nước quen thuộc.</p></article>
-      <article class="news-card"><span>LỐI SỐNG</span><h3>Sống healthy không cần cực đoan bắt đầu từ đâu?</h3><p>Một vài thay đổi nhỏ để chăm mình mà không làm ngày thêm áp lực.</p></article>
+    <div class="news-grid" id="home-news-grid">
+      <!-- Rendered dynamically -->
     </div>
   </section>
 
@@ -139,5 +137,30 @@
 
 <script src="shared/site-shell.js" defer></script>
 <script src="features/catalog/catalog.js" type="module" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const res = await fetch('features/news/articles.json');
+      const articles = await res.json();
+      const top3 = articles.slice(0, 3);
+      const grid = document.getElementById('home-news-grid');
+      
+      const escapeHtml = (val) => String(val).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;' }[c]));
+
+      if (grid) {
+        grid.innerHTML = top3.map(a => `
+          <article class="news-card">
+            <span>${escapeHtml(a.category.toUpperCase())}</span>
+            <h3>${escapeHtml(a.title)}</h3>
+            <p>${escapeHtml(a.excerpt)}</p>
+            <a href="pages/news-detail.html?id=${encodeURIComponent(a.id)}">Đọc tiếp →</a>
+          </article>
+        `).join('');
+      }
+    } catch (e) {
+      console.error('Failed to load home news', e);
+    }
+  });
+</script>
 </body>
 </html>
