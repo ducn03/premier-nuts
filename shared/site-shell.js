@@ -323,13 +323,15 @@ document.addEventListener('DOMContentLoaded', renderShell);
 
 // Prevent links from opening in Mobile Safari when in PWA standalone mode
 (function(document, navigator, standalone) {
-  if ((standalone in navigator) && navigator[standalone]) {
-    document.addEventListener('click', function(e) {
-      const a = e.target.closest('a');
-      if (a && a.href && !a.href.startsWith('javascript:') && !a.href.startsWith('#') && a.host === location.host && a.target !== '_blank') {
-        e.preventDefault();
-        window.location.href = a.href;
-      }
-    }, false);
-  }
+  document.addEventListener('click', function(e) {
+    const isStandalone = (standalone in navigator && navigator[standalone]) || window.matchMedia('(display-mode: standalone)').matches;
+    if (!isStandalone) return;
+    
+    const a = e.target.closest('a');
+    if (a && a.href && !a.href.startsWith('javascript:') && !a.href.startsWith('#') && a.host === location.host && a.target !== '_blank') {
+      e.preventDefault();
+      e.stopPropagation();
+      window.location.assign(a.href);
+    }
+  }, true); // use capture phase to intercept early
 })(document, window.navigator, 'standalone');
