@@ -296,6 +296,24 @@ function renderShell() {
       }
     });
   }
+
+  // Mobile Bottom Nav hide on scroll down, show on scroll up
+  if (bottomNavRoot && bottomNavRoot.firstElementChild) {
+    const navElement = bottomNavRoot.firstElementChild;
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth < 840) {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 60) {
+          navElement.classList.add('nav-hidden'); // Scrolling down
+        } else {
+          navElement.classList.remove('nav-hidden'); // Scrolling up
+        }
+        lastScrollY = currentScrollY;
+      }
+    }, { passive: true });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', renderShell);

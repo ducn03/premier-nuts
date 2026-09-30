@@ -610,6 +610,10 @@
     width:94%; background:rgba(255,255,255,0.94); border:1px solid var(--line);
     border-radius:18px; padding:7px 10px; box-shadow:0 12px 28px -22px rgba(43,33,22,.35);
     backdrop-filter:blur(10px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .bottom-nav.nav-hidden {
+    transform: translate(-50%, calc(100% + 24px));
   }
   .bn-item{
     display:flex; flex-direction:column; align-items:center; justify-content:center;

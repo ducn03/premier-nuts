@@ -24,7 +24,7 @@
 .support-faq p{color:var(--ink-soft);font-size:14px;line-height:1.75;padding:0 0 18px;}
 .support-policy-grid{display:grid;grid-template-columns:1fr;gap:14px;}
 @media(min-width:760px){.support-policy-grid{grid-template-columns:repeat(3,1fr);}}
-.support-policy{background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:24px;}
+.support-policy{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;}
 .support-policy h3{font-size:18px;margin-bottom:10px;}
 .support-policy p{color:var(--ink-soft);font-size:13.5px;line-height:1.7;}
 .support-policy p strong{color:var(--ink);}
