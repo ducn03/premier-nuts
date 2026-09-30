@@ -26,9 +26,19 @@
         <div id="cart-items-list" aria-live="polite">
           <div class="cart-loading">Đang tải...</div>
         </div>
-        <div class="cart-total-row" id="cart-total-row" hidden>
-          <span>Tổng cộng</span>
-          <strong id="cart-total-display">—</strong>
+        <div class="checkout-summary-box" id="cart-total-row" hidden>
+          <div class="summary-line">
+            <span>Tạm tính</span>
+            <span id="cart-subtotal">—</span>
+          </div>
+          <div class="summary-line">
+            <span>Phí giao hàng</span>
+            <span class="shipping-fee">Liên hệ sau</span>
+          </div>
+          <div class="summary-line total-line">
+            <span>Tổng thanh toán</span>
+            <strong id="cart-total-display">—</strong>
+          </div>
         </div>
         <p class="checkout-note">
           Sau khi gửi đơn, đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.
@@ -67,18 +77,19 @@
 
           <div style="position: relative;">
             <label for="co-address">Địa chỉ của bạn *</label>
-            <input id="co-address" class="address-autocomplete-input" name="entry.955250698" type="text" placeholder="163 Trần Nguyên Hãn, Phường..." required
-              autocomplete="off">
+            <input id="co-address" class="address-autocomplete-input" name="entry.955250698" type="text"
+              placeholder="163 Trần Nguyên Hãn, Phường..." required autocomplete="off">
             <span class="label-hint" style="display:block; margin-top:6px; font-size:12px; color:var(--ink-soft);">
-              * Mẹo: Gõ tên đường, thêm dấu phẩy (,) rồi gõ <strong>Quận/Huyện</strong> để nhận gợi ý chính xác nhất (VD: 163 TNH, Quận 8)
+              * Mẹo: Gõ tên đường, thêm dấu phẩy (,) rồi gõ <strong>Quận/Huyện</strong> để nhận gợi ý chính xác nhất
+              (VD: 163 TNH, Quận 8)
             </span>
             <ul class="autocomplete-list" hidden></ul>
           </div>
 
           <div style="position: relative;">
             <label for="co-delivery">Địa chỉ nhận hàng <span class="label-hint">(để trống nếu giống trên)</span></label>
-            <input id="co-delivery" class="address-autocomplete-input" name="entry.1719047985" type="text" placeholder="Để trống nếu giống địa chỉ trên"
-              autocomplete="off">
+            <input id="co-delivery" class="address-autocomplete-input" name="entry.1719047985" type="text"
+              placeholder="Để trống nếu giống địa chỉ trên" autocomplete="off">
             <ul class="autocomplete-list" hidden></ul>
           </div>
 

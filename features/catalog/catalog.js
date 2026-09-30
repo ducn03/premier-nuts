@@ -61,13 +61,33 @@ function renderProducts(products) {
     : '<p role="status">Chưa có sản phẩm trong danh mục này.</p>';
 }
 
+function removeAccents(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+}
+
 async function loadProducts() {
   if (!productList) return;
   try {
     const response = await fetch(`${pageRoot}features/catalog/products.json`);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const products = await response.json();
-    renderProducts(isCatalogPage ? products : products.slice(0, 4));
+    
+    let filteredProducts = products;
+    if (isCatalogPage) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const q = urlParams.get('q');
+      if (q) {
+        const normQ = removeAccents(q.toLowerCase());
+        filteredProducts = products.filter(p => 
+          removeAccents(p.name.toLowerCase()).includes(normQ) ||
+          removeAccents(p.category.toLowerCase()).includes(normQ)
+        );
+        // Remove active class from 'All' filter if searching
+        categoryFilters.forEach(item => item.classList.remove('active'));
+      }
+    }
+
+    renderProducts(isCatalogPage ? filteredProducts : products.slice(0, 4));
 
     categoryFilters.forEach(filter => {
       filter.addEventListener('click', () => {

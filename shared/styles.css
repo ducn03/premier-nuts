@@ -56,7 +56,7 @@
   }
   nav.main-nav a.products-link:hover{color:#fff; background:var(--orange-dark);}
   .search-box{
-    flex:1; max-width:420px; display:none;
+    flex:1; max-width:420px; display:none; position:relative;
     align-items:center; gap:10px;
     background:var(--paper); border:1px solid var(--line);
     border-radius:999px; padding:10px 16px;
@@ -67,6 +67,26 @@
     font-family:inherit; font-size:14px; width:100%; color:var(--ink);
   }
   .search-box svg{flex-shrink:0; opacity:0.55;}
+  .search-suggestions{
+    position:absolute; top:calc(100% + 8px); left:0; right:0;
+    background:var(--paper); border:1px solid var(--line);
+    border-radius:12px; box-shadow:var(--shadow);
+    max-height:300px; overflow-y:auto; z-index:100;
+  }
+  .search-suggestions[hidden]{display:none !important;}
+  .sg-item{
+    display:flex; align-items:center; gap:12px; padding:10px 14px;
+    border-bottom:1px solid var(--line); color:var(--ink);
+    text-decoration:none; transition:background .2s;
+  }
+  .sg-item:last-child{border-bottom:none;}
+  .sg-item:hover, .sg-item.active{background:var(--orange-light);}
+  .sg-img{width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center;}
+  .sg-img svg{width:24px; height:24px; opacity:1;}
+  .sg-info{display:flex; flex-direction:column;}
+  .sg-name{font-size:13.5px; font-weight:700;}
+  .sg-price{font-size:12px; color:var(--orange-dark); font-weight:600;}
+
   .header-actions{display:flex; align-items:center; gap:10px; margin-left:auto;}
   /* ---------- cart icon in header ---------- */
   .cart-icon-btn{
@@ -298,6 +318,10 @@
     position:absolute; top:12px; left:12px; z-index:2;
     background:var(--orange); color:#fff; font-size:11px; font-weight:700;
     padding:5px 10px; border-radius:999px;
+    white-space: nowrap;
+    max-width: calc(100% - 24px);
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .p-tag.new{background:var(--green-dark);}
   .p-fav{
@@ -322,7 +346,7 @@
     .p-card-link{display:grid; grid-template-columns:96px 1fr; min-height:112px;}
     .p-media{min-height:112px; aspect-ratio:auto;}
     .p-media svg{width:62px; height:62px;}
-    .p-tag{top:8px; left:8px; font-size:10px; padding:4px 7px;}
+    .p-tag{top:8px; left:8px; font-size:10px; padding:4px 7px; max-width: calc(100% - 16px);}
     .p-body{display:flex; flex-direction:column; justify-content:center; padding:12px 14px;}
     .p-cat{font-size:11px; margin-bottom:3px;}
     .p-name{font-size:14px; margin-bottom:5px;}

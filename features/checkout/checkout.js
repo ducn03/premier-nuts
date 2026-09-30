@@ -41,6 +41,10 @@ async function renderCart() {
 
   const total = await getCartTotal();
   totalEl.textContent = fmt(total);
+
+  const subEl = document.getElementById('cart-subtotal');
+  if (subEl) subEl.textContent = fmt(total);
+
   totalRow.hidden = false;
 
   // Build hidden cart summary string for Google Form (formatted for readability)
