@@ -1,3 +1,8 @@
+if ('serviceWorker' in navigator) {
+  const isNestedPageSW = window.location.pathname.split('/').includes('pages');
+  navigator.serviceWorker.register(isNestedPageSW ? '../sw.js' : 'sw.js').catch(() => {});
+}
+
 const isNestedPage = window.location.pathname.split('/').includes('pages');
 const rootPath = isNestedPage ? '../' : '';
 const productsPath = isNestedPage ? 'products.html' : 'pages/products.html';
