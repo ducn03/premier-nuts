@@ -115,6 +115,7 @@
       box-shadow:0 4px 18px rgba(240,130,30,.45);
       transition:transform .2s;
     }
+    .cart-fab[hidden]{display:none !important;}
     .cart-fab:active{transform:scale(.93);}
     .cart-fab .cart-badge{
       top:-5px; right:-5px;

@@ -128,6 +128,9 @@ function renderShell() {
         b.textContent = count;
         b.hidden = count === 0;
       });
+      if (fab) {
+        fab.hidden = count === 0;
+      }
     } catch { }
   }
   syncCartBadge();
