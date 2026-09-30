@@ -23,6 +23,9 @@ const siteHeaderMarkup = `
       <div class="search-suggestions" hidden></div>
     </div>
     <div class="header-actions">
+      <button class="mobile-search-btn" aria-label="Tìm kiếm">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
       <a href="${checkoutPath}" class="cart-icon-btn" aria-label="Giỏ hàng">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke="currentColor" stroke-width="1.8"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1.8"/><path d="M16 10a4 4 0 0 1-8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         <span class="cart-badge" hidden>0</span>
@@ -140,8 +143,17 @@ function renderShell() {
 
   // Handle Header Search & Autocomplete
   const searchInput = document.querySelector('.search-box input');
-  const searchIcon = document.querySelector('.search-box svg');
+  const searchIcon = document.querySelector('.search-box > svg');
   const suggestionsBox = document.querySelector('.search-suggestions');
+  const mobileSearchBtn = document.querySelector('.mobile-search-btn');
+  const searchBox = document.querySelector('.search-box');
+
+  if (mobileSearchBtn && searchBox) {
+    mobileSearchBtn.addEventListener('click', () => {
+      searchBox.classList.toggle('is-open');
+      if (searchBox.classList.contains('is-open')) searchInput.focus();
+    });
+  }
 
   if (searchInput && suggestionsBox) {
     const qParams = new URLSearchParams(window.location.search);
@@ -176,7 +188,7 @@ function renderShell() {
     let activeIndex = -1;
 
     function removeAccents(str) {
-      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').trim();
     }
 
     searchInput.addEventListener('input', () => {
@@ -198,10 +210,25 @@ function renderShell() {
           }
 
           const normQ = removeAccents(query.toLowerCase());
-          const matches = allProducts.filter(p => 
-            removeAccents(p.name.toLowerCase()).includes(normQ) ||
-            removeAccents(p.category.toLowerCase()).includes(normQ)
-          ).slice(0, 5); // Limit to 5 suggestions
+          
+          const isSubsequence = (search, str) => {
+            let i = 0;
+            for (let j = 0; j < str.length && i < search.length; j++) {
+              if (search[i] === str[j]) i++;
+            }
+            return i === search.length;
+          };
+
+          const matches = allProducts.filter(p => {
+            const normName = removeAccents(p.name.toLowerCase());
+            const normCat = removeAccents(p.category.toLowerCase());
+            const acronym = normName.split(/\s+/).map(w => w[0]).join('');
+            
+            return normName.includes(normQ) || 
+                   normCat.includes(normQ) || 
+                   acronym.includes(normQ) ||
+                   isSubsequence(normQ, normName);
+          }).slice(0, 5); // Limit to 5 suggestions
 
           if (matches.length === 0) {
             suggestionsBox.innerHTML = '<div style="padding:12px 16px; font-size:13px; color:var(--ink-soft);">Không tìm thấy sản phẩm.</div>';
@@ -259,10 +286,13 @@ function renderShell() {
       }
     });
 
-    // Hide suggestions when clicking outside
+    // Hide suggestions and mobile search box when clicking outside
     document.addEventListener('click', e => {
       if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
         suggestionsBox.hidden = true;
+      }
+      if (searchBox && mobileSearchBtn && !searchBox.contains(e.target) && !mobileSearchBtn.contains(e.target)) {
+        searchBox.classList.remove('is-open');
       }
     });
   }

@@ -62,7 +62,7 @@ function renderProducts(products) {
 }
 
 function removeAccents(str) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').trim();
 }
 
 async function loadProducts() {
@@ -78,10 +78,25 @@ async function loadProducts() {
       const q = urlParams.get('q');
       if (q) {
         const normQ = removeAccents(q.toLowerCase());
-        filteredProducts = products.filter(p => 
-          removeAccents(p.name.toLowerCase()).includes(normQ) ||
-          removeAccents(p.category.toLowerCase()).includes(normQ)
-        );
+        
+        const isSubsequence = (search, str) => {
+          let i = 0;
+          for (let j = 0; j < str.length && i < search.length; j++) {
+            if (search[i] === str[j]) i++;
+          }
+          return i === search.length;
+        };
+
+        filteredProducts = products.filter(p => {
+          const normName = removeAccents(p.name.toLowerCase());
+          const normCat = removeAccents(p.category.toLowerCase());
+          const acronym = normName.split(/\s+/).map(w => w[0]).join('');
+          
+          return normName.includes(normQ) || 
+                 normCat.includes(normQ) || 
+                 acronym.includes(normQ) ||
+                 isSubsequence(normQ, normName);
+        });
         // Remove active class from 'All' filter if searching
         categoryFilters.forEach(item => item.classList.remove('active'));
       }

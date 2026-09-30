@@ -194,12 +194,25 @@
     .search-box{display:flex;}
     .mobile-menu-button{display:none;}
     .mobile-menu{display:none!important;}
+    .mobile-search-btn{display:none;}
   }
 
   @media(max-width:839px){
     .brand{margin-right:auto;}
     .main-nav{display:none;}
-    .search-box{display:none;}
+    .search-box{
+      display:none;
+      position:absolute; top:calc(100% + 4px); left:16px; right:16px; z-index:90;
+      max-width:none; box-shadow:var(--shadow);
+      padding:14px 20px; border-radius:18px;
+    }
+    .search-box input{font-size:15px;}
+    .search-box.is-open{display:flex;}
+    .mobile-search-btn{
+      display:flex; align-items:center; justify-content:center;
+      width:42px; height:42px; background:transparent; border:none;
+      color:var(--ink); cursor:pointer;
+    }
     .header-row{justify-content:space-between;}
     #site-header{position:sticky;}
   }
