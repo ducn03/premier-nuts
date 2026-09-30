@@ -90,7 +90,7 @@ function bindFormSubmit() {
     const email = form.querySelector('#co-email').value.trim();
     const address = form.querySelector('#co-address').value.trim();
 
-    if (!name || !phone || !email || !address) {
+    if (!name || !phone || !address) {
       e.preventDefault();
       status.textContent = '⚠️ Vui lòng điền đầy đủ các thông tin bắt buộc.';
       status.className = 'checkout-status is-error';
@@ -106,13 +106,15 @@ function bindFormSubmit() {
       return;
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      e.preventDefault();
-      status.textContent = '⚠️ Email không hợp lệ.';
-      status.className = 'checkout-status is-error';
-      return;
+    // Email validation (optional)
+    if (email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        e.preventDefault();
+        status.textContent = '⚠️ Email không hợp lệ.';
+        status.className = 'checkout-status is-error';
+        return;
+      }
     }
 
     const items = await getCartItems();
