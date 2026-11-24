@@ -1,4 +1,74 @@
 
+// ================= FULL-PAGE SPLASH LOADER RUNNER =================
+(function runFullPageLoader() {
+  const loader = document.getElementById('page-loader');
+  const pctEl = document.getElementById('loader-pct');
+  const barEl = document.getElementById('loader-bar-fill');
+  if (!loader || !pctEl) return;
+
+  let progress = 0;
+  let isDone = false;
+
+  function updateUI(val) {
+    pctEl.textContent = val + '%';
+    if (barEl) barEl.style.width = val + '%';
+  }
+
+  const interval = setInterval(() => {
+    if (progress < 85 && !isDone) {
+      progress += Math.floor(Math.random() * 8) + 5;
+      if (progress > 85) progress = 85;
+      updateUI(progress);
+    }
+  }, 35);
+
+  function finish() {
+    if (isDone) return;
+    isDone = true;
+    clearInterval(interval);
+
+    let current = progress;
+    const finishInterval = setInterval(() => {
+      current += 6;
+      if (current >= 100) {
+        current = 100;
+        clearInterval(finishInterval);
+        updateUI(100);
+        setTimeout(() => {
+          loader.classList.add('loader-hidden');
+          setTimeout(() => {
+            loader.style.display = 'none';
+          }, 450);
+        }, 140);
+      } else {
+        updateUI(current);
+      }
+    }, 18);
+  }
+
+  if (document.readyState === 'complete') {
+    finish();
+  } else {
+    window.addEventListener('load', finish);
+  }
+
+  // Safety fallback: never hang more than 1.4s
+  setTimeout(finish, 1400);
+
+  // Show on internal link clicks for smooth app-like transition
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a');
+    if (!link || !link.href) return;
+    if (link.target === '_blank' || link.href.startsWith('#') || link.href.startsWith('javascript:') || link.href.includes('#')) return;
+    if (link.origin === window.location.origin && link.pathname !== window.location.pathname) {
+      loader.style.display = 'flex';
+      loader.classList.remove('loader-hidden');
+      updateUI(30);
+    }
+  });
+})();
+
+
 // ================= APP TOP PROGRESS BAR =================
 (function initAppProgressBar() {
   const bar = document.createElement('div');

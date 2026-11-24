@@ -1,3 +1,93 @@
+
+  /* ================= FULL-PAGE SPLASH LOADER ================= */
+  #page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    background: var(--cream, #FFFBF4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #page-loader.loader-hidden {
+    opacity: 0;
+    transform: scale(1.03);
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .loader-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px;
+    max-width: 320px;
+    animation: heroEnter .5s cubic-bezier(.2,.75,.25,1) both;
+  }
+
+  .loader-logo-wrap {
+    position: relative;
+    margin-bottom: 22px;
+  }
+
+  .loader-logo {
+    height: 48px;
+    width: auto;
+    aspect-ratio: 487 / 234;
+    object-fit: contain;
+    animation: loaderPulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes loaderPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 4px 10px rgba(43,33,22,0.06)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 8px 18px rgba(240,130,30,0.22)); }
+  }
+
+  .loader-bar-track {
+    width: 170px;
+    height: 6px;
+    background: rgba(43, 33, 22, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+  }
+
+  .loader-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--orange, #F0821E), var(--green, #8FC53E));
+    border-radius: 999px;
+    box-shadow: 0 0 8px rgba(240, 130, 30, 0.4);
+    transition: width 0.08s linear;
+  }
+
+  .loader-pct {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--orange-dark, #D96A0F);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 6px;
+  }
+
+  .loader-text {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink-soft, #7A6B5B);
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
   :root{
     --cream:#FFFBF4;
     --paper:#FFFFFF;
