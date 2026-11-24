@@ -38,11 +38,16 @@
   }
 
   .loader-logo {
-    height: 48px;
+    height: 72px;
     width: auto;
     aspect-ratio: 487 / 234;
     object-fit: contain;
     animation: loaderPulse 1.6s ease-in-out infinite;
+  }
+  @media (min-width: 840px) {
+    .loader-logo {
+      height: 84px;
+    }
   }
 
   @keyframes loaderPulse {
@@ -51,8 +56,8 @@
   }
 
   .loader-bar-track {
-    width: 170px;
-    height: 6px;
+    width: 190px;
+    height: 7px;
     background: rgba(43, 33, 22, 0.08);
     border-radius: 999px;
     overflow: hidden;
@@ -70,7 +75,7 @@
   }
 
   .loader-pct {
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 800;
     color: var(--orange-dark, #D96A0F);
     letter-spacing: -0.02em;
@@ -81,7 +86,7 @@
   }
 
   .loader-text {
-    font-size: 12.5px;
+    font-size: 13.5px;
     font-weight: 600;
     color: var(--ink-soft, #7A6B5B);
     letter-spacing: 0.04em;
