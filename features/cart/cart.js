@@ -66,7 +66,7 @@ export async function getCartItems() {
   const cart = getCart();
   const products = await loadProducts();
   return Object.entries(cart).map(([id, qty]) => {
-    const product = products.find(p => p.id === id);
+    const product = products.find(p => p.id === id || (id === 'hat-chia-uc-nguyen-chat' && p.id === 'hat-chia-premier-nuts'));
     if (!product) return null;
     const unitPrice = parsePrice(product.price);
     return { product, qty, unitPrice, lineTotal: unitPrice * qty };

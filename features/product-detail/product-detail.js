@@ -25,6 +25,103 @@ function renderDetail(product) {
   const oldPrice = product.oldPrice ? `<del>${escapeHtml(product.oldPrice)}</del>` : '';
   const background = product.mediaClass === 'chia' || product.mediaClass === 'walnut' ? 'var(--green-mist)' : '#FBEFD9';
 
+  const specList = [];
+  if (product.ingredients) specList.push(`<div><dt>Thành phần</dt><dd>${escapeHtml(product.ingredients)}</dd></div>`);
+  if (product.weight) specList.push(`<div><dt>Khối lượng tịnh</dt><dd>${escapeHtml(product.weight)}</dd></div>`);
+  if (product.origin) specList.push(`<div><dt>Xuất xứ</dt><dd>${escapeHtml(product.origin)}</dd></div>`);
+  if (product.expiry) specList.push(`<div><dt>Hạn sử dụng</dt><dd>${escapeHtml(product.expiry)}</dd></div>`);
+  if (product.serving) specList.push(`<div><dt>Cách dùng</dt><dd>${escapeHtml(product.serving)}</dd></div>`);
+  if (product.storage) specList.push(`<div><dt>Bảo quản</dt><dd>${escapeHtml(product.storage)}</dd></div>`);
+  const specsHtml = specList.join('');
+
+  let nutritionSection = '';
+  if (product.nutrition && product.nutrition.length) {
+    const glutenBadge = product.glutenFree
+      ? `<span class="nutrition-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> KHÔNG GLUTEN</span>`
+      : '';
+    const nutritionRows = product.nutrition.map(item => `
+      <div class="nutrition-item">
+        <span class="nutrition-name">${escapeHtml(item.label)}</span>
+        <strong class="nutrition-val">${escapeHtml(item.value)}</strong>
+      </div>
+    `).join('');
+
+    nutritionSection = `
+      <div class="detail-card detail-card-nutrition">
+        <div class="detail-card-head">
+          <div>
+            <span class="detail-kicker">DINH DƯỠNG</span>
+            <h3>Thành phần dinh dưỡng</h3>
+            <span class="nutrition-sub">${escapeHtml(product.nutritionServing || 'Khẩu phần 15g')}</span>
+          </div>
+          ${glutenBadge}
+        </div>
+        <div class="nutrition-grid">
+          ${nutritionRows}
+        </div>
+      </div>
+    `;
+  }
+
+  let usageSection = '';
+  if (product.usageTips && product.usageTips.length) {
+    const usageItems = product.usageTips.map(tip => `
+      <div class="usage-item">
+        <span class="usage-badge">${escapeHtml(tip.title)}</span>
+        <p class="usage-desc">${escapeHtml(tip.desc)}</p>
+      </div>
+    `).join('');
+
+    usageSection = `
+      <div class="detail-card detail-card-usage">
+        <div class="detail-card-head">
+          <div>
+            <span class="detail-kicker">THƯỞNG THỨC</span>
+            <h3>Gợi ý cách sử dụng</h3>
+            <span class="nutrition-sub">Dễ dàng kết hợp vào thực đơn mỗi ngày</span>
+          </div>
+        </div>
+        <div class="usage-list">
+          ${usageItems}
+        </div>
+      </div>
+    `;
+  }
+
+  let extraGrid = '';
+  if (nutritionSection || usageSection) {
+    extraGrid = `<section class="detail-extra-grid">${nutritionSection}${usageSection}</section>`;
+  }
+
+  let noticeSection = '';
+  if (product.note || product.commitment) {
+    const noteHtml = product.note ? `
+      <div class="notice-box notice-warning">
+        <div class="notice-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>
+        </div>
+        <div>
+          <strong>LƯU Ý:</strong>
+          <span>${escapeHtml(product.note)}</span>
+        </div>
+      </div>
+    ` : '';
+
+    const commitmentHtml = product.commitment ? `
+      <div class="notice-box notice-commitment">
+        <div class="notice-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <strong>CAM KẾT TỪ PREMIER NUTS:</strong>
+          <span>${escapeHtml(product.commitment)}</span>
+        </div>
+      </div>
+    ` : '';
+
+    noticeSection = `<section class="detail-notices">${noteHtml}${commitmentHtml}</section>`;
+  }
+
   detailRoot.innerHTML = `<div class="detail-shell">
     <a class="detail-back" href="products.html">← Quay lại danh sách sản phẩm</a>
     <section class="detail-hero">
@@ -49,9 +146,11 @@ function renderDetail(product) {
           </button>
         </div>
         <div class="detail-order-note">Thêm vào giỏ rồi đặt hàng. Đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.</div>
-        <dl class="detail-specs"><div><dt>Xuất xứ</dt><dd>${escapeHtml(product.origin)}</dd></div><div><dt>Cách dùng</dt><dd>${escapeHtml(product.serving)}</dd></div><div><dt>Bảo quản</dt><dd>${escapeHtml(product.storage)}</dd></div></dl>
+        <dl class="detail-specs">${specsHtml}</dl>
       </div>
     </section>
+    ${extraGrid}
+    ${noticeSection}
     <section class="detail-benefits"><div><b>01</b><h2>Thông tin dễ hiểu</h2><p>Biết rõ xuất xứ, cách dùng và cách bảo quản trước khi chọn sản phẩm.</p></div><div><b>02</b><h2>Ăn ngon, dễ kết hợp</h2><p>Từ bữa sáng nhanh đến món ăn nhẹ tại văn phòng, sản phẩm không cần chuẩn bị cầu kỳ.</p></div><div><b>03</b><h2>Đặt hàng đơn giản</h2><p>Để lại thông tin quan tâm, đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.</p></div></section>
     <section class="detail-story"><div><span class="detail-kicker">Gợi ý thưởng thức</span><h2>Một lựa chọn nhỏ cho nhịp sống lành mạnh hơn.</h2></div><p>Dùng trực tiếp, thêm vào sữa chua, granola hoặc salad. Liên hệ với Premier Nuts để được tư vấn khẩu phần và đặt hàng theo nhu cầu.</p></section>
   </div>`;
@@ -63,7 +162,7 @@ async function loadProductDetail() {
     const response = await fetch('../features/catalog/products.json');
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const products = await response.json();
-    const product = products.find(item => item.id === id) || products[0];
+    const product = products.find(item => item.id === id || (id === 'hat-chia-uc-nguyen-chat' && item.id === 'hat-chia-premier-nuts')) || products[0];
     renderDetail(product);
   } catch (error) {
     detailRoot.innerHTML = '<p role="alert">Không thể tải thông tin sản phẩm.</p>';

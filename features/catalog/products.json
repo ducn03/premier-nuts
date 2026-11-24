@@ -15,20 +15,48 @@
     "storage": "Đậy kín sau khi mở, bảo quản nơi khô mát"
   },
   {
-    "id": "hat-chia-uc-nguyen-chat",
+    "id": "hat-chia-premier-nuts",
     "category": "Hạt chia",
     "catalogGroup": "Hạt chia",
-    "name": "Hạt chia Úc nguyên chất",
+    "name": "Hạt chia (Chia Seeds) Premier Nuts",
     "rating": "★★★★★ (98)",
     "price": "89.000đ",
     "oldPrice": "",
     "tag": "Mới",
     "tagClass": "new",
     "mediaClass": "chia",
-    "description": "Hạt chia Úc nguyên chất giàu chất xơ, dễ kết hợp vào các món ăn hằng ngày. Hạt nở mềm khi ngâm và gần như không làm thay đổi hương vị món ăn.",
-    "origin": "Úc",
-    "serving": "Ngâm nước, trộn smoothie, sữa chua hoặc salad",
-    "storage": "Bảo quản kín, tránh ánh nắng và nơi ẩm"
+    "description": "Hạt chia Premier Nuts có thành phần 100% hạt chia, nguyên liệu từ Ấn Độ, được đóng gói tại Việt Nam. Hạt chia dễ kết hợp với nhiều món ăn và thức uống, phù hợp để đa dạng hóa thực đơn hằng ngày.",
+    "ingredients": "100% hạt chia",
+    "weight": "250g / 500g (tùy phân loại)",
+    "origin": "Ấn Độ (Đóng gói tại Việt Nam)",
+    "expiry": "24 tháng kể từ ngày sản xuất (vui lòng xem thông tin trên bao bì)",
+    "serving": "Dùng cho đồ uống, món ăn hằng ngày hoặc chế biến món tráng miệng",
+    "storage": "Bảo quản nơi khô ráo, thoáng mát. Sau khi mở bao bì, đóng kín miệng túi hoặc chuyển sang hộp kín để bảo quản.",
+    "nutritionServing": "Khẩu phần 15g",
+    "nutrition": [
+      { "label": "Chất xơ", "value": "5,4g" },
+      { "label": "Chất đạm", "value": "3,1g" },
+      { "label": "Chất béo", "value": "3,3g" },
+      { "label": "Omega-3", "value": "0,4g" },
+      { "label": "Canxi", "value": "108,5mg" }
+    ],
+    "glutenFree": true,
+    "usageTips": [
+      {
+        "title": "Đồ uống",
+        "desc": "Ngâm khoảng 1 muỗng canh hạt chia trong nước lọc hoặc nước trái cây, khuấy đều và chờ khoảng 10 phút."
+      },
+      {
+        "title": "Món ăn",
+        "desc": "Thêm vào sữa chua, trái cây, overnight oats, ngũ cốc, salad hoặc cháo."
+      },
+      {
+        "title": "Chế biến",
+        "desc": "Có thể dùng trong pudding, rau câu, bánh và một số món nướng."
+      }
+    ],
+    "note": "Không sử dụng sản phẩm đã hết hạn hoặc có bao bì bị rách, bung. Người có tình trạng sức khỏe đặc biệt hoặc đang sử dụng thuốc nên tham khảo ý kiến chuyên gia y tế trước khi dùng.",
+    "commitment": "Premier Nuts cam kết sản phẩm đúng thông tin mô tả và nguồn gốc theo hồ sơ sản phẩm."
   },
   {
     "id": "granola-mat-ong-hat-dieu",
