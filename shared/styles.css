@@ -660,16 +660,42 @@
   .detail-specs>div{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);}
   .detail-specs dt{font-size:12px;font-weight:800;color:var(--ink-soft);}
   .detail-specs dd{font-size:13px;color:var(--ink);}
+
+  /* ---------- detail accordion ---------- */
+  .detail-accordion-group{display:flex;flex-direction:column;gap:12px;margin-top:10px;width:100%;}
+  .detail-accordion{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:border-color .2s ease,box-shadow .2s ease;}
+  .detail-accordion[open]{border-color:#DFD4BC;box-shadow:0 6px 20px -8px rgba(43,33,22,.08);}
+  .detail-accordion summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;user-select:none;transition:background .18s ease;}
+  .detail-accordion summary::-webkit-details-marker{display:none;}
+  .detail-accordion summary:hover{background:rgba(247,242,234,.65);}
+  .accordion-title-box{display:flex;align-items:center;gap:12px;min-width:0;}
+  .accordion-icon-wrap{width:36px;height:36px;border-radius:10px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+  .accordion-text{display:flex;flex-direction:column;gap:1px;min-width:0;}
+  .accordion-kicker{font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--orange-dark);text-transform:uppercase;}
+  .accordion-title{font-size:15px;font-weight:700;color:var(--ink);margin:0;line-height:1.25;}
+  .accordion-sub{font-size:12px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .accordion-chevron-box{width:30px;height:30px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);flex-shrink:0;transition:transform .25s ease,background .2s ease,color .2s ease;}
+  .detail-accordion[open] .accordion-chevron-box{transform:rotate(180deg);background:var(--orange-light);color:var(--orange-dark);}
+  .accordion-content{padding:14px 18px 20px;border-top:1px solid var(--line);animation:accordionReveal .2s ease-out;}
+  @keyframes accordionReveal{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+  .detail-accordion .detail-specs{margin-top:0;border-top:none;}
+  .detail-accordion .detail-specs>div:last-child{border-bottom:none;padding-bottom:2px;}
+  .nutrition-inner-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:14px;}
+  .nutrition-serving-pill{font-size:12.5px;color:var(--ink-soft);}.nutrition-serving-pill strong{color:var(--ink);}
+  .nutrition-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+  .nutrition-item:nth-child(1),.nutrition-item:nth-child(2),.nutrition-item:nth-child(3){grid-column:span 2;}
+  .nutrition-item:nth-child(4),.nutrition-item:nth-child(5){grid-column:span 3;}
+  .detail-accordion .detail-notices{margin-top:0;}
+
   .detail-extra-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px;}
   .detail-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:26px 24px;box-shadow:0 6px 20px -8px rgba(43,33,22,.06);}
   .detail-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line);}
   .detail-card-head h3{font-size:19px;font-weight:700;color:var(--ink);margin:4px 0 2px;}
   .nutrition-sub{font-size:12.5px;color:var(--ink-soft);}
   .nutrition-badge{display:inline-flex;align-items:center;gap:5px;background:var(--green-mist);color:var(--green-dark);font-size:11px;font-weight:800;padding:6px 12px;border-radius:999px;letter-spacing:.04em;white-space:nowrap;}
-  .nutrition-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;}
-  .nutrition-item{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;}
-  .nutrition-name{font-size:12px;color:var(--ink-soft);}
-  .nutrition-val{font-size:18px;font-weight:700;color:var(--orange-dark);}
+  .nutrition-item{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;gap:4px;text-align:center;align-items:center;min-width:0;}
+  .nutrition-name{font-size:11.5px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .nutrition-val{font-size:17px;font-weight:700;color:var(--orange-dark);line-height:1.2;}
   .usage-list{display:flex;flex-direction:column;gap:12px;}
   .usage-item{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--cream);border-radius:12px;border:1px solid var(--line);}
   .usage-badge{flex-shrink:0;background:var(--orange-light);color:var(--orange-dark);font-size:12px;font-weight:700;padding:4px 10px;border-radius:6px;}
@@ -699,18 +725,44 @@
     .detail-copy{
       padding:0;
     }
+    .detail-accordion-group{
+      grid-column:1 / -1;
+      gap:14px;
+      margin-top:16px;
+    }
+    .detail-accordion summary{
+      padding:18px 24px;
+    }
+    .accordion-icon-wrap{
+      width:40px;
+      height:40px;
+      font-size:19px;
+    }
+    .accordion-title{
+      font-size:16px;
+    }
+    .accordion-sub{
+      font-size:13px;
+    }
+    .accordion-chevron-box{
+      width:34px;
+      height:34px;
+    }
+    .accordion-content{
+      padding:18px 24px 24px;
+    }
     .detail-specs{
       grid-column:1 / -1;
       display:grid;
       grid-template-columns:1fr;
-      border-top:1px solid var(--line);
-      margin-top:12px;
+      border-top:none;
+      margin-top:0;
       padding-top:0;
     }
     .detail-specs>div{
       grid-template-columns:200px 1fr;
       gap:24px;
-      padding:15px 0;
+      padding:14px 0;
       align-items:baseline;
     }
     .detail-specs dt{
@@ -722,6 +774,17 @@
       font-size:14px;
       line-height:1.65;
       color:var(--ink);
+    }
+    .nutrition-grid{
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+    }
+    .nutrition-item:nth-child(1),
+    .nutrition-item:nth-child(2),
+    .nutrition-item:nth-child(3),
+    .nutrition-item:nth-child(4),
+    .nutrition-item:nth-child(5){
+      grid-column:auto;
     }
   }
   @media(max-width:700px){
