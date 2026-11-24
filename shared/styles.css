@@ -2,13 +2,20 @@
   /* ================= FULL-PAGE SPLASH LOADER ================= */
   #page-loader {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     z-index: 100000;
     background: var(--cream, #FFFBF4);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    box-sizing: border-box;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
     visibility: visible;
     opacity: 1;
@@ -29,7 +36,13 @@
     text-align: center;
     padding: 24px;
     max-width: 320px;
-    animation: heroEnter .5s cubic-bezier(.2,.75,.25,1) both;
+    margin-top: -55px; /* Cân bằng lại tâm mắt nhìn (Optical Center) */
+  }
+
+  @media (min-width: 840px) {
+    .loader-box {
+      margin-top: -6vh;
+    }
   }
 
   .loader-logo-wrap {
