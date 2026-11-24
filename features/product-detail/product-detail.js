@@ -214,9 +214,6 @@ function renderDetail(product) {
     <section class="detail-benefits"><div><b>01</b><h2>Thông tin dễ hiểu</h2><p>Biết rõ xuất xứ, cách dùng và cách bảo quản trước khi chọn sản phẩm.</p></div><div><b>02</b><h2>Ăn ngon, dễ kết hợp</h2><p>Từ bữa sáng nhanh đến món ăn nhẹ tại văn phòng, sản phẩm không cần chuẩn bị cầu kỳ.</p></div><div><b>03</b><h2>Đặt hàng đơn giản</h2><p>Để lại thông tin quan tâm, đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.</p></div></section>
     <section class="detail-story"><div><span class="detail-kicker">Gợi ý thưởng thức</span><h2>Một lựa chọn nhỏ cho nhịp sống lành mạnh hơn.</h2></div><p>Dùng trực tiếp, thêm vào sữa chua, granola hoặc salad. Liên hệ với Premier Nuts để được tư vấn khẩu phần và đặt hàng theo nhu cầu.</p></section>
   </div>`;
-    <section class="detail-benefits"><div><b>01</b><h2>Thông tin dễ hiểu</h2><p>Biết rõ xuất xứ, cách dùng và cách bảo quản trước khi chọn sản phẩm.</p></div><div><b>02</b><h2>Ăn ngon, dễ kết hợp</h2><p>Từ bữa sáng nhanh đến món ăn nhẹ tại văn phòng, sản phẩm không cần chuẩn bị cầu kỳ.</p></div><div><b>03</b><h2>Đặt hàng đơn giản</h2><p>Để lại thông tin quan tâm, đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.</p></div></section>
-    <section class="detail-story"><div><span class="detail-kicker">Gợi ý thưởng thức</span><h2>Một lựa chọn nhỏ cho nhịp sống lành mạnh hơn.</h2></div><p>Dùng trực tiếp, thêm vào sữa chua, granola hoặc salad. Liên hệ với Premier Nuts để được tư vấn khẩu phần và đặt hàng theo nhu cầu.</p></section>
-  </div>`;
 }
 
 async function loadProductDetail() {
