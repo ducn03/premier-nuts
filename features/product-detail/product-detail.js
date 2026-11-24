@@ -93,67 +93,41 @@ function renderDetail(product) {
     extraGrid = `<section class="detail-extra-grid">${nutritionSection}${usageSection}</section>`;
   }
 
-  let noticeBoxHtml = '';
-  if (product.commitment || product.note) {
-    const commitItem = product.commitment ? `
-      <div class="side-notice-item notice-commitment">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <p><strong>Cam kết Premier Nuts:</strong> ${escapeHtml(product.commitment)}</p>
-      </div>` : '';
-    const noteItem = product.note ? `
-      <div class="side-notice-item notice-note">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16" r="1.2" fill="currentColor"/></svg>
-        <p><strong>Lưu ý:</strong> ${escapeHtml(product.note)}</p>
-      </div>` : '';
-    noticeBoxHtml = `<div class="detail-side-notice">${commitItem}${noteItem}</div>`;
+  let noticeSection = '';
+  if (product.note || product.commitment) {
+    const noteHtml = product.note ? `
+      <div class="notice-box notice-warning">
+        <div class="notice-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16" r="1.2" fill="currentColor"/></svg>
+        </div>
+        <div>
+          <strong>LƯU Ý:</strong>
+          <span>${escapeHtml(product.note)}</span>
+        </div>
+      </div>
+    ` : '';
+
+    const commitmentHtml = product.commitment ? `
+      <div class="notice-box notice-commitment">
+        <div class="notice-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <strong>CAM KẾT TỪ PREMIER NUTS:</strong>
+          <span>${escapeHtml(product.commitment)}</span>
+        </div>
+      </div>
+    ` : '';
+
+    noticeSection = `<section class="detail-notices">${noteHtml}${commitmentHtml}</section>`;
   }
-
-  const glutenBadgeText = product.glutenFree ? 'Không Gluten' : 'Dinh dưỡng sạch';
-  const glutenSubText = product.glutenFree ? 'Chuẩn ăn lành & eat clean' : 'Tự nhiên, không chất bảo quản';
-
-  const badgesHtml = `
-    <div class="detail-badges-card">
-      <div class="detail-badge-item">
-        <span class="badge-icon">🌿</span>
-        <div>
-          <strong>100% Tự nhiên</strong>
-          <span>${escapeHtml(product.origin ? 'Xuất xứ ' + product.origin.split('(')[0].trim() : 'Nguyên chất tuyển chọn')}</span>
-        </div>
-      </div>
-      <div class="detail-badge-item">
-        <span class="badge-icon">🌾</span>
-        <div>
-          <strong>${glutenBadgeText}</strong>
-          <span>${glutenSubText}</span>
-        </div>
-      </div>
-      <div class="detail-badge-item">
-        <span class="badge-icon">🛡️</span>
-        <div>
-          <strong>Hồ sơ rõ ràng</strong>
-          <span>Cam kết đúng mô tả</span>
-        </div>
-      </div>
-      <div class="detail-badge-item">
-        <span class="badge-icon">📦</span>
-        <div>
-          <strong>Túi zip kín khí</strong>
-          <span>Dễ dùng & bảo quản lâu</span>
-        </div>
-      </div>
-    </div>
-  `;
 
   detailRoot.innerHTML = `<div class="detail-shell">
     <a class="detail-back" href="products.html">← Quay lại danh sách sản phẩm</a>
     <section class="detail-hero">
-      <div class="detail-media-col">
-        <div class="detail-visual" style="background:${background}">
-          <span class="detail-orbit detail-orbit-one"></span><span class="detail-orbit detail-orbit-two"></span>${tag}
-          <svg width="260" height="260" viewBox="0 0 64 64" aria-label="Hình minh họa ${escapeHtml(product.name)}">${detailVisuals[product.mediaClass]}</svg>
-        </div>
-        ${badgesHtml}
-        ${noticeBoxHtml}
+      <div class="detail-visual" style="background:${background}">
+        <span class="detail-orbit detail-orbit-one"></span><span class="detail-orbit detail-orbit-two"></span>${tag}
+        <svg width="240" height="240" viewBox="0 0 64 64" aria-label="Hình minh họa ${escapeHtml(product.name)}">${detailVisuals[product.mediaClass]}</svg>
       </div>
       <div class="detail-copy">
         <span class="detail-kicker">${escapeHtml(product.category)} / PREMIER NUTS</span>
@@ -172,10 +146,11 @@ function renderDetail(product) {
           </button>
         </div>
         <div class="detail-order-note">Thêm vào giỏ rồi đặt hàng. Đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.</div>
-        <dl class="detail-specs">${specsHtml}</dl>
       </div>
+      <dl class="detail-specs">${specsHtml}</dl>
     </section>
     ${extraGrid}
+    ${noticeSection}
     <section class="detail-benefits"><div><b>01</b><h2>Thông tin dễ hiểu</h2><p>Biết rõ xuất xứ, cách dùng và cách bảo quản trước khi chọn sản phẩm.</p></div><div><b>02</b><h2>Ăn ngon, dễ kết hợp</h2><p>Từ bữa sáng nhanh đến món ăn nhẹ tại văn phòng, sản phẩm không cần chuẩn bị cầu kỳ.</p></div><div><b>03</b><h2>Đặt hàng đơn giản</h2><p>Để lại thông tin quan tâm, đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.</p></div></section>
     <section class="detail-story"><div><span class="detail-kicker">Gợi ý thưởng thức</span><h2>Một lựa chọn nhỏ cho nhịp sống lành mạnh hơn.</h2></div><p>Dùng trực tiếp, thêm vào sữa chua, granola hoặc salad. Liên hệ với Premier Nuts để được tư vấn khẩu phần và đặt hàng theo nhu cầu.</p></section>
   </div>`;
