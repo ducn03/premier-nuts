@@ -73,7 +73,10 @@ function renderSkeletons(count = 2) {
 function renderProducts(products) {
   productList.innerHTML = products.length
     ? products.map(productCard).join('')
-    : '<p role="status">Chưa có sản phẩm trong danh mục này.</p>';
+    : `<div class="catalog-empty" style="padding:48px 16px;text-align:center;grid-column:1/-1;">
+      <p style="color:var(--ink-soft);font-size:15px;margin-bottom:12px;">Chưa có sản phẩm phù hợp trong danh mục này.</p>
+      <a href="products.html" class="cta-btn" style="display:inline-flex;padding:9px 18px;font-size:13px;">Xem tất cả sản phẩm →</a>
+    </div>`;
 }
 
 function removeAccents(str) {
@@ -113,45 +116,25 @@ async function loadProducts() {
                  acronym.includes(normQ) ||
                  isSubsequence(normQ, normName);
         });
-        // Remove active class from 'All' filter if searching
-        categoryFilters.forEach(item => item.classList.remove('active'));
+        // Match active chip with search query
+        let matchedChip = false;
+        categoryFilters.forEach(item => {
+          const catVal = item.dataset.category;
+          if (catVal && catVal !== 'all' && normQ.includes(removeAccents(catVal.toLowerCase()))) {
+            item.classList.add('active');
+            matchedChip = true;
+          } else {
+            item.classList.remove('active');
+          }
+        });
+        if (!matchedChip) {
+          const allChip = document.querySelector('[data-category="all"]');
+          if (allChip) allChip.classList.add('active');
+        }
       }
     }
 
     renderProducts(isCatalogPage ? filteredProducts : products.slice(0, 4));
-
-    // Mobile In-Page Quick Category Filter (App-like instant filter)
-    const quickCatItems = document.querySelectorAll('.hero-quick-cats .hqc-item');
-    if (quickCatItems.length && !isCatalogPage) {
-      quickCatItems.forEach(item => {
-        item.addEventListener('click', e => {
-          e.preventDefault();
-          quickCatItems.forEach(i => i.classList.remove('active'));
-          item.classList.add('active');
-
-          const catName = item.querySelector('span:last-child')?.textContent?.trim();
-          let filtered = products;
-
-          if (catName && catName !== 'Tất cả') {
-            const normTarget = removeAccents(catName.toLowerCase());
-            filtered = products.filter(p => {
-              const normCat = removeAccents((p.category || '').toLowerCase());
-              const normName = removeAccents((p.name || '').toLowerCase());
-              return normCat.includes(normTarget) || normName.includes(normTarget);
-            });
-          }
-
-          renderProducts(filtered.length ? filtered : products);
-
-          const sec = document.querySelector('#san-pham');
-          if (sec) {
-            const topOffset = sec.getBoundingClientRect().top + window.scrollY - 70;
-            window.scrollTo({ top: topOffset, behavior: 'smooth' });
-          }
-        });
-      });
-    }
-
 
     categoryFilters.forEach(filter => {
       filter.addEventListener('click', () => {

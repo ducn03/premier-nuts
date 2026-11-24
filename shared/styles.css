@@ -259,15 +259,9 @@
     aspect-ratio:1/1; border-radius:16px;
   }
 
-  /* Quick Categories Active App State */
-  .hqc-item.active .hqc-icon{
+  .hqc-item:active .hqc-icon{
     border-color:var(--orange);
-    box-shadow:0 0 0 2px rgba(240,130,30,0.3);
-    transform:scale(1.05);
-  }
-  .hqc-item.active span:last-child{
-    color:var(--orange-dark);
-    font-weight:700;
+    transform:scale(0.92);
   }
 
   /* ---------- hero ---------- */
