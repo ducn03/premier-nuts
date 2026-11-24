@@ -65,7 +65,7 @@ function renderDetail(product) {
     `).join('');
 
     nutritionAccordion = `
-      <details class="detail-accordion">
+      <details class="detail-accordion" open>
         <summary>
           <div class="accordion-text">
             <span class="accordion-kicker">DINH DƯỠNG</span>
@@ -99,7 +99,7 @@ function renderDetail(product) {
     `).join('');
 
     usageAccordion = `
-      <details class="detail-accordion">
+      <details class="detail-accordion" open>
         <summary>
           <div class="accordion-text">
             <span class="accordion-kicker">THƯỞNG THỨC</span>
@@ -146,7 +146,7 @@ function renderDetail(product) {
     ` : '';
 
     noticeAccordion = `
-      <details class="detail-accordion">
+      <details class="detail-accordion" open>
         <summary>
           <div class="accordion-text">
             <span class="accordion-kicker">CHÍNH SÁCH</span>
