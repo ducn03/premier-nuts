@@ -37,13 +37,10 @@ function renderDetail(product) {
   const specsAccordion = specList.length ? `
     <details class="detail-accordion" open>
       <summary>
-        <div class="accordion-title-box">
-          <div class="accordion-icon-wrap">📋</div>
-          <div class="accordion-text">
-            <span class="accordion-kicker">THÔNG SỐ</span>
-            <h3 class="accordion-title">Thông tin chi tiết</h3>
-            <span class="accordion-sub">Thành phần, quy cách &amp; xuất xứ</span>
-          </div>
+        <div class="accordion-text">
+          <span class="accordion-kicker">THÔNG SỐ</span>
+          <h3 class="accordion-title">Thông tin chi tiết</h3>
+          <span class="accordion-sub">Thành phần, quy cách &amp; xuất xứ</span>
         </div>
         <div class="accordion-chevron-box">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -70,13 +67,10 @@ function renderDetail(product) {
     nutritionAccordion = `
       <details class="detail-accordion">
         <summary>
-          <div class="accordion-title-box">
-            <div class="accordion-icon-wrap">🌾</div>
-            <div class="accordion-text">
-              <span class="accordion-kicker">DINH DƯỠNG</span>
-              <h3 class="accordion-title">Giá trị dinh dưỡng</h3>
-              <span class="accordion-sub">${escapeHtml(product.nutritionServing || 'Khẩu phần 15g')}${product.glutenFree ? ' · Không Gluten' : ''}</span>
-            </div>
+          <div class="accordion-text">
+            <span class="accordion-kicker">DINH DƯỠNG</span>
+            <h3 class="accordion-title">Giá trị dinh dưỡng</h3>
+            <span class="accordion-sub">${escapeHtml(product.nutritionServing || 'Khẩu phần 15g')}${product.glutenFree ? ' · Không Gluten' : ''}</span>
           </div>
           <div class="accordion-chevron-box">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -107,13 +101,10 @@ function renderDetail(product) {
     usageAccordion = `
       <details class="detail-accordion">
         <summary>
-          <div class="accordion-title-box">
-            <div class="accordion-icon-wrap">🥣</div>
-            <div class="accordion-text">
-              <span class="accordion-kicker">THƯỞNG THỨC</span>
-              <h3 class="accordion-title">Gợi ý cách sử dụng</h3>
-              <span class="accordion-sub">Dễ dàng kết hợp vào thực đơn mỗi ngày</span>
-            </div>
+          <div class="accordion-text">
+            <span class="accordion-kicker">THƯỞNG THỨC</span>
+            <h3 class="accordion-title">Gợi ý cách sử dụng</h3>
+            <span class="accordion-sub">Dễ dàng kết hợp vào thực đơn mỗi ngày</span>
           </div>
           <div class="accordion-chevron-box">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -157,13 +148,10 @@ function renderDetail(product) {
     noticeAccordion = `
       <details class="detail-accordion">
         <summary>
-          <div class="accordion-title-box">
-            <div class="accordion-icon-wrap">🛡️</div>
-            <div class="accordion-text">
-              <span class="accordion-kicker">CHÍNH SÁCH</span>
-              <h3 class="accordion-title">Lưu ý &amp; Cam kết chất lượng</h3>
-              <span class="accordion-sub">Khuyến cáo sử dụng &amp; cam kết nguồn gốc</span>
-            </div>
+          <div class="accordion-text">
+            <span class="accordion-kicker">CHÍNH SÁCH</span>
+            <h3 class="accordion-title">Lưu ý &amp; Cam kết chất lượng</h3>
+            <span class="accordion-sub">Khuyến cáo sử dụng &amp; cam kết nguồn gốc</span>
           </div>
           <div class="accordion-chevron-box">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -202,7 +190,10 @@ function renderDetail(product) {
             Thêm vào giỏ
           </button>
         </div>
-        <div class="detail-order-note">Thêm vào giỏ rồi đặt hàng. Đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.</div>
+      </div>
+      <div class="detail-order-note">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16" r="1.2" fill="currentColor"/></svg>
+        <span>Thêm vào giỏ rồi đặt hàng. Đội ngũ Premier Nuts sẽ liên hệ xác nhận và hướng dẫn thanh toán.</span>
       </div>
       <div class="detail-accordion-group">
         ${specsAccordion}
