@@ -702,16 +702,26 @@
     .detail-specs{
       grid-column:1 / -1;
       display:grid;
-      grid-template-columns:1fr 1fr;
-      column-gap:52px;
+      grid-template-columns:1fr;
       border-top:1px solid var(--line);
-      margin-top:8px;
-      padding-top:4px;
+      margin-top:12px;
+      padding-top:0;
     }
     .detail-specs>div{
-      grid-template-columns:130px 1fr;
-      gap:16px;
-      padding:14px 0;
+      grid-template-columns:200px 1fr;
+      gap:24px;
+      padding:15px 0;
+      align-items:baseline;
+    }
+    .detail-specs dt{
+      font-size:13.5px;
+      font-weight:700;
+      color:var(--ink-soft);
+    }
+    .detail-specs dd{
+      font-size:14px;
+      line-height:1.65;
+      color:var(--ink);
     }
   }
   @media(max-width:700px){
