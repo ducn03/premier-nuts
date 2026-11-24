@@ -3,7 +3,7 @@
 .checkout-page {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 36px 24px 100px;
+  padding: 28px 24px 80px;
 }
 
 .checkout-shell {
@@ -354,6 +354,9 @@
 
 /* ---- Mobile ---- */
 @media (max-width: 599px) {
+  .checkout-page {
+    padding: 24px 18px 80px;
+  }
   .cart-item {
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;

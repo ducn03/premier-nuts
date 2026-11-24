@@ -1,6 +1,6 @@
-.news-page{max-width:1180px;margin:0 auto;padding:52px 24px 100px;}
-.news-hero{display:grid;gap:28px;align-items:end;padding:34px 0 48px;border-bottom:1px solid var(--line);}
-@media(min-width:820px){.news-hero{grid-template-columns:1.1fr .9fr;padding:58px 0 64px;}}
+.news-page{max-width:1180px;margin:0 auto;padding:0 24px 80px;}
+.news-hero{display:grid;gap:28px;align-items:end;padding:26px 0 36px;border-bottom:1px solid var(--line);}
+@media(min-width:820px){.news-hero{grid-template-columns:1.1fr .9fr;padding:28px 0 42px;}}
 .news-hero h1{max-width:720px;font-size:58px;line-height:1.03;letter-spacing:-.03em;margin:24px 0 16px;}
 .news-hero p{max-width:620px;color:var(--ink-soft);font-size:16px;line-height:1.75;}
 .news-hero-note{padding:24px;background:var(--green-mist);border-radius:24px;color:var(--green-dark);font-size:14px;line-height:1.65;}
@@ -53,7 +53,7 @@
 .news-dialog-content h2{font-size:28px;line-height:1.2;margin:12px 0;}
 .news-dialog-content p{color:var(--ink-soft);font-size:15px;line-height:1.75;}
 .news-dialog-close{display:block;margin:24px 0 0 auto;background:var(--ink);color:#fff;border-radius:999px;padding:10px 16px;font:700 13px inherit;cursor:pointer;}
-.news-detail-page{max-width:1180px;margin:0 auto;padding:48px 24px 100px;}
+.news-detail-page{max-width:1180px;margin:0 auto;padding:26px 24px 80px;}
 .news-detail-article{max-width:960px;margin:0 auto;}
 .news-detail-back{display:inline-flex;color:var(--ink-soft);font-size:14px;font-weight:700;margin-bottom:42px;}
 .news-detail-back:hover{color:var(--orange-dark);}
@@ -73,12 +73,12 @@
 .news-detail-footer{display:flex;gap:20px;align-items:center;justify-content:space-between;background:var(--green-mist);border-radius:20px;padding:24px 28px;}
 .news-detail-footer strong{font-size:17px;}
 @media(max-width:639px){
-  .news-page{padding:34px 18px 100px;}
+  .news-page{padding:0 18px 80px;}
   .news-hero h1{font-size:38px;}
   .news-featured-body h2{font-size:28px;}
   .news-featured-body{padding:24px 22px 26px;}
   .news-section-head h2,.news-next-step h2{font-size:28px;}
-  .news-detail-page{padding:34px 18px 100px;}
+  .news-detail-page{padding:26px 18px 80px;}
   .news-detail-back{margin-bottom:30px;}
   .news-detail-header h1{font-size:38px;}
   .news-detail-excerpt{font-size:16px;}
