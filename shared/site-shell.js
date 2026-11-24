@@ -1,3 +1,53 @@
+
+// ================= APP TOP PROGRESS BAR =================
+(function initAppProgressBar() {
+  const bar = document.createElement('div');
+  bar.id = 'app-progress-bar';
+  document.body ? document.body.prepend(bar) : document.addEventListener('DOMContentLoaded', () => document.body.prepend(bar));
+
+  function setProgress(pct) {
+    if (bar) {
+      bar.style.opacity = '1';
+      bar.style.width = pct + '%';
+    }
+  }
+
+  function start() {
+    setProgress(35);
+    setTimeout(() => { if (bar && bar.style.width === '35%') setProgress(75); }, 220);
+  }
+
+  function finish() {
+    setProgress(100);
+    setTimeout(() => {
+      if (bar) {
+        bar.style.opacity = '0';
+        setTimeout(() => { if (bar) bar.style.width = '0%'; }, 250);
+      }
+    }, 180);
+  }
+
+  // Start progress immediately
+  start();
+  if (document.readyState === 'complete') {
+    finish();
+  } else {
+    window.addEventListener('load', finish);
+  }
+
+  // Listen for internal link clicks to trigger progress bar feedback
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a');
+    if (!link || !link.href) return;
+    if (link.target === '_blank' || link.href.startsWith('#') || link.href.startsWith('javascript:')) return;
+    if (link.origin === window.location.origin && link.pathname !== window.location.pathname) {
+      start();
+    }
+  });
+
+  window.pnLoading = { start, finish, setProgress };
+})();
+
 if ('serviceWorker' in navigator) {
   const isNestedPageSW = window.location.pathname.split('/').includes('pages');
   navigator.serviceWorker.register(isNestedPageSW ? '../sw.js' : 'sw.js').catch(() => {});
@@ -13,7 +63,7 @@ const siteHeaderMarkup = `
 <header class="site">
   <div class="header-row">
     <a href="${rootPath}index.html" class="brand">
-      <img src="${rootPath}assets/images/premier-nuts-logo-2.png" alt="Premier Nuts">
+      <img src="${rootPath}assets/images/premier-nuts-logo-2.png" alt="Premier Nuts" width="92" height="44" fetchpriority="high" decoding="async">
     </a>
     <nav class="main-nav">
       <a href="${rootPath}index.html">Trang chủ</a>

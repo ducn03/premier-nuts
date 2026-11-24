@@ -55,6 +55,21 @@ function productCard(product) {
   </div>`;
 }
 
+
+function renderSkeletons(count = 2) {
+  if (!productList) return;
+  productList.innerHTML = Array.from({ length: count }, () => `
+    <div class="p-card p-card--skeleton" aria-hidden="true">
+      <div class="p-media skeleton-box"></div>
+      <div class="p-body">
+        <div class="skeleton-box" style="width:45%;height:12px;margin-bottom:8px;"></div>
+        <div class="skeleton-box" style="width:85%;height:16px;margin-bottom:12px;"></div>
+        <div class="skeleton-box" style="width:40%;height:18px;"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
 function renderProducts(products) {
   productList.innerHTML = products.length
     ? products.map(productCard).join('')
@@ -67,6 +82,7 @@ function removeAccents(str) {
 
 async function loadProducts() {
   if (!productList) return;
+  renderSkeletons(isCatalogPage ? 4 : 2);
   try {
     const response = await fetch(`${pageRoot}features/catalog/products.json`);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -103,6 +119,39 @@ async function loadProducts() {
     }
 
     renderProducts(isCatalogPage ? filteredProducts : products.slice(0, 4));
+
+    // Mobile In-Page Quick Category Filter (App-like instant filter)
+    const quickCatItems = document.querySelectorAll('.hero-quick-cats .hqc-item');
+    if (quickCatItems.length && !isCatalogPage) {
+      quickCatItems.forEach(item => {
+        item.addEventListener('click', e => {
+          e.preventDefault();
+          quickCatItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+
+          const catName = item.querySelector('span:last-child')?.textContent?.trim();
+          let filtered = products;
+
+          if (catName && catName !== 'Tất cả') {
+            const normTarget = removeAccents(catName.toLowerCase());
+            filtered = products.filter(p => {
+              const normCat = removeAccents((p.category || '').toLowerCase());
+              const normName = removeAccents((p.name || '').toLowerCase());
+              return normCat.includes(normTarget) || normName.includes(normTarget);
+            });
+          }
+
+          renderProducts(filtered.length ? filtered : products);
+
+          const sec = document.querySelector('#san-pham');
+          if (sec) {
+            const topOffset = sec.getBoundingClientRect().top + window.scrollY - 70;
+            window.scrollTo({ top: topOffset, behavior: 'smooth' });
+          }
+        });
+      });
+    }
+
 
     categoryFilters.forEach(filter => {
       filter.addEventListener('click', () => {
